@@ -7,10 +7,8 @@ export default function Home() {
 
 			<br />
 
-			<div>
-				<input type="text"
-					className=""
-				/>
+			<div className="p-3">
+				<input type="text" className="" />
 			</div>
 		</div>
 	)
