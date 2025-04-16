@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := start
+.DEFAULT_GOAL := dev
 
 package.json:
 	@touch $@
