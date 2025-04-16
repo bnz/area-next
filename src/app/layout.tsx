@@ -24,10 +24,10 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <header className=" border-b border-b-amber-900 mb-2 flex flex-row justify-between">
-            <LangLink href="/" className="p-2">LOGO</LangLink>
-            <LangsSwitcher />
-        </header>
+        {/*<header className=" border-b border-b-amber-900 mb-2 flex flex-row justify-between">*/}
+        {/*    <LangLink href="/" className="p-2">LOGO</LangLink>*/}
+        {/*    <LangsSwitcher />*/}
+        {/*</header>*/}
         {children}
         </body>
         </html>
