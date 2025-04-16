@@ -2,7 +2,8 @@ import { PropsWithChildren } from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import Link from "next/link"
+import { LangLink } from "@/components/LangLink"
+import { LangsSwitcher } from "@/components/LangsSwitcher"
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -23,8 +24,9 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <header className="p-2 border-b border-b-amber-900 mb-2">
-            <Link href="/">LOGO</Link>
+        <header className=" border-b border-b-amber-900 mb-2 flex flex-row justify-between">
+            <LangLink href="/" className="p-2">LOGO</LangLink>
+            <LangsSwitcher />
         </header>
         {children}
         </body>
