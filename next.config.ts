@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
+
+const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+	output: 'export', // 👈 включаем static export
+	basePath: isProd ? '/area-next' : '', // 👈 для GitHub Pages
+	trailingSlash: true, // 👈 важно для корректных путей
+}
 
-export default nextConfig;
+export default nextConfig

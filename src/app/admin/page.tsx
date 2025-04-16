@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { Buffer } from "buffer"
 
 const GITHUB_OWNER = "bnz"
-const GITHUB_REPO = "aria-next"
+const GITHUB_REPO = "area-next"
 const FILE_PATH = "data/translations.json" // путь до json-файла
 const BRANCH = "main" // или "master"
 
@@ -35,7 +35,7 @@ export default function Page() {
 		}
 	}
 
-	const saveFile = async () => {
+	async function saveFile() {
 		try {
 			const base64Content = Buffer.from(jsonText).toString("base64")
 
@@ -71,26 +71,33 @@ export default function Page() {
 	}
 
 	return (
-		<div style={{ padding: "2rem", maxWidth: "700px", margin: "0 auto" }}>
+		<form
+			className="p-2 max-w-[700px] mx-auto flex flex-col gap-4"
+			onSubmit={function (event) {
+				event.preventDefault()
+			}}
+		>
 			<h1>Редактор JSON</h1>
 			<input
 				type="password"
 				placeholder="Вставь GitHub Token"
 				value={token}
-				onChange={(e) => setToken(e.target.value)}
-				style={{ width: "100%", marginBottom: "1rem" }}
+				onChange={function (e) {
+					setToken(e.target.value)
+				}}
+				// style={{ width: "100%", marginBottom: "1rem" }}
 			/>
-			<button onClick={loadFile}>Загрузить JSON</button>
+			<button type="button" className="button" onClick={loadFile}>Загрузить JSON</button>
 			<textarea
 				rows={20}
-				style={{ width: "100%", marginTop: "1rem", fontFamily: "monospace" }}
+				// style={{ width: "100%", marginTop: "1rem", fontFamily: "monospace" }}
 				value={jsonText}
 				onChange={(e) => setJsonText(e.target.value)}
 			/>
-			<button onClick={saveFile} style={{ marginTop: "1rem" }}>
+			<button type="submit" className="button" onClick={saveFile}>
 				💾 Сохранить
 			</button>
 			<div style={{ marginTop: "1rem", fontWeight: "bold" }}>{status}</div>
-		</div>
+		</form>
 	)
 }
