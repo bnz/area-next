@@ -78,12 +78,10 @@ export function AdminClient({ lang }: AdminClientProps) {
                 onChange={function (e) {
                     setToken(e.target.value)
                 }}
-                // style={{ width: "100%", marginBottom: "1rem" }}
             />
             <button type="button" className="button" onClick={loadFile}>Загрузить JSON</button>
             <textarea
                 rows={20}
-                // style={{ width: "100%", marginTop: "1rem", fontFamily: "monospace" }}
                 value={jsonText}
                 onChange={(e) => setJsonText(e.target.value)}
             />

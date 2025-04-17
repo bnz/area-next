@@ -27,6 +27,11 @@ body {
 
 @layer components {
 
+    html,
+    body {
+        @apply h-full;
+    }
+
     textarea,
     input[type="password"],
     input[type="text"] {

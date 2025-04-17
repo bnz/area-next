@@ -1,102 +1,78 @@
-'use client'
-
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { supportedLanguages } from "@/lib/i18n"
+import { LandingPosts } from "@/components/LandingPosts"
+import { LangLink } from "@/components/LangLink"
+import { HeroSection } from "@/components/HeroSection"
 
 export function Landing() {
-    const pathname = usePathname()
-    const currentLang = pathname.split('/')[1] || 'en'
-
     return (
-        <div className="min-h-screen bg-white text-gray-900 dark:bg-black dark:text-gray-100 flex flex-col">
-            {/* Header */}
-            <header
-                className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-800">
-                <div className="flex items-center gap-6">
-                    <Link href={`/${currentLang}`} className="text-xl font-bold hover:opacity-80 transition">
-                        Arija
-                    </Link>
-                </div>
-                <div className="flex items-center gap-4">
-                    <nav className="hidden sm:flex space-x-4">
-                        <Link href="#features" className="hover:underline text-gray-700 dark:text-gray-300">
-                            Контакты
-                        </Link>
-                        <Link href="#cta" className="hover:underline text-gray-700 dark:text-gray-300">
-                            Блог
-                        </Link>
-                    </nav>
-                    <div className="relative">
-                        <select
-                            className="bg-transparent border border-gray-400 dark:border-gray-600 rounded px-2 py-1 text-sm text-gray-800 dark:text-gray-200"
-                            defaultValue={currentLang}
-                            onChange={(e) => {
-                                const lang = e.target.value
-                                const newPath = pathname.replace(/^\/[^/]+/, '/' + lang)
-                                window.location.href = newPath
-                            }}
-                        >
-                            {supportedLanguages.map((lang) => (
-                                <option key={lang} value={lang}>
-                                    {lang.toUpperCase()}
-                                </option>
-                            ))}
-                        </select>
+        <>
+            <HeroSection />
+
+            {/* Features Grid */}
+            <section id="features" className="py-24 px-6 sm:px-12 bg-gray-100 dark:bg-gray-900">
+                <div className="max-w-6xl mx-auto grid gap-12 sm:grid-cols-2 lg:grid-cols-4 text-center">
+                    <div>
+                        <h3 className="text-xl font-medium mb-2">Простота</h3>
+                        <p className="text-gray-600 dark:text-gray-400">Интерфейс, интуитивно понятный врачам и
+                            администраторам</p>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-medium mb-2">Безопасность</h3>
+                        <p className="text-gray-600 dark:text-gray-400">Конфиденциальность пациентских данных
+                            гарантирована</p>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-medium mb-2">Скорость</h3>
+                        <p className="text-gray-600 dark:text-gray-400">Обновления отображаются мгновенно на всех
+                            устройствах</p>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-medium mb-2">Удобство</h3>
+                        <p className="text-gray-600 dark:text-gray-400">Работать с пациентами стало ещё комфортнее</p>
                     </div>
                 </div>
-            </header>
-
-            {/* Hero */}
-            <section className="flex flex-col items-center justify-center flex-1 text-center p-4">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                    Добро пожаловать в <span className="text-emerald-500 dark:text-emerald-300">Arija</span>
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl mb-6">
-                    Простой, быстрый и адаптивный лендинг, построенный с современными веб-технологиями
-                </p>
-                <Link
-                    href="#cta"
-                    className="bg-emerald-500 dark:bg-emerald-400 text-white px-6 py-3 rounded shadow hover:bg-emerald-600 dark:hover:bg-emerald-500 transition"
-                >
-                    Попробовать сейчас
-                </Link>
             </section>
 
-            {/* Features */}
-            <section id="features" className="py-16 bg-gray-100 dark:bg-gray-900 px-6">
-                <div className="max-w-4xl mx-auto grid gap-8 sm:grid-cols-3 text-center">
-                    <div>
-                        <h3 className="text-xl font-semibold mb-2">Быстрый старт</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Готов к запуску всего за пару минут</p>
+            <LandingPosts />
+
+            {/* Split Sections */}
+            <section className="py-24 px-6 sm:px-12 bg-gray-100 dark:bg-gray-950">
+                <div className="max-w-5xl mx-auto grid gap-12 md:grid-cols-2 items-center">
+                    <div className="text-left">
+                        <h2 className="text-3xl font-bold mb-4">Минимум действий — максимум эффективности</h2>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Назначайте приёмы, ведите историю болезни и просматривайте анализы в один клик.
+                        </p>
                     </div>
-                    <div>
-                        <h3 className="text-xl font-semibold mb-2">Гибкий дизайн</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Современная, настраиваемая система стилей</p>
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-semibold mb-2">Легко адаптировать</h3>
-                        <p className="text-gray-600 dark:text-gray-400">Подходит под любой проект</p>
+                    <div className="w-full aspect-video bg-gray-200 dark:bg-gray-800 rounded-xl" />
+                </div>
+            </section>
+
+            <section className="py-24 px-6 sm:px-12 bg-gray-50 dark:bg-gray-900">
+                <div className="max-w-5xl mx-auto grid gap-12 md:grid-cols-2 items-center">
+                    <div className="w-full aspect-video bg-gray-200 dark:bg-gray-800 rounded-xl" />
+                    <div className="text-left">
+                        <h2 className="text-3xl font-bold mb-4">Всё под рукой</h2>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Полный доступ к медицинским картам, результатам исследований и коммуникациям с пациентами —
+                            в одном окне.
+                        </p>
                     </div>
                 </div>
             </section>
 
             {/* CTA */}
-            <section id="cta" className="py-16 px-6 bg-emerald-600 dark:bg-emerald-700 text-white text-center">
-                <h2 className="text-3xl font-bold mb-4">Готовы начать?</h2>
-                <p className="mb-6">Присоединяйтесь сегодня и ускорьте разработку</p>
-                <Link
-                    href="/admin"
-                    className="bg-white text-emerald-600 dark:text-emerald-700 px-6 py-3 rounded font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-200 transition"
+            <section id="cta"
+                className="py-20 px-6 sm:px-12 bg-black dark:bg-gray-200 text-gray-100 dark:text-gray-900 text-center">
+                <h2 className="text-3xl font-semibold max-w-xl mx-auto">
+                    Присоединяйтесь к Arija и сделайте вашу практику цифровой.
+                </h2>
+                <LangLink
+                    href="/contacts"
+                    className="mt-8 inline-block px-6 py-3 bg-white text-black dark:bg-gray-950 dark:text-white border border-current rounded-full hover:opacity-90 transition"
                 >
-                    Перейти в админку
-                </Link>
+                    Записаться на прием
+                </LangLink>
             </section>
-
-            {/* Footer */}
-            <footer className="py-6 text-center text-sm text-gray-500 border-t border-gray-200 dark:border-gray-800">
-                © 2025 Arija. Все права защищены.
-            </footer>
-        </div>
+        </>
     )
 }
