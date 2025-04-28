@@ -9,8 +9,6 @@ type I18nProviderProps = PropsWithChildren<{
 }>
 
 export function I18nProvider({ children, translations }: I18nProviderProps) {
-    console.log({ translations })
-
     return (
         <I18nContext.Provider value={translations}>
             {children}
