@@ -1,30 +1,44 @@
 import { useState } from "react"
 import { TransFiles, useAdmin } from "@/components/AdminProvider"
+import { useI18n } from "@/components/I18nProvider"
 
-export function LoginForm({ message }: { message?: string }) {
+export function LoginForm() {
     const [token, setToken] = useState("")
-    const { loadFile } = useAdmin()
+    const [clicked, setClicked] = useState(false)
+    const { loadFile, setLoadedData } = useAdmin()
+    const loginText = useI18n("button.login")
+    const passwordText = useI18n("password")
+    const loadingText = useI18n("loading")
 
     return (
-        <div className="max-w-lg mx-auto">
-            <div className="flex gap-4">
+        <div className="max-w-lg mx-auto py-36">
+            <form className="flex gap-4" onSubmit={async function (event) {
+                event.preventDefault()
+                setClicked(true)
+                const data = await loadFile(TransFiles.common, token)
+
+                if (data) {
+                    setLoadedData(function (prevState) {
+                        return {
+                            ...prevState,
+                            [TransFiles.common]: JSON.parse(data.content),
+                        }
+                    })
+                }
+            }}>
                 <input
                     type="password"
-                    placeholder="Password"
+                    placeholder={passwordText}
                     value={token}
+                    autoFocus
                     onChange={function (e) {
                         setToken(e.target.value)
                     }}
                 />
-                <button type="button" className="button" onClick={async function () {
-                    await loadFile(TransFiles.welcome, token)
-                }}>
-                    login
+                <button disabled={clicked} type="submit" className="button">
+                    {clicked ? loadingText : loginText}
                 </button>
-            </div>
-            {message && (
-                <div>{message}</div>
-            )}
+            </form>
         </div>
     )
 }

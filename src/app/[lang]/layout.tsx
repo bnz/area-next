@@ -6,7 +6,6 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import path from "path"
 import fs from "fs"
-import { Post } from "@/app/[lang]/blog/BlogPage"
 import { I18nProvider } from "@/components/I18nProvider"
 
 const geistSans = Geist({
@@ -31,21 +30,28 @@ type RootLayoutProps = Readonly<PropsWithChildren<{
 export default async function RootLayout({ children, params }: RootLayoutProps) {
     const { lang } = await params
 
-    const filePath = path.join(process.cwd(), "public", "data", lang, "translations.json")
+    const filePathCommon = path.join(process.cwd(), "public", "data", lang, "common.json")
+    const filePathTranslations = path.join(process.cwd(), "public", "data", lang, "translations.json")
 
     let translations: Record<string, string> = {}
 
     try {
-        const file = fs.readFileSync(filePath, "utf-8")
+        const file = fs.readFileSync(filePathCommon, "utf-8")
         translations = JSON.parse(file) as Record<string, string>
+
+        const file2 = fs.readFileSync(filePathTranslations, "utf-8")
+        translations = {
+            ...translations,
+            ...(JSON.parse(file2) as Record<string, string>),
+        }
     } catch (e) {
-        console.warn(`⚠️ Не удалось прочитать файл: ${filePath}`)
+        console.warn(`⚠️ Не удалось прочитать файл: ${filePathCommon}`)
     }
 
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <I18nProvider value={translations}>
+        <I18nProvider translations={translations}>
             <div
                 className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-full -mb-[50px]">
                 <Header lang={lang} />

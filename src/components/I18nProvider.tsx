@@ -5,12 +5,14 @@ import { createContext, PropsWithChildren, useContext } from "react"
 const I18nContext = createContext<Record<string, string>>({})
 
 type I18nProviderProps = PropsWithChildren<{
-    value: Record<string, string>
+    translations: Record<string, string>
 }>
 
-export function I18nProvider({ children, value }: I18nProviderProps) {
+export function I18nProvider({ children, translations }: I18nProviderProps) {
+    console.log({ translations })
+
     return (
-        <I18nContext.Provider value={value}>
+        <I18nContext.Provider value={translations}>
             {children}
         </I18nContext.Provider>
     )

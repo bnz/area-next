@@ -7,10 +7,14 @@ export function Header({ lang }: { lang: string }) {
         <header className="w-full px-6 py-6 flex justify-between items-center">
             <Link
                 href={`/${lang}`}
-                className="text-2xl font-semibold tracking-tight hover:opacity-80 transition">
+                className="text-2xl font-semibold tracking-tight hover:opacity-80 transition"
+            >
                 Arija
             </Link>
             <div className="flex items-center gap-4">
+                <LangLink href="/admin" className="hover:underline text-gray-700 dark:text-gray-300">
+                    admin
+                </LangLink>
                 <nav className="hidden sm:flex gap-6 text-sm">
                     <LangLink href="/contacts" className="hover:underline text-gray-700 dark:text-gray-300">
                         Контакты

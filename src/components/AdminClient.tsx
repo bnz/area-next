@@ -2,31 +2,31 @@
 
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react"
 import { Trans } from "@/components/Trans"
-import { useAdmin } from "@/components/AdminProvider"
+import { LogOut } from "@/components/LogOut"
 
 type AdminClientProps = {
     lang: string
 }
 
 export function AdminClient({ lang }: AdminClientProps) {
-
     return (
         <div className="max-w-5xl mx-auto">
+            <LogOut />
             <TabGroup>
                 <TabList className="flex gap-4">
                     <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">translations</Tab>
-                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">contacts</Tab>
                     <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">posts</Tab>
+                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">contacts</Tab>
                 </TabList>
-                <TabPanels className="mt-3 outline-1">
+                <TabPanels className="mt-3 py-3">
                     <TabPanel>
                         <Trans />
                     </TabPanel>
                     <TabPanel className="">
-                        contacts tab content
+                        posts tab content
                     </TabPanel>
                     <TabPanel className="">
-                        posts tab content
+                        contacts tab content
                     </TabPanel>
                 </TabPanels>
             </TabGroup>

@@ -1,12 +1,47 @@
-import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useRef, useState } from "react"
+import {
+    createContext,
+    type Dispatch,
+    type PropsWithChildren,
+    type SetStateAction,
+    useCallback,
+    useContext,
+    useEffect,
+    useState,
+} from "react"
 import { BRANCH, getUrl } from "@/lib/getUrl"
 import { Buffer } from "buffer"
 import { LoginForm } from "@/components/LoginForm"
+import { fetchStub } from "@/lib/fetchStub"
+import { useI18n } from "@/components/I18nProvider"
+
+export enum TransFiles {
+    common = "common",
+    translations = "translations",
+}
+
+type LoadedData = {
+    [TransFiles.common]: Record<string, string>
+    [TransFiles.translations]: Record<string, string>
+}
 
 const AdminContext = createContext<{
     loadFile: any
+    logOut: VoidFunction
+    loadedData: LoadedData
+    setLoadedData: Dispatch<SetStateAction<LoadedData>>
+    loadData(filename: TransFiles): Promise<void>
 }>({
     loadFile() {
+    },
+    logOut() {
+    },
+    loadedData: {
+        [TransFiles.common]: {},
+        [TransFiles.translations]: {},
+    },
+    setLoadedData() {
+    },
+    async loadData(filename) {
     },
 })
 
@@ -14,14 +49,15 @@ export function useAdmin() {
     return useContext(AdminContext)
 }
 
-export enum TransFiles {
-    welcome = "welcome"
-}
-
 export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: string }>) {
     const [token, setToken] = useState("")
-    const [isLogged, setIsLogged] = useState(false)
     const [loading, setLoading] = useState(false)
+    const loadingText = useI18n("loading")
+
+    const [loadedData, setLoadedData] = useState<LoadedData>({
+        common: {},
+        translations: {},
+    })
 
     useEffect(function () {
         try {
@@ -34,37 +70,32 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         }
     }, [setToken])
 
-    const loadFile = useCallback(async (filename: TransFiles, newToken: string) => {
+    const loadFile = useCallback(async (filename: TransFiles, newToken?: string) => {
         try {
-            setLoading(true)
-
-            const res = await fetch(getUrl(`${lang}/${filename}`, `?ref=${BRANCH}`), {
+            const res = await fetchStub(getUrl(`${lang}/${filename}`, `?ref=${BRANCH}`), {
                 headers: {
-                    Authorization: `token ${newToken}`,
+                    Authorization: `token ${newToken || token}`,
                 },
             })
             const data = await res.json()
 
             if (data.status) {
-                setLoading(false)
                 return undefined
             }
 
-            localStorage.setItem("token", JSON.stringify(newToken))
-
-            const content = Buffer.from(data.content, "base64").toString("utf8")
-
-            setLoading(false)
-            setIsLogged(true)
+            if (newToken) {
+                localStorage.setItem("token", JSON.stringify(newToken))
+                setToken(newToken)
+            }
 
             return {
-                content,
+                content: Buffer.from(data.content, "base64").toString("utf8"),
                 sha: data.sha as string,
             }
         } catch (err) {
             console.error(err)
         }
-    }, [lang, setLoading, setIsLogged, token])
+    }, [lang, setLoading, token])
 
     async function saveFile(filename: TransFiles, stringToSave: string, sha: string) {
         try {
@@ -97,27 +128,50 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         }
     }
 
-    useEffect(function () {
-        if (token) {
-            (async function () {
-                const file = await loadFile(TransFiles.welcome, token)
-                setIsLogged(file !== undefined)
-            })()
+    const loadData = useCallback(async function (filename: TransFiles) {
+        if (Object.keys(loadedData[filename]).length > 0) {
+            return
         }
-    }, [token, loadFile])
+
+        const data = await loadFile(filename)
+        if (data) {
+            try {
+                setLoadedData(function (prevState) {
+                    return {
+                        ...prevState,
+                        [filename]: JSON.parse(data.content),
+                    }
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+    }, [loadFile, loadedData, setLoadedData])
+
+    const logOut = useCallback(function () {
+        localStorage.removeItem("token")
+        window.location.reload()
+    }, [])
 
     return (
-        <AdminContext.Provider value={{ loadFile }}>
-            {loading ? <div className="max-w-lg mx-auto">Loading...</div> : (
-                <>
-                    {!isLogged && !token && (
-                        <LoginForm
-                            // message="Wrong password"
-                        />
-                    )}
-                    {isLogged && token && children}
-                </>
-            )}
+        <AdminContext.Provider value={{
+            loadFile,
+            logOut,
+            loadedData,
+            setLoadedData,
+            loadData,
+        }}>
+            {loading
+                ? (
+                    <div className="max-w-lg mx-auto">
+                        {loadingText}
+                    </div>
+                )
+                : token
+                    ? children
+                    : <LoginForm />
+            }
         </AdminContext.Provider>
     )
 }
