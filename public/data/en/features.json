@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "title": "Simplicity",
+    "description": "An interface intuitive for doctors and administrators"
+  },
+  {
+    "title": "Security",
+    "description": "Patient data confidentiality is guaranteed"
+  },
+  {
+    "title": "Speed",
+    "description": "Updates appear instantly across all devices"
+  },
+  {
+    "title": "Convenience",
+    "description": "Working with patients has become even more comfortable"
+  }
+]

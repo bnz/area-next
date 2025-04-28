@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "title": "Vienkāršība",
+    "description": "Saskarne, kas ir intuitīva ārstiem un administratoriem"
+  },
+  {
+    "title": "Drošība",
+    "description": "Pacientu datu konfidencialitāte ir garantēta"
+  },
+  {
+    "title": "Ātrums",
+    "description": "Atjauninājumi tiek rādīti nekavējoties visās ierīcēs"
+  },
+  {
+    "title": "Ērtības",
+    "description": "Darbs ar pacientiem ir kļuvis vēl ērtāks"
+  }
+]
