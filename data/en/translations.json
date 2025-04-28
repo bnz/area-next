@@ -1,5 +1,6 @@
 {
   "text.main.header": "Digital Platform for Medical Practice",
   "text.main.subHeader": "Aria helps manage patient data, appointments, and information visualization without unnecessary burden.",
-  "button.contacts.header": "Get started"
+  "button.contacts.header": "Get started",
+  "blog.heading": "From the Blog"
 }
