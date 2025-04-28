@@ -1,4 +1,5 @@
-import {
+import React, {
+    ChangeEvent,
     createContext,
     type Dispatch,
     type PropsWithChildren,
@@ -11,34 +12,34 @@ import {
 import { BRANCH, getUrl } from "@/lib/getUrl"
 import { Buffer } from "buffer"
 import { LoginForm } from "@/components/LoginForm"
-import { fetchStub } from "@/lib/fetchStub"
 import { useI18n } from "@/components/I18nProvider"
 import { type AvailableLangs } from "@/lib/i18n"
+import debounce from "lodash.debounce"
 
 export enum TransFiles {
     common = "common",
     translations = "translations",
+    features = "features",
+}
+
+type ShaItem = {
+    [trans in TransFiles]: string
 }
 
 type ShaData = {
-    [lang in AvailableLangs]: {
-        [trans in TransFiles]: string
-    }
+    [lang in AvailableLangs]: ShaItem
+}
+
+const defaultShaItem = {
+    [TransFiles.common]: "",
+    [TransFiles.translations]: "",
+    [TransFiles.features]: "",
 }
 
 const defaultShaData: ShaData = {
-    en: {
-        [TransFiles.common]: "",
-        [TransFiles.translations]: "",
-    },
-    lv: {
-        [TransFiles.common]: "",
-        [TransFiles.translations]: "",
-    },
-    ru: {
-        [TransFiles.common]: "",
-        [TransFiles.translations]: "",
-    },
+    en: defaultShaItem,
+    lv: defaultShaItem,
+    ru: defaultShaItem,
 }
 
 type LoadedDataItem = {
@@ -52,6 +53,7 @@ type LoadedData = {
 const defaultLoadedDataItem: LoadedDataItem = {
     [TransFiles.common]: {},
     [TransFiles.translations]: {},
+    [TransFiles.features]: {},
 }
 
 const defaultLoadedData: LoadedData = {
@@ -73,7 +75,7 @@ const AdminContext = createContext<{
     setLoadedData: Dispatch<SetStateAction<LoadedData>>
     loadData(filename: TransFiles): Promise<void>
     saveData(filename: TransFiles): Promise<void>
-    lang: AvailableLangs
+    updateData(key: string): (event: ChangeEvent<HTMLTextAreaElement>) => void
 }>({
     async loadFile() {
         return undefined
@@ -90,7 +92,10 @@ const AdminContext = createContext<{
     },
     async saveData() {
     },
-    lang: "en",
+    updateData() {
+        return function () {
+        }
+    },
 })
 
 export function useAdmin() {
@@ -252,6 +257,33 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
         window.location.reload()
     }, [])
 
+    const debounced = debounce(function (obj: object) {
+        try {
+            localStorage.setItem(LOADED_DATA, JSON.stringify(obj))
+        } catch (e) {
+            console.log(e)
+        }
+    }, 400)
+
+    const updateData = useCallback(function (key: string) {
+        return function (event: ChangeEvent<HTMLTextAreaElement>) {
+            setLoadedData(function (prevState) {
+                const newState = {
+                    ...prevState,
+                    [lang]: {
+                        ...prevState[lang],
+                        [TransFiles.translations]: {
+                            ...prevState[lang][TransFiles.translations],
+                            [key]: event.target.value,
+                        },
+                    },
+                }
+                debounced(newState)
+                return newState
+            })
+        }
+    }, [lang, debounced, setLoadedData])
+
     return (
         <AdminContext.Provider value={{
             loadFile,
@@ -261,7 +293,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
             setLoadedData,
             loadData,
             saveData,
-            lang,
+            updateData,
         }}>
             {loading
                 ? (

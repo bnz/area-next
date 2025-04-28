@@ -3,10 +3,15 @@
   "button.login": "Войти",
   "button.logout": "Выйти",
   "button.publish": "\uD83D\uDCBE Публиковать",
+  "button.add": "Добавить",
   "loading": "Загрузка...",
   "password": "Пароль",
   "main-logo": "Arija",
   "contacts": "Контакты",
   "blog": "Блог",
-  "button.contacts.header": "Начать"
+  "button.contacts.header": "Начать",
+  "tab.translations": "Переводы",
+  "tab.posts": "Публикации",
+  "tab.contacts": "Контакты",
+  "tab.features": "Функции"
 }

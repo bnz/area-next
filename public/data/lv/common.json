@@ -3,10 +3,15 @@
   "button.login": "Pieteikties",
   "button.logout": "Izrakstīties",
   "button.publish": "\uD83D\uDCBE Publicēt",
+  "button.add": "Pievienot",
   "loading": "Ielādējas...",
   "password": "Parole",
   "main-logo": "Arija",
   "contacts": "Kontakti",
   "blog": "Blogs",
-  "button.contacts.header": "Sākt"
+  "button.contacts.header": "Sākt",
+  "tab.translations": "Tulkotāji",
+  "tab.posts": "Ziņas",
+  "tab.contacts": "Kontakti",
+  "tab.features": "Funkcijas"
 }

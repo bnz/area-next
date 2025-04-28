@@ -3,10 +3,15 @@
   "button.login": "Login",
   "button.logout": "Logout",
   "button.publish": "\uD83D\uDCBE Publish",
+  "button.add": "Add",
   "loading": "Loading...",
   "password": "Password",
   "main-logo": "Arija",
   "contacts": "Contacts",
   "blog": "Blog",
-  "button.contacts.header": "Get started"
+  "button.contacts.header": "Get started",
+  "tab.translations": "Translations",
+  "tab.posts": "Posts",
+  "tab.contacts": "Contacts",
+  "tab.features": "Features"
 }

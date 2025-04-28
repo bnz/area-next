@@ -7,8 +7,8 @@ export function LogOut() {
     const welcomeText = useI18n("welcome")
 
     return (
-        <div className="flex flex-row gap-3 mb-3">
-            <h3>{welcomeText}</h3>
+        <div className="flex flex-row gap-3 mb-3 px-2">
+            <h3 className="text-xl font-bold">{welcomeText}</h3>
             <button type="button" className="button ml-auto" onClick={logOut}>
                 {logoutText}
             </button>
