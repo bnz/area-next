@@ -5,7 +5,7 @@ import { useI18n } from "@/components/I18nProvider"
 export function LoginForm() {
     const [token, setToken] = useState("")
     const [clicked, setClicked] = useState(false)
-    const { loadFile, setLoadedData } = useAdmin()
+    const { loadFile } = useAdmin()
     const loginText = useI18n("button.login")
     const passwordText = useI18n("password")
     const loadingText = useI18n("loading")
@@ -15,16 +15,7 @@ export function LoginForm() {
             <form className="flex gap-4" onSubmit={async function (event) {
                 event.preventDefault()
                 setClicked(true)
-                const data = await loadFile(TransFiles.common, token)
-
-                if (data) {
-                    setLoadedData(function (prevState) {
-                        return {
-                            ...prevState,
-                            [TransFiles.common]: JSON.parse(data.content),
-                        }
-                    })
-                }
+                await loadFile(TransFiles.common, token)
             }}>
                 <input
                     type="password"

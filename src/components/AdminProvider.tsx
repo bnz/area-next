@@ -13,55 +13,120 @@ import { Buffer } from "buffer"
 import { LoginForm } from "@/components/LoginForm"
 import { fetchStub } from "@/lib/fetchStub"
 import { useI18n } from "@/components/I18nProvider"
+import { type AvailableLangs } from "@/lib/i18n"
 
 export enum TransFiles {
     common = "common",
     translations = "translations",
 }
 
+type ShaData = {
+    [lang in AvailableLangs]: {
+        [trans in TransFiles]: string
+    }
+}
+
+const defaultShaData: ShaData = {
+    en: {
+        [TransFiles.common]: "",
+        [TransFiles.translations]: "",
+    },
+    lv: {
+        [TransFiles.common]: "",
+        [TransFiles.translations]: "",
+    },
+    ru: {
+        [TransFiles.common]: "",
+        [TransFiles.translations]: "",
+    },
+}
+
+type LoadedDataItem = {
+    [trans in TransFiles]: Record<string, string>
+}
+
 type LoadedData = {
-    [TransFiles.common]: Record<string, string>
-    [TransFiles.translations]: Record<string, string>
+    [lang in AvailableLangs]: LoadedDataItem
+}
+
+const defaultLoadedDataItem: LoadedDataItem = {
+    [TransFiles.common]: {},
+    [TransFiles.translations]: {},
+}
+
+const defaultLoadedData: LoadedData = {
+    en: defaultLoadedDataItem,
+    lv: defaultLoadedDataItem,
+    ru: defaultLoadedDataItem,
 }
 
 const AdminContext = createContext<{
-    loadFile: any
+    loadFile(filename: TransFiles, newToken?: string): Promise<{
+        content: string
+        sha: string
+    } | undefined>
+    publishData(filename: TransFiles, stringToSave: string, sha: string): Promise<{
+        sha: string
+    } | undefined>
     logOut: VoidFunction
-    loadedData: LoadedData
+    loadedData: LoadedDataItem
     setLoadedData: Dispatch<SetStateAction<LoadedData>>
     loadData(filename: TransFiles): Promise<void>
+    saveData(filename: TransFiles): Promise<void>
+    lang: AvailableLangs
 }>({
-    loadFile() {
+    async loadFile() {
+        return undefined
+    },
+    async publishData() {
+        return undefined
     },
     logOut() {
     },
-    loadedData: {
-        [TransFiles.common]: {},
-        [TransFiles.translations]: {},
-    },
+    loadedData: defaultLoadedDataItem,
     setLoadedData() {
     },
-    async loadData(filename) {
+    async loadData() {
     },
+    async saveData() {
+    },
+    lang: "en",
 })
 
 export function useAdmin() {
     return useContext(AdminContext)
 }
 
-export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: string }>) {
-    const [token, setToken] = useState("")
-    const [loading, setLoading] = useState(false)
+const LOADED_DATA = "loaded-data"
+const SHA_DATA = "sha-data"
+const TOKEN = "token"
+
+export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: AvailableLangs }>) {
     const loadingText = useI18n("loading")
 
-    const [loadedData, setLoadedData] = useState<LoadedData>({
-        common: {},
-        translations: {},
-    })
+    const [token, setToken] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [sha, setSha] = useState<ShaData>(defaultShaData)
+    const [loadedData, setLoadedData] = useState<LoadedData>(defaultLoadedData)
 
     useEffect(function () {
         try {
-            const data = localStorage.getItem("token")
+            const dataStorage = localStorage.getItem(LOADED_DATA)
+            if (dataStorage) {
+                setLoadedData(JSON.parse(dataStorage || "{}"))
+            }
+            const shaStorage = localStorage.getItem(SHA_DATA)
+            if (shaStorage) {
+                setSha(JSON.parse(shaStorage || "{}"))
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }, [setLoadedData, setSha])
+
+    useEffect(function () {
+        try {
+            const data = localStorage.getItem(TOKEN)
             if (data !== null) {
                 setToken(JSON.parse(data))
             }
@@ -70,9 +135,9 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         }
     }, [setToken])
 
-    const loadFile = useCallback(async (filename: TransFiles, newToken?: string) => {
+    const loadFile = useCallback(async function (filename: TransFiles, newToken?: string) {
         try {
-            const res = await fetchStub(getUrl(`${lang}/${filename}`, `?ref=${BRANCH}`), {
+            const res = await fetch(getUrl(`${lang}/${filename}`, `?ref=${BRANCH}`), {
                 headers: {
                     Authorization: `token ${newToken || token}`,
                 },
@@ -84,7 +149,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
             }
 
             if (newToken) {
-                localStorage.setItem("token", JSON.stringify(newToken))
+                localStorage.setItem(TOKEN, JSON.stringify(newToken))
                 setToken(newToken)
             }
 
@@ -97,18 +162,18 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         }
     }, [lang, setLoading, token])
 
-    async function saveFile(filename: TransFiles, stringToSave: string, sha: string) {
+    const publishData = useCallback(async function (filename: TransFiles, stringToSave: string, sha: string) {
         try {
             const base64Content = Buffer.from(stringToSave).toString("base64")
 
-            const res = await fetch(getUrl(filename), {
+            const res = await fetch(getUrl(`${lang}/${filename}`), {
                 method: "PUT",
                 headers: {
                     Authorization: `token ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    message: "i18n update from admin",
+                    message: `i18n update from admin (/${lang}/${filename}.json)`,
                     content: base64Content,
                     sha,
                     branch: BRANCH,
@@ -126,10 +191,10 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         } catch (err) {
             console.error(err)
         }
-    }
+    }, [token, lang])
 
     const loadData = useCallback(async function (filename: TransFiles) {
-        if (Object.keys(loadedData[filename]).length > 0) {
+        if (Object.keys(loadedData[lang][filename]).length > 0) {
             return
         }
 
@@ -137,34 +202,70 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: stri
         if (data) {
             try {
                 setLoadedData(function (prevState) {
-                    return {
+                    const newState = {
                         ...prevState,
-                        [filename]: JSON.parse(data.content),
+                        [lang]: {
+                            ...prevState[lang],
+                            [filename]: JSON.parse(data.content),
+                        },
                     }
+
+                    localStorage.setItem(LOADED_DATA, JSON.stringify(newState))
+
+                    return newState
+                })
+                setSha(function (prevState) {
+                    const newState = {
+                        ...prevState,
+                        [lang]: {
+                            ...prevState[lang],
+                            [filename]: data.sha,
+                        },
+                    }
+
+                    localStorage.setItem(SHA_DATA, JSON.stringify(newState))
+
+                    return newState
                 })
             } catch (e) {
                 console.log(e)
             }
         }
+    }, [loadFile, loadedData, setLoadedData, setSha, lang])
 
-    }, [loadFile, loadedData, setLoadedData])
+    const saveData = useCallback(async function (filename: TransFiles) {
+        try {
+            await publishData(
+                filename,
+                JSON.stringify(loadedData[lang][filename], null, 2),
+                sha[lang][filename],
+            )
+        } catch (e) {
+            console.log(e)
+        }
+    }, [publishData, sha, loadedData, lang])
 
     const logOut = useCallback(function () {
-        localStorage.removeItem("token")
+        localStorage.removeItem(TOKEN)
+        localStorage.removeItem(LOADED_DATA)
+        localStorage.removeItem(SHA_DATA)
         window.location.reload()
     }, [])
 
     return (
         <AdminContext.Provider value={{
             loadFile,
+            publishData,
             logOut,
-            loadedData,
+            loadedData: loadedData[lang],
             setLoadedData,
             loadData,
+            saveData,
+            lang,
         }}>
             {loading
                 ? (
-                    <div className="max-w-lg mx-auto">
+                    <div className="max-w-lg mx-auto flex items-center justify-center min-h-48">
                         {loadingText}
                     </div>
                 )

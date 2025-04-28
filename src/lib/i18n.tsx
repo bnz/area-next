@@ -1,4 +1,6 @@
-export const supportedLanguages = [
+export type AvailableLangs = "en" | "lv" | "ru"
+
+export const supportedLanguages: AvailableLangs[] = [
     "en",
     "lv",
     "ru",

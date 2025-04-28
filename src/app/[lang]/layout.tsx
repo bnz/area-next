@@ -54,7 +54,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <I18nProvider translations={translations}>
             <div
                 className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-full -mb-[50px]">
-                <Header lang={lang} />
+                <Header
+                    lang={lang}
+                    logoLabel={translations["main-logo"]}
+                    contactsLabel={translations.contacts}
+                    blogLabel={translations.blog}
+                />
                 <main>
                     {children}
                 </main>

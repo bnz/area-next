@@ -2,7 +2,10 @@
   "welcome": "Hello, Aria",
   "button.login": "Login",
   "button.logout": "Logout",
-  "button.save": "Save",
+  "button.publish": "\uD83D\uDCBE Publish",
   "loading": "Loading...",
-  "password": "Password"
+  "password": "Password",
+  "main-logo": "Arija",
+  "contacts": "Contacts",
+  "blog": "Blog"
 }

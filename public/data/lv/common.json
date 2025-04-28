@@ -2,7 +2,10 @@
   "welcome": "Sveika, Aria",
   "button.login": "Pieteikties",
   "button.logout": "Izrakstīties",
-  "button.save": "Saglabāt",
+  "button.publish": "\uD83D\uDCBE Publicēt",
   "loading": "Ielādējas...",
-  "password": "Parole"
+  "password": "Parole",
+  "main-logo": "Arija",
+  "contacts": "Kontakti",
+  "blog": "Blogs"
 }

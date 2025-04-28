@@ -11,7 +11,7 @@ export function LangsSwitcher() {
     const restPathname = pathname.split(`/${selectedLang}`)[1]
 
     return (
-        <ul className="flex flex-row gap-1 px-1 outline outline-1 rounded-lg">
+        <ul className="flex flex-row gap-1 px-1 outline-1 rounded-lg">
             {supportedLanguages.map(function (lang) {
                 return (
                     <li key={lang} className="flex">

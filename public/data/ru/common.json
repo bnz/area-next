@@ -2,7 +2,10 @@
   "welcome": "Здравствуйте, Ария",
   "button.login": "Войти",
   "button.logout": "Выйти",
-  "button.save": "Сохранить",
+  "button.publish": "\uD83D\uDCBE Публиковать",
   "loading": "Загрузка...",
-  "password": "Пароль"
+  "password": "Пароль",
+  "main-logo": "Arija",
+  "contacts": "Контакты",
+  "blog": "Блог"
 }

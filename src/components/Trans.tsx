@@ -2,10 +2,12 @@ import { TransFiles, useAdmin } from "@/components/AdminProvider"
 import { ChangeEvent, useCallback, useEffect } from "react"
 import { useI18n } from "@/components/I18nProvider"
 
+import debounce from "lodash.debounce"
+
 export function Trans() {
-    const { loadedData, loadData, setLoadedData } = useAdmin()
+    const { loadedData, loadData, setLoadedData, saveData, lang } = useAdmin()
     const loadingText = useI18n("loading")
-    const saveText = useI18n("button.save")
+    const saveText = useI18n("button.publish")
 
     useEffect(function () {
         void loadData(TransFiles.translations)
@@ -13,18 +15,32 @@ export function Trans() {
 
     const data = loadedData[TransFiles.translations]
 
+    const debounced = debounce(function (obj: object) {
+        try {
+            localStorage.setItem("loaded-data", JSON.stringify(obj))
+        } catch (e) {
+            console.log(e)
+        }
+    }, 400)
+
     const onChange = useCallback(function (key: string) {
         return function (event: ChangeEvent<HTMLTextAreaElement>) {
             setLoadedData(function (prevState) {
-                const editable = structuredClone(prevState[TransFiles.translations])
-                editable[key] = event.target.value
-                return {
+                const newState = {
                     ...prevState,
-                    ...editable,
+                    [lang]: {
+                        ...prevState[lang],
+                        [TransFiles.translations]: {
+                            ...prevState[lang][TransFiles.translations],
+                            [key]: event.target.value,
+                        },
+                    },
                 }
+                debounced(newState)
+                return newState
             })
         }
-    }, [setLoadedData])
+    }, [setLoadedData, lang])
 
     if (Object.keys(data).length === 0) {
         return <>{loadingText}</>
@@ -33,9 +49,9 @@ export function Trans() {
     return (
         <form
             className="flex flex-col gap-3"
-            onSubmit={function (event) {
+            onSubmit={async function (event) {
                 event.preventDefault()
-                console.log("submit")
+                await saveData(TransFiles.translations)
             }}>
             {Object.keys(data).map(function (key) {
                 return (
