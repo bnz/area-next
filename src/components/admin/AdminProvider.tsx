@@ -11,15 +11,17 @@ import React, {
 } from "react"
 import { BRANCH, getUrl } from "@/lib/getUrl"
 import { Buffer } from "buffer"
-import { LoginForm } from "@/components/LoginForm"
+import { LoginForm } from "@/components/admin/LoginForm"
 import { useI18n } from "@/components/I18nProvider"
 import { type AvailableLangs } from "@/lib/i18n"
 import debounce from "lodash.debounce"
+import { Post } from "@/components/BlogPage"
 
 export enum TransFiles {
     common = "common",
     translations = "translations",
     features = "features",
+    posts = "posts",
 }
 
 type ShaItem = {
@@ -34,6 +36,7 @@ const defaultShaItem = {
     [TransFiles.common]: "",
     [TransFiles.translations]: "",
     [TransFiles.features]: "",
+    [TransFiles.posts]: "",
 }
 
 const defaultShaData: ShaData = {
@@ -42,8 +45,16 @@ const defaultShaData: ShaData = {
     ru: defaultShaItem,
 }
 
+export type Feature = {
+    title: string
+    description: string
+}
+
 type LoadedDataItem = {
-    [trans in TransFiles]: Record<string, string>
+    [TransFiles.common]: Record<string, string>
+    [TransFiles.translations]: Record<string, string>
+    [TransFiles.features]: Feature[]
+    [TransFiles.posts]: Post[]
 }
 
 type LoadedData = {
@@ -53,7 +64,8 @@ type LoadedData = {
 const defaultLoadedDataItem: LoadedDataItem = {
     [TransFiles.common]: {},
     [TransFiles.translations]: {},
-    [TransFiles.features]: {},
+    [TransFiles.features]: [],
+    [TransFiles.posts]: [],
 }
 
 const defaultLoadedData: LoadedData = {
@@ -75,7 +87,9 @@ const AdminContext = createContext<{
     setLoadedData: Dispatch<SetStateAction<LoadedData>>
     loadData(filename: TransFiles): Promise<void>
     saveData(filename: TransFiles): Promise<void>
-    updateData(key: string): (event: ChangeEvent<HTMLTextAreaElement>) => void
+    updateRecordData(key: string): (event: ChangeEvent<HTMLTextAreaElement>) => void
+    updateArrayData(filename: TransFiles, index: number): (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    lang: AvailableLangs
 }>({
     async loadFile() {
         return undefined
@@ -92,17 +106,22 @@ const AdminContext = createContext<{
     },
     async saveData() {
     },
-    updateData() {
+    updateRecordData() {
         return function () {
         }
     },
+    updateArrayData() {
+        return function () {
+        }
+    },
+    lang: "en",
 })
 
 export function useAdmin() {
     return useContext(AdminContext)
 }
 
-const LOADED_DATA = "loaded-data"
+export const LOADED_DATA = "loaded-data"
 const SHA_DATA = "sha-data"
 const TOKEN = "token"
 
@@ -257,15 +276,15 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
         window.location.reload()
     }, [])
 
-    const debounced = debounce(function (obj: object) {
+    const debounced = debounce(function (storageName: string, obj: object) {
         try {
-            localStorage.setItem(LOADED_DATA, JSON.stringify(obj))
+            localStorage.setItem(storageName, JSON.stringify(obj))
         } catch (e) {
             console.log(e)
         }
     }, 400)
 
-    const updateData = useCallback(function (key: string) {
+    const updateRecordData = useCallback(function (key: string) {
         return function (event: ChangeEvent<HTMLTextAreaElement>) {
             setLoadedData(function (prevState) {
                 const newState = {
@@ -278,7 +297,25 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
                         },
                     },
                 }
-                debounced(newState)
+                debounced(LOADED_DATA, newState)
+                return newState
+            })
+        }
+    }, [lang, debounced, setLoadedData])
+
+    const updateArrayData = useCallback(function (filename: TransFiles, index: number) {
+        return function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+            setLoadedData(function (prevState) {
+                const features = structuredClone(prevState[lang][TransFiles.features])
+                features[index][event.target.name as "title" | "description"] = event.target.value
+                const newState = {
+                    ...prevState,
+                    [lang]: {
+                        ...prevState[lang],
+                        [TransFiles.features]: features,
+                    },
+                }
+                debounced(LOADED_DATA, newState)
                 return newState
             })
         }
@@ -293,7 +330,9 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
             setLoadedData,
             loadData,
             saveData,
-            updateData,
+            updateRecordData,
+            updateArrayData,
+            lang,
         }}>
             {loading
                 ? (

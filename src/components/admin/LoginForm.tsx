@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { TransFiles, useAdmin } from "@/components/AdminProvider"
+import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 
 export function LoginForm() {

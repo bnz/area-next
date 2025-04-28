@@ -1,7 +1,7 @@
 import { supportedLanguages } from "@/lib/i18n"
 import fs from "fs"
 import path from "path"
-import { Post } from "@/app/[lang]/blog/BlogPage"
+import { Post } from "@/components/BlogPage"
 
 export function generateStaticParams() {
     const allParams: { lang: string, slug: string }[] = []

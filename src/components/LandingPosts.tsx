@@ -1,17 +1,20 @@
 "use client"
 
 import { LangLink } from "@/components/LangLink"
-import { useGetPosts } from "@/lib/useGetPosts"
+import { useI18n } from "@/components/I18nProvider"
+import { Post } from "@/components/BlogPage"
 
 export function LandingPosts() {
-    const posts = useGetPosts()
+    const posts = useI18n("posts") as never as Post[]
 
     return (
         <section className="py-24 px-6 sm:px-12">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold mb-12 text-center">Из блога</h2>
+                <h2 className="text-3xl font-bold mb-12 text-center">
+                    {useI18n("blog.heading")}
+                </h2>
                 <div className="grid gap-8 md:grid-cols-2">
-                    {posts.map(function (post, index) {
+                    {posts.slice(0, 2).map(function (post, index) {
                         return (
                             <LangLink
                                 key={index}

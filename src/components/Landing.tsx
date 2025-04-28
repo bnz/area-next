@@ -7,10 +7,7 @@ export function Landing() {
     return (
         <>
             <HeroSection />
-
-            {/* Features Grid */}
             <FeaturesGrid />
-
             <LandingPosts />
 
             {/* Split Sections */}

@@ -1,5 +1,5 @@
 import { generateLangStaticParams } from "@/lib/i18n"
-import { BlogPage } from "@/app/[lang]/blog/BlogPage"
+import { BlogPage } from "@/components/BlogPage"
 
 export const generateStaticParams = generateLangStaticParams
 
