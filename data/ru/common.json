@@ -2,7 +2,7 @@
   "welcome": "Здравствуйте, Ария",
   "button.login": "Войти",
   "button.logout": "Выйти",
-  "button.publish": "\uD83D\uDCBE Публиковать",
+  "button.publish": "💾 Опубликовать изменения",
   "button.add": "Добавить",
   "loading": "Загрузка...",
   "password": "Пароль",
