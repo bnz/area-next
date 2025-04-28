@@ -7,5 +7,6 @@
   "password": "Password",
   "main-logo": "Arija",
   "contacts": "Contacts",
-  "blog": "Blog"
+  "blog": "Blog",
+  "button.contacts.header": "Get started"
 }

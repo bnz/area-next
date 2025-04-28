@@ -7,5 +7,6 @@
   "password": "Пароль",
   "main-logo": "Arija",
   "contacts": "Контакты",
-  "blog": "Блог"
+  "blog": "Блог",
+  "button.contacts.header": "Начать"
 }
