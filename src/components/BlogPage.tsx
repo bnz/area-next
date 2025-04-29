@@ -15,7 +15,9 @@ export function BlogPage() {
 
     return (
         <div className="max-w-6xl mx-auto">
-            <h1 className="text-4xl font-bold mb-12 text-center">Блог Arija</h1>
+            <h1 className="text-4xl font-bold mb-12 text-center">
+                {useI18n("blog")}
+            </h1>
             <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map(function (post, index) {
                     return (

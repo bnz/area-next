@@ -5,7 +5,7 @@ import { LangLink } from "@/components/LangLink"
 
 export function HeroSection() {
     return (
-        <section className="flex flex-col items-center justify-center flex-1 text-center px-6 sm:px-12 py-24">
+        <section className="flex flex-col items-center justify-center flex-1 text-center px-6 sm:px-12 py-24 bg-transparent">
             <h1 className="text-3xl sm:text-7xl font-semibold max-w-4xl leading-tight">
                 {useI18n("text.main.header")}
             </h1>

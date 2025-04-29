@@ -54,7 +54,7 @@ export default async function LangLayout({ children, params }: Props) {
     return (
         <I18nProvider translations={translations}>
             <div
-                className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-full -mb-[50px]">
+                className="text-gray-900 dark:text-gray-100 flex flex-col min-h-full -mb-[50px]">
                 <Header
                     lang={lang}
                     logoLabel={translations["main-logo"]}
@@ -66,7 +66,7 @@ export default async function LangLayout({ children, params }: Props) {
                 </main>
                 <div className="h-[50px]" />
             </div>
-            <Footer />
+            <Footer copyright={translations.copyright} />
         </I18nProvider>
     )
 }
