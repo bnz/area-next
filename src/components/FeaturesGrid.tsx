@@ -7,7 +7,7 @@ export function FeaturesGrid() {
     const features = useI18n("features") as never as Feature[]
 
     return (
-        <section className="py-24 px-6 sm:px-12 bg-gray-100 dark:bg-gray-900">
+        <section className="py-24 px-6 sm:px-12 bg-gray-100 dark:bg-gray-950">
             <div className="max-w-6xl mx-auto grid gap-12 sm:grid-cols-2 lg:grid-cols-4 text-center">
                 {features.map(function ({ title, description }, index) {
                     return (

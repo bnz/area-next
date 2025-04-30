@@ -8,7 +8,7 @@ export function LandingPosts() {
     const posts = useI18n("posts") as never as Post[]
 
     return (
-        <section className="py-24 px-6 sm:px-12">
+        <section className="py-24 px-6 sm:px-12 bg-gray-50 dark:bg-gray-900">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl font-bold mb-12 text-center">
                     {useI18n("blog.heading")}

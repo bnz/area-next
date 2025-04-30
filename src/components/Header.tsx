@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { LangLink } from "@/components/LangLink"
 import { LangsSwitcher } from "@/components/LangsSwitcher"
+import { Suspense } from "react"
 
 type HeaderProps = {
     lang: string
@@ -30,7 +31,9 @@ export function Header({ lang, logoLabel, contactsLabel, blogLabel }: HeaderProp
                         {blogLabel}
                     </LangLink>
                 </nav>
-                <LangsSwitcher />
+                <Suspense fallback={<></>}>
+                    <LangsSwitcher />
+                </Suspense>
             </div>
         </header>
     )
