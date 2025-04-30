@@ -14,7 +14,7 @@ export function Posts() {
         <div>
             {data.map(function ({ slug, title, image, excerpt }, index) {
                 return (
-                    <div key={index} className="flex flex-col gap-3 border-b border-gray-200 py-6">
+                    <div key={index} className="flex flex-col gap-3 border-b border-gray-200 dark:border-gray-800 py-6">
                         <input
                             type="text"
                             placeholder="Title"

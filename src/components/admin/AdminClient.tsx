@@ -22,7 +22,7 @@ export function AdminClient() {
     }, [selectedIndex, router])
 
     return (
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto bg-gray-100 dark:bg-gray-700 rounded p-3">
             <LogOut />
             <TabGroup
                 selectedIndex={selectedIndex}
