@@ -51,7 +51,7 @@ export default async function LangLayout({ children, params }: Props) {
         console.warn(`⚠️ Не удалось прочитать файл: ${filePathCommon}`)
     }
 
-    console.log({ translations })
+    // console.log({ translations })
 
     return (
         <I18nProvider translations={translations}>

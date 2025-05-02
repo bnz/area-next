@@ -7,7 +7,7 @@ export function generateStaticParams() {
     const allParams: { lang: string, slug: string }[] = []
 
     supportedLanguages.forEach(function (lang) {
-        const filePath = path.join(process.cwd(), "public", "data", lang, "posts.json")
+        const filePath = path.join(process.cwd(), "data", lang, "posts.json")
 
         try {
             const file = fs.readFileSync(filePath, "utf-8")
