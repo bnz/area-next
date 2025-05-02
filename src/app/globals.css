@@ -32,11 +32,26 @@ body {
     background-repeat: no-repeat;
 }
 
+@layer utilities {
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+}
+
 @layer components {
 
     html,
     body {
         @apply h-full;
+    }
+
+    textarea {
+        @apply min-h-8;
     }
 
     textarea,

@@ -18,7 +18,7 @@ type Props = PropsWithChildren<{
 export default async function LangLayout({ children, params }: Props) {
     const { lang } = await params
 
-    const commonPath = [process.cwd(), "public", "data", lang]
+    const commonPath = [process.cwd(), "data", lang]
     const filePathCommon = path.join(...commonPath, "common.json")
     const filePathTranslations = path.join(...commonPath, "translations.json")
     const filePathFeatures = path.join(...commonPath, "features.json")
@@ -50,6 +50,8 @@ export default async function LangLayout({ children, params }: Props) {
     } catch (e) {
         console.warn(`⚠️ Не удалось прочитать файл: ${filePathCommon}`)
     }
+
+    console.log({ translations })
 
     return (
         <I18nProvider translations={translations}>

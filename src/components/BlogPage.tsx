@@ -4,10 +4,11 @@ import { LangLink } from "@/components/LangLink"
 import { useI18n } from "@/components/I18nProvider"
 
 export type Post = {
-    title: string;
-    excerpt: string;
-    image: string;
-    slug: string;
+    title: string
+    excerpt: string
+    image: string
+    slug: string
+    content: string
 }
 
 export function BlogPage() {

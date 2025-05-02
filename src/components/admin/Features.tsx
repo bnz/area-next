@@ -1,12 +1,13 @@
 import { useI18n } from "@/components/I18nProvider"
 import { useEffect, useState } from "react"
 import { LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { PublishButton } from "@/components/admin/PublishButton"
 
 export function Features() {
     const addText = useI18n("button.add")
 
     const [formOpen, setFormOpen] = useState(false)
-    const { loadData, loadedData, setLoadedData, lang, saveData, updateArrayData } = useAdmin()
+    const { loadData, loadedData, setLoadedData, lang, updateArrayData } = useAdmin()
 
     const [formData, setFormData] = useState({
         title: "",
@@ -20,12 +21,12 @@ export function Features() {
     const data = loadedData[TransFiles.features]
 
     return (
-        <div>
+        <div className="relative">
             <div className="mb-5">
                 {data.map(function ({ title, description }, index) {
                     return (
                         <div key={index}
-                            className="grid grid-cols-[1fr_50px] gap-3 outline-1 outline-gray-300 dark:outline-gray-700 mb-5 p-2 rounded">
+                            className="grid grid-cols-[1fr_35px] gap-3 outline-1 outline-gray-300 dark:outline-gray-700 mb-5 p-2 rounded">
                             <input
                                 type="text"
                                 defaultValue={title}
@@ -33,7 +34,7 @@ export function Features() {
                                 name="title"
                                 onChange={updateArrayData(TransFiles.features, index)}
                             />
-                            <div className="row-span-2">
+                            <div className="row-span-2 flex items-center justify-center">
                                 <button className="button" type="button" onClick={function () {
                                     setLoadedData(function (prevState) {
                                         const newState = structuredClone(prevState)
@@ -131,13 +132,7 @@ export function Features() {
                     </button>
                 )}
             </div>
-            <div className="text-center">
-                <button className="button" type="button" onClick={async function () {
-                    await saveData(TransFiles.features)
-                }}>
-                    {useI18n("button.publish")}
-                </button>
-            </div>
+            <PublishButton filename={TransFiles.features} />
         </div>
     )
 }
