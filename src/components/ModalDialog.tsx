@@ -2,6 +2,7 @@
 
 import { PropsWithChildren, useEffect, useRef } from "react"
 import cx from "classnames"
+import { useI18n } from "@/components/I18nProvider"
 
 type ModalDialogProps = PropsWithChildren<{
 	open: boolean;
@@ -52,9 +53,8 @@ export function ModalDialog({ open, onClose, children, maxWidth = "max-w-4xl" }:
 			)}
 		>
 			<button className="absolute right-0 top-0 cursor-pointer" onClick={onClose}>
-				close
+				{useI18n("button.close")}
 			</button>
-
 			<div>
 				{children}
 			</div>

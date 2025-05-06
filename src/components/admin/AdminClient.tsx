@@ -4,10 +4,10 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react"
 import { Trans } from "@/components/admin/Trans"
 import { LogOut } from "@/components/admin/LogOut"
 import { useI18n } from "@/components/I18nProvider"
-import { Features } from "@/components/admin/Features"
+import { Features } from "@/components/admin/Features/Features"
 import { useEffect, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
-import { Posts } from "@/components/admin/Posts"
+import { Posts } from "@/components/admin/Posts/Posts"
 
 export function AdminClient() {
     const searchParams = useSearchParams()
@@ -17,7 +17,6 @@ export function AdminClient() {
     const [selectedIndex, setSelectedIndex] = useState(initialTab)
 
     useEffect(function () {
-        // router.replace(`?tab=${selectedIndex}`)
         history.replaceState(null, "", `?tab=${selectedIndex}`)
     }, [selectedIndex, router])
 
@@ -50,10 +49,10 @@ export function AdminClient() {
                     <TabPanel>
                         <Features />
                     </TabPanel>
-                    <TabPanel className="">
+                    <TabPanel>
                         <Posts />
                     </TabPanel>
-                    <TabPanel className="">
+                    <TabPanel>
                         contacts tab content
                     </TabPanel>
                 </TabPanels>

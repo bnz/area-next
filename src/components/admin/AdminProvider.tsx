@@ -96,6 +96,7 @@ const AdminContext = createContext<{
 	setPublishLoading: Dispatch<SetStateAction<boolean>>
 	uploadImage(file: File): Promise<any>
 	getImagesList(): Promise<any>
+	removeFromArrayData(filename: TransFiles.posts | TransFiles.features, index: number): void
 }>({
 	async loadFile() {
 		return undefined
@@ -127,6 +128,8 @@ const AdminContext = createContext<{
 	async uploadImage() {
 	},
 	async getImagesList() {
+	},
+	removeFromArrayData() {
 	},
 })
 
@@ -379,18 +382,22 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 	}, [token])
 
 	const getImagesList = useCallback(async function () {
-		const res = await fetch(getImagesUrl(), {
-				headers: {
-					Authorization: `Bearer ${token}`,
-					Accept: 'application/vnd.github.v3+json',
-				},
+		return await (await fetch(getImagesUrl(), {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: 'application/vnd.github.v3+json',
 			},
-		)
-
-		const files = await res.json()
-
-		return files
+		})).json()
 	}, [token])
+
+	const removeFromArrayData = useCallback(function (filename: TransFiles.posts | TransFiles.features, index: number) {
+		setLoadedData(function (prevState) {
+			const newState = structuredClone(prevState)
+			newState[lang][filename].splice(index, 1)
+			debounced(LOADED_DATA, newState)
+			return newState
+		})
+	}, [setLoadedData, lang])
 
 	return (
 		<AdminContext.Provider value={{
@@ -408,6 +415,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			setPublishLoading,
 			uploadImage,
 			getImagesList,
+			removeFromArrayData,
 		}}>
 			{loading
 				? (

@@ -13,5 +13,18 @@
   "tab.posts": "Публикации",
   "tab.contacts": "Контакты",
   "tab.features": "Функции",
-  "copyright": "© 2025 Arija. Все права защищены."
+  "copyright": "© 2025 Arija. Все права защищены.",
+  "button.cancel": "Отмена",
+  "areYouSure": "Вы уверены?",
+  "button.delete": "УДАЛИТЬ",
+  "button.replace": "Заменить",
+  "label.or": "или",
+  "button.choose": "Выбрать",
+  "button.save": "Сохранить",
+  "label.url": "Ссылка",
+  "label.title": "Заголовок",
+  "label.excerpt": "Отрывок",
+  "label.content": "Содержимое",
+  "button.close": "Закрыть",
+  "label.description": "Описание"
 }
