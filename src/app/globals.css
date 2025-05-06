@@ -55,6 +55,7 @@ body {
     }
 
     textarea,
+    input[type="datetime-local"],
     input[type="password"],
     input[type="text"] {
         @apply p-2;

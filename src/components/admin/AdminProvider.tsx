@@ -11,7 +11,7 @@ import {
 	useEffect,
 	useState,
 } from "react"
-import { BRANCH, getImageUrl, getUrl } from "@/lib/getUrl"
+import { BRANCH, getImagesUrl, getImageUrl, getUrl } from "@/lib/getUrl"
 import { Buffer } from "buffer"
 import { LoginForm } from "@/components/admin/LoginForm"
 import { useI18n } from "@/components/I18nProvider"
@@ -94,7 +94,8 @@ const AdminContext = createContext<{
 	lang: AvailableLangs
 	publishLoading: boolean
 	setPublishLoading: Dispatch<SetStateAction<boolean>>
-	uploadImage(file: File, lang: AvailableLangs): Promise<any>
+	uploadImage(file: File): Promise<any>
+	getImagesList(): Promise<any>
 }>({
 	async loadFile() {
 		return undefined
@@ -124,6 +125,8 @@ const AdminContext = createContext<{
 	setPublishLoading() {
 	},
 	async uploadImage() {
+	},
+	async getImagesList() {
 	},
 })
 
@@ -341,7 +344,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		}
 	}, [lang, debounced, setLoadedData])
 
-	const uploadImage = useCallback(async (file: File, lang: AvailableLangs) => {
+	const uploadImage = useCallback(async function (file: File) {
 		const reader = new FileReader()
 
 		const base64Content: string = await new Promise((resolve, reject) => {
@@ -375,6 +378,20 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		return data.content.path.replace("public/", "/")
 	}, [token])
 
+	const getImagesList = useCallback(async function () {
+		const res = await fetch(getImagesUrl(), {
+				headers: {
+					Authorization: `Bearer ${token}`,
+					Accept: 'application/vnd.github.v3+json',
+				},
+			},
+		)
+
+		const files = await res.json()
+
+		return files
+	}, [token])
+
 	return (
 		<AdminContext.Provider value={{
 			loadFile,
@@ -390,6 +407,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			publishLoading,
 			setPublishLoading,
 			uploadImage,
+			getImagesList,
 		}}>
 			{loading
 				? (

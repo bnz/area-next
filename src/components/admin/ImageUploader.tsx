@@ -1,9 +1,7 @@
-import type { AvailableLangs } from "@/lib/i18n"
 import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 
-export function ImageUploader({ lang, index }: { lang: AvailableLangs, index: number }) {
-
+export function ImageUploader({ index }: { index: number }) {
 	const { uploadImage, updateArrayData } = useAdmin()
 
 	const [preview, setPreview] = useState<string | null>(null)
@@ -24,7 +22,7 @@ export function ImageUploader({ lang, index }: { lang: AvailableLangs, index: nu
 		if (!file) return
 		setStatus('Loading...')
 		try {
-			const filename = await uploadImage(file, lang)
+			const filename = await uploadImage(file)
 
 			updateArrayData(TransFiles.posts, index)({
 				target: {

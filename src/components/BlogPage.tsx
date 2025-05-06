@@ -1,6 +1,4 @@
 import { LangLink } from "@/components/LangLink"
-import { getFrontUrl } from "@/lib/getUrl"
-import { AvailableLangs } from "@/lib/i18n"
 
 export type Post = {
 	title: string
@@ -8,21 +6,21 @@ export type Post = {
 	image: string
 	slug: string
 	content: string
+	datetime: string
 }
 
 type BlogPageProps = {
 	headerText: string
 	posts: Post[]
-	lang: AvailableLangs
 }
 
-export function BlogPage({ headerText, posts, lang }: BlogPageProps) {
+export function BlogPage({ headerText, posts }: BlogPageProps) {
 	return (
 		<div className="max-w-6xl mx-auto">
 			<h1 className="text-4xl font-bold mb-12 text-center">
 				{headerText}
 			</h1>
-			<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+			<div className="grid gap-6 md:gap-12 sm:grid-cols-2 lg:grid-cols-3 p-4">
 				{posts.map(function ({slug, image, title, content, excerpt}, index) {
 					return (
 						<LangLink
@@ -30,7 +28,7 @@ export function BlogPage({ headerText, posts, lang }: BlogPageProps) {
 							href={`/blog/${slug}`}
 							className="block group rounded-xl overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition"
 						>
-							<img src={getFrontUrl(image, lang)} alt="" className="w-full h-48 object-cover" />
+							<img src={image} alt="" className="w-full h-48 object-cover" />
 							<div className="p-6">
 								<h2 className="text-xl font-semibold mb-2 group-hover:underline">{title}</h2>
 								<p className="text-gray-600 dark:text-gray-400">{excerpt}</p>

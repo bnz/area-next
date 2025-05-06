@@ -1,7 +1,9 @@
-import { supportedLanguages } from "@/lib/i18n"
+import { AvailableLangs, supportedLanguages } from "@/lib/i18n"
 import fs from "fs"
 import path from "path"
 import { Post } from "@/components/BlogPage"
+import { readDataJSON } from "@/lib/readDataJSON"
+import { formatDate } from "@/lib/formatDate"
 
 export function generateStaticParams() {
 	const allParams: { lang: string, slug: string }[] = []
@@ -30,17 +32,28 @@ export function generateStaticParams() {
 }
 
 type BlogPostPageProps = {
-	params: Promise<{ slug: string; }>
+	params: Promise<{ slug: string, lang: AvailableLangs }>
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-	const { slug } = await params
+	const { slug, lang } = await params
+	const translations = await readDataJSON(lang)
+	const post = translations.posts.find(function ({ slug: _slug }) {
+		return slug === _slug
+	})
 
 	return (
 		<div className="max-w-3xl mx-auto">
-			<h1 className="text-4xl font-bold mb-6">Заголовок: {slug}</h1>
+			<h1 className="text-4xl font-bold mb-6">
+				{post.title}
+			</h1>
+			<div className="italic text-sm mb-3 text-right">{formatDate(post.datetime)}</div>
+			<img src={post.image} alt="" className="mb-6 mx-auto" />
+			<h4 className="mb-6 font-bold">
+				{post.excerpt}
+			</h4>
 			<p className="text-lg text-gray-600 dark:text-gray-300">
-				Здесь будет содержимое поста <code>{slug}</code>.
+				{post.content}
 			</p>
 		</div>
 	)

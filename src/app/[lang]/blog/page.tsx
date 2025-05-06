@@ -13,7 +13,6 @@ export default async function Page({ params }: PageProps) {
 		<BlogPage
 			headerText={translations.keys.blog}
 			posts={translations.posts}
-			lang={lang}
 		/>
 	)
 }

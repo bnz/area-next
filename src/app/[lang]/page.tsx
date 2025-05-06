@@ -20,7 +20,6 @@ export default async function Home({ params }: PageProps) {
 			<Posts
 				headerText={translations.keys["blog.heading"]}
 				posts={translations.posts}
-				lang={lang}
 			/>
 			<SplitSections />
 			<CTA

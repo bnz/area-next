@@ -8,6 +8,10 @@ export function getUrl(filePath: string, search: string = "") {
 	return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/data/${filePath}.json${search}`
 }
 
+export function getImagesUrl() {
+	return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/public/data/images`
+}
+
 export function getImageUrl(filename: string) {
 	return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/public/data/images/${filename}`
 }

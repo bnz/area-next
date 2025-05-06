@@ -19,7 +19,7 @@ export function PublishButton({ filename }: PublishButtonProps) {
                 </button>
             </div>
             {publishLoading && (
-                <div className="absolute -inset-1 bg-gray-100/90 rounded flex items-center justify-center">
+                <div className="absolute -inset-1 bg-gray-100/90 dark:bg-gray-700/90 rounded flex items-center justify-center">
                     {loadingText}
                 </div>
             )}
