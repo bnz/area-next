@@ -31,7 +31,7 @@ export function Header({ lang, logoLabel, contactsLabel, blogLabel }: HeaderProp
                         {blogLabel}
                     </LangLink>
                 </nav>
-                <Suspense fallback={<></>}>
+                <Suspense fallback={null}>
                     <LangsSwitcher />
                 </Suspense>
             </div>

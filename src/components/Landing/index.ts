@@ -1,0 +1,5 @@
+export { Hero } from "./Hero"
+export { Features } from "./Features"
+export { Posts } from "./Posts"
+export { SplitSections } from "./SplitSections"
+export { CTA } from "./CTA"
