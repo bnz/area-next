@@ -30,6 +30,7 @@ export function ImagesBrowser({ index, filename, onClose }: { index: number, fil
 						onClick={function () {
 							setLoadedData(function (prevState) {
 								const clone = structuredClone(prevState)
+								// @ts-ignore
 								clone[lang][filename][index].image = path
 								localStorage.setItem(LOADED_DATA, JSON.stringify(clone))
 								return clone

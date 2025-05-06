@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 	const translations = await readDataJSON(lang)
 	const post = translations.posts.find(function ({ slug: _slug }) {
 		return slug === _slug
-	})
+	})!
 
 	return (
 		<div className="max-w-3xl mx-auto">

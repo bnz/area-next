@@ -3,7 +3,7 @@ import { ChangeEvent, useRef } from "react"
 type DateTimeInputProps = {
 	name: string
 	onChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void
-	defaultValue: string
+	defaultValue?: string
 }
 
 export function DateTimeInput({ name, onChange, defaultValue }: DateTimeInputProps) {
@@ -21,7 +21,7 @@ export function DateTimeInput({ name, onChange, defaultValue }: DateTimeInputPro
 			className="cursor-pointer"
 			name={name}
 			onChange={onChange}
-			defaultValue={defaultValue}
+			defaultValue={defaultValue as string}
 		/>
 	)
 }
