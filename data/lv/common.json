@@ -13,5 +13,18 @@
   "tab.posts": "Ziņas",
   "tab.contacts": "Kontakti",
   "tab.features": "Funkcijas",
-  "copyright": "© 2025 Arija. Visas tiesības aizsargātas."
+  "copyright": "© 2025 Arija. Visas tiesības aizsargātas.",
+  "button.cancel": "Atcelt",
+  "areYouSure": "Vai esat pārliecināts?",
+  "button.delete": "DZĒST",
+  "button.replace": "Aizstāt",
+  "label.or": "vai",
+  "button.choose": "Izvēlēties",
+  "button.save": "Saglabāt",
+  "label.url": "Saite",
+  "label.title": "Virsraksts",
+  "label.excerpt": "Izgriezums",
+  "label.content": "Saturs",
+  "button.close": "Aizvērt",
+  "label.description": "Apraksts"
 }

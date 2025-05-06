@@ -4,6 +4,7 @@
   "button.logout": "Logout",
   "button.publish": "\uD83D\uDCBE Publish changes",
   "button.add": "Add",
+  "button.cancel": "Cancel",
   "loading": "Loading...",
   "password": "Password",
   "main-logo": "Arija",
@@ -13,5 +14,17 @@
   "tab.posts": "Posts",
   "tab.contacts": "Contacts",
   "tab.features": "Features",
-  "copyright": "© 2025 Arija. All rights reserved."
+  "copyright": "© 2025 Arija. All rights reserved.",
+  "areYouSure": "Are you sure?",
+  "button.delete": "DELETE",
+  "button.replace": "Replace",
+  "label.or": "or",
+  "button.choose": "Choose",
+  "button.save": "Save",
+  "label.url": "Url",
+  "label.title": "Title",
+  "label.excerpt": "Excerpt",
+  "label.content": "Content",
+  "button.close": "Close",
+  "label.description": "Description"
 }
