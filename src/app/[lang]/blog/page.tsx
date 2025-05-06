@@ -11,7 +11,7 @@ export default async function Page({ params }: PageProps) {
 
 	return (
 		<BlogPage
-			headerText={translations.blog}
+			headerText={translations.keys.blog}
 			posts={translations.posts}
 			lang={lang}
 		/>

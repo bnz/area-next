@@ -139,7 +139,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 	const loadingText = useI18n("loading")
 
 	const [token, setToken] = useState("")
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState<boolean>(false)
 	const [sha, setSha] = useState<ShaData>(defaultShaData)
 	const [loadedData, setLoadedData] = useState<LoadedData>(defaultLoadedData)
 	const [publishLoading, setPublishLoading] = useState(false)
@@ -326,6 +326,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		return function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 			setLoadedData(function (prevState) {
 				const arrayClone = structuredClone(prevState[lang][filename])
+				// @ts-ignore
 				arrayClone[index][event.target.name] = event.target.value
 				const newState = {
 					...prevState,

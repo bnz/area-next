@@ -31,7 +31,7 @@ export function ImageUploader({ lang, index }: { lang: AvailableLangs, index: nu
 					name: "image",
 					value: filename,
 				},
-			})
+			} as ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
 
 			setStatus(`Uploaded: /${filename}`)
 		} catch (err) {

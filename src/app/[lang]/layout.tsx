@@ -21,16 +21,16 @@ export default async function LangLayout({ children, params }: PropsWithChildren
 				className="text-gray-900 dark:text-gray-100 flex flex-col min-h-full -mb-[50px]">
 				<Header
 					lang={lang}
-					logoLabel={translations["main-logo"]}
-					contactsLabel={translations.contacts}
-					blogLabel={translations.blog}
+					logoLabel={translations.keys["main-logo"]}
+					contactsLabel={translations.keys.contacts}
+					blogLabel={translations.keys.blog}
 				/>
 				<main>
 					{children}
 				</main>
 				<div className="h-[50px]" />
 			</div>
-			<Footer copyright={translations.copyright} />
+			<Footer copyright={translations.keys.copyright} />
 		</I18nProvider>
 	)
 }

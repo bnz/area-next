@@ -5,12 +5,16 @@ import { Feature } from "@/components/admin/AdminProvider"
 import { Post } from "@/components/BlogPage"
 
 export type Translations = {
-	[key: string]: string
+	keys: Record<string, string>
 	features: Feature[]
 	posts: Post[]
 }
 
-const I18nContext = createContext<Translations>({})
+const I18nContext = createContext<Translations>({
+	keys: {},
+	features: [],
+	posts: [],
+})
 
 type I18nProviderProps = PropsWithChildren<{
 	translations: Translations
@@ -24,8 +28,15 @@ export function I18nProvider({ children, translations }: I18nProviderProps) {
 	)
 }
 
+export function useI18n(key: 'features'): Feature[];
+export function useI18n(key: 'posts'): Post[];
+export function useI18n(key: string): string;
 export function useI18n(key: string) {
 	const context = useContext(I18nContext)
 
-	return context[key] ?? `~${key}~`
+	if (key === "features" || key === "posts") {
+		return context[key] ?? `~${key}~`
+	}
+
+	return context.keys[key] ?? `~${key}~`
 }
