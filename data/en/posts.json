@@ -4,13 +4,15 @@
     "title": "The Future of Digital Healthcare",
     "excerpt": "How modern tools are transforming the way we treat patients.",
     "image": "/data/images/Screenshot 2024-08-21 at 14.24.02.png",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum."
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
+    "datetime": "2025-05-06T17:16"
   },
   {
     "slug": "post-2",
     "title": "Why Patient Data Privacy Matters",
     "excerpt": "Exploring the importance of secure medical systems.",
     "image": "/data/images/logo flat.JPG",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum."
+    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
+    "datetime": "2025-05-06T17:16"
   }
 ]
