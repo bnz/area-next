@@ -26,5 +26,12 @@
   "label.excerpt": "Excerpt",
   "label.content": "Content",
   "button.close": "Close",
-  "label.description": "Description"
+  "label.description": "Description",
+  "sending": "Sending...",
+  "message.sent": "Message sent successfully",
+  "something.went.wrong": "Something went wrong",
+  "input.name": "Name",
+  "input.email": "Email",
+  "input.message": "Message",
+  "button.sendMessage": "Send message"
 }

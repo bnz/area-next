@@ -11,8 +11,8 @@ export function LoginForm() {
     const loadingText = useI18n("loading")
 
     return (
-        <div className="max-w-lg mx-auto py-36">
-            <form className="flex gap-4" onSubmit={async function (event) {
+        <div className="max-w-lg mx-auto py-36 px-4 md:px-0">
+            <form className="flex max-md:flex-col gap-4" onSubmit={async function (event) {
                 event.preventDefault()
                 setClicked(true)
                 await loadFile(TransFiles.common, token)
@@ -22,6 +22,7 @@ export function LoginForm() {
                     placeholder={passwordText}
                     value={token}
                     autoFocus
+                    className="max-md:text-center"
                     onChange={function (e) {
                         setToken(e.target.value)
                     }}

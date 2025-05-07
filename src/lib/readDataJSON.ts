@@ -4,26 +4,36 @@ import path from "path"
 import fs from "fs"
 
 export async function readDataJSON(lang: AvailableLangs): Promise<Translations> {
-	function getPath(filename: string) {
-		return path.join(process.cwd(), "data", lang, `${filename}.json`)
-	}
+    function getPath(filename: string) {
+        return path.join(process.cwd(), "data", lang, `${filename}.json`)
+    }
 
-	try {
-		return {
-			keys: {
-				...(JSON.parse(fs.readFileSync(getPath("common"), "utf-8")) as Record<string, string>),
-				...(JSON.parse(fs.readFileSync(getPath("translations"), "utf-8")) as Record<string, string>),
-			},
-			features: JSON.parse(fs.readFileSync(getPath("features"), "utf-8")),
-			posts: JSON.parse(fs.readFileSync(getPath("posts"), "utf-8")),
-		} as Translations
-	} catch (e) {
-		console.warn(`⚠️ Не удалось прочитать файл: ${e}`)
-	}
+    try {
+        return {
+            keys: {
+                ...(JSON.parse(fs.readFileSync(getPath("common"), "utf-8")) as Record<string, string>),
+                ...(JSON.parse(fs.readFileSync(getPath("translations"), "utf-8")) as Record<string, string>),
+            },
+            features: JSON.parse(fs.readFileSync(getPath("features"), "utf-8")),
+            posts: JSON.parse(fs.readFileSync(getPath("posts"), "utf-8")),
+        } as Translations
+    } catch (e) {
+        console.warn(`⚠️ Не удалось прочитать файл: ${e}`)
+    }
 
-	return {
-		keys: {},
-		posts: [],
-		features: [],
-	}
+    return {
+        keys: {},
+        posts: [],
+        features: [],
+    }
+}
+
+export async function readContacts(): Promise<Record<string, string>> {
+    try {
+        return JSON.parse(fs.readFileSync(path.join(process.cwd(), "data", `contacts.json`), "utf-8")) as Record<string, string>
+    } catch (e) {
+        console.warn(e)
+    }
+
+    return {}
 }

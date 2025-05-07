@@ -4,5 +4,7 @@
   "button.contacts.header": "Get started",
   "blog.heading": "From the Blog",
   "footer.text": "Join Aria and make your practice digital.",
-  "button.register": "Book an Appointment"
+  "button.register": "Book an Appointment",
+  "label.contact.form": "Contact Form",
+  "label.contact.dsc": "To get a quote for a website or another service, send a request and we will get in touch with you!"
 }

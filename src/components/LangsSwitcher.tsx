@@ -18,13 +18,13 @@ export function LangsSwitcher() {
     }, [setSearch, searchParams])
 
     return (
-        <ul className="flex flex-row gap-1 px-1 outline-1 rounded-lg">
+        <ul className="flex flex-row outline-1 outline-gray-100 dark:outline-gray-600 rounded-lg">
             {supportedLanguages.map(function (lang) {
                 return (
                     <li key={lang} className="flex">
                         <Link
                             href={`/${lang}${restPathname}${search}`}
-                            className={cx(lang === selectedLang && "underline", "p-2")}
+                            className={cx(lang === selectedLang && "underline bg-gray-100 dark:bg-gray-800", "px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800")}
                         >
                             {lang}
                         </Link>
