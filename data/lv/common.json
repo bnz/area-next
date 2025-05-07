@@ -26,5 +26,12 @@
   "label.excerpt": "Izgriezums",
   "label.content": "Saturs",
   "button.close": "Aizvērt",
-  "label.description": "Apraksts"
+  "label.description": "Apraksts",
+  "sending": "Sūtīšana...",
+  "message.sent": "Ziņojums veiksmīgi nosūtīts",
+  "something.went.wrong": "Radās kļūda",
+  "input.name": "Vārds",
+  "input.email": "E-pasts",
+  "input.message": "Ziņojums",
+  "button.sendMessage": "Sūtīt ziņojumu"
 }

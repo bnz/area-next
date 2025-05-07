@@ -26,5 +26,12 @@
   "label.excerpt": "Отрывок",
   "label.content": "Содержимое",
   "button.close": "Закрыть",
-  "label.description": "Описание"
+  "label.description": "Описание",
+  "sending": "Отправка...",
+  "message.sent": "Сообщение успешно отправлено",
+  "something.went.wrong": "Что-то пошло не так",
+  "input.name": "Имя",
+  "input.email": "Электронная почта",
+  "input.message": "Сообщение",
+  "button.sendMessage": "Отправить сообщение"
 }
