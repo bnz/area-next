@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Script from "next/script"
 import { useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
@@ -10,7 +10,7 @@ type ContactsFormProps = {
     email: string
 }
 
-export function ContactsForm({ token, email }: ContactsFormProps) {
+export function ContactsForm({ token }: ContactsFormProps) {
     const [message, setMessage] = useState<string>("")
     const { lang } = useAdmin()
     const sendingText = useI18n("sending")
