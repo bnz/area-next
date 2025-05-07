@@ -1,9 +1,9 @@
 import { AvailableLangs, supportedLanguages } from "@/lib/i18n"
 import fs from "fs"
 import path from "path"
-import { Post } from "@/components/BlogPage"
 import { readDataJSON } from "@/lib/readDataJSON"
 import { formatDate } from "@/lib/formatDate"
+import { Post } from "@/components/admin/AdminProvider"
 
 export function generateStaticParams() {
 	const allParams: { lang: string, slug: string }[] = []

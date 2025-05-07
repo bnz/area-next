@@ -1,4 +1,12 @@
-export function SplitSections() {
+import { Split } from "@/components/admin/AdminProvider"
+
+type SplitSectionsProps = {
+    splits: Split[]
+}
+
+export function SplitSections({ splits }: SplitSectionsProps) {
+
+    console.log({ splits })
     return (
         <>
             <section className="py-24 px-6 sm:px-12 bg-gray-100 dark:bg-gray-950">

@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react"
-import { LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, Post, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { DateTimeInput } from "@/components/admin/DateTimeInput"
 import { useI18n } from "@/components/I18nProvider"
-import { Post } from "@/components/BlogPage"
 
 const formDefaultValue: Post = {
 	slug: "",

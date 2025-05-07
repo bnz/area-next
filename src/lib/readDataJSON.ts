@@ -16,6 +16,7 @@ export async function readDataJSON(lang: AvailableLangs): Promise<Translations> 
             },
             features: JSON.parse(fs.readFileSync(getPath("features"), "utf-8")),
             posts: JSON.parse(fs.readFileSync(getPath("posts"), "utf-8")),
+            splits: JSON.parse(fs.readFileSync(getPath("splits"), "utf-8")),
         } as Translations
     } catch (e) {
         console.warn(`⚠️ Не удалось прочитать файл: ${e}`)
@@ -25,6 +26,7 @@ export async function readDataJSON(lang: AvailableLangs): Promise<Translations> 
         keys: {},
         posts: [],
         features: [],
+        splits: [],
     }
 }
 

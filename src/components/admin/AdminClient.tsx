@@ -8,6 +8,7 @@ import { Features } from "@/components/admin/Features/Features"
 import { useEffect, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Posts } from "@/components/admin/Posts/Posts"
+import { SplitSections } from "@/components/admin/SplitSections/SplitSections"
 
 export function AdminClient() {
     const searchParams = useSearchParams()
@@ -28,7 +29,7 @@ export function AdminClient() {
                 onChange={setSelectedIndex}
                 className="px-2"
             >
-                <TabList className="flex gap-4 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded overflow-auto scrollbar-hide">
+                <TabList className="flex gap-4 bg-gray-100 dark:bg-gray-800 px-px py-1 rounded overflow-auto scrollbar-hide">
                     <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
                         {useI18n("tab.translations")}
                     </Tab>
@@ -39,7 +40,7 @@ export function AdminClient() {
                         {useI18n("tab.posts")}
                     </Tab>
                     <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
-                        {useI18n("tab.contacts")}
+                        {useI18n("tab.split.sections")}
                     </Tab>
                 </TabList>
                 <TabPanels className="mt-3 py-3">
@@ -53,7 +54,7 @@ export function AdminClient() {
                         <Posts />
                     </TabPanel>
                     <TabPanel>
-                        contacts tab content
+                        <SplitSections />
                     </TabPanel>
                 </TabPanels>
             </TabGroup>

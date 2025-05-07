@@ -1,5 +1,6 @@
 import { LangLink } from "@/components/LangLink"
-import { type Post } from "@/components/BlogPage"
+
+import { Post } from "@/components/admin/AdminProvider"
 
 type PostsProps = {
 	headerText: string

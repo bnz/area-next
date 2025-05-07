@@ -17,13 +17,13 @@ import { LoginForm } from "@/components/admin/LoginForm"
 import { useI18n } from "@/components/I18nProvider"
 import { type AvailableLangs } from "@/lib/i18n"
 import debounce from "lodash.debounce"
-import { Post } from "@/components/BlogPage"
 
 export enum TransFiles {
 	common = "common",
 	translations = "translations",
 	features = "features",
 	posts = "posts",
+	splits = "splits",
 }
 
 type ShaItem = {
@@ -39,6 +39,7 @@ const defaultShaItem = {
 	[TransFiles.translations]: "",
 	[TransFiles.features]: "",
 	[TransFiles.posts]: "",
+	[TransFiles.splits]: "",
 }
 
 const defaultShaData: ShaData = {
@@ -52,11 +53,27 @@ export type Feature = {
 	description: string
 }
 
+export type Post = {
+	title: string
+	excerpt: string
+	image: string
+	slug: string
+	content: string
+	datetime: string
+}
+
+export type Split = {
+	title: string
+	subTitle: string
+	image: string
+}
+
 type LoadedDataItem = {
 	[TransFiles.common]: Record<string, string>
 	[TransFiles.translations]: Record<string, string>
 	[TransFiles.features]: Feature[]
 	[TransFiles.posts]: Post[]
+	[TransFiles.splits]: Split[]
 }
 
 type LoadedData = {
@@ -68,6 +85,7 @@ const defaultLoadedDataItem: LoadedDataItem = {
 	[TransFiles.translations]: {},
 	[TransFiles.features]: [],
 	[TransFiles.posts]: [],
+	[TransFiles.splits]: []
 }
 
 const defaultLoadedData: LoadedData = {

@@ -20,9 +20,13 @@ export default async function Page({ params }: PageProps) {
                 email={contacts.email}
             />
             <div className="max-md:order-2">
-                <p className="mb-6">
-                    {translations.keys["label.contact.dsc"]}
-                </p>
+                {translations.keys["label.contact.dsc"].split("\n\n").map(function (item,index) {
+                    return (
+                        <p className="mb-6" key={index}>
+                            {item}
+                        </p>
+                    )
+                })}
             </div>
         </div>
     )
