@@ -16,7 +16,7 @@
   "tab.split.sections": "Sadalīt sadaļas",
   "copyright": "© 2025 Arija. Visas tiesības aizsargātas.",
   "button.cancel": "Atcelt",
-  "areYouSure": "Vai esat pārliecināts?",
+  "areYouSure": "Tas izdzēsīs ierakstu visās valodās. Vai esat pārliecināts?",
   "button.delete": "DZĒST",
   "button.replace": "Aizstāt",
   "label.or": "vai",
@@ -36,5 +36,5 @@
   "input.email": "E-pasts",
   "input.message": "Ziņojums",
   "button.sendMessage": "Sūtīt ziņojumu",
-  "error.message": "slug vērtībai jābūt unikālai"
+  "error.message.slug.uniquer": "slug vērtībai jābūt unikālai"
 }

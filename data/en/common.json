@@ -16,7 +16,7 @@
   "tab.features": "Features",
   "tab.split.sections": "Split sections",
   "copyright": "© 2025 Arija. All rights reserved.",
-  "areYouSure": "Are you sure?",
+  "areYouSure": "This will remove record on all languages. Are you sure?",
   "button.delete": "DELETE",
   "button.replace": "Replace",
   "label.or": "or",
@@ -36,5 +36,5 @@
   "input.email": "Email",
   "input.message": "Message",
   "button.sendMessage": "Send message",
-  "error.message": "slug should be unique"
+  "error.message.slug.uniquer": "slug should be unique"
 }

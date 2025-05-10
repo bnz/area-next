@@ -1,18 +1,26 @@
 [
   {
     "slug": "norwegian-forest-cat",
-    "title": "Digitālā veselības aprūpes nākotne",
-    "excerpt": "Kā tehnoloģijas uzlabo pacientu aprūpi Latvijā.",
+    "title": "Norvēģu meža kaķis",
+    "excerpt": "Salīdzinoši jauna un reta šķirne ASV, bet ļoti sena šķirne Norvēģijā, kur tā aprakstīta tautas pasakās un mitoloģijā jau gadsimtiem ilgi.",
     "image": "/data/images/202504202404beautiful-cat-breed-norwegian-cat-breed.avif",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
+    "content": "Norvēģijā pazīstams kā skogkatt (burtiski — «meža kaķis»), šai šķirnei ir grezns apmatojums, kas kalpoja kā dabiska aizsardzība dzīvojot mežā. Biezais kažoks padara šo jau tā lielo šķirni vēl iespaidīgāku. Izolējošs, ūdensnecaurlaidīgs dubultapmatojums piemērots skarbajiem Skandināvijas ziemas apstākļiem: tam ir izteikta apkakle, kupls aste, biksītes un spalvainas ķepas. “Viņi tiešām izskatās, it kā būtu iznākuši no pasaku meža,” saka Keigere.\n\nLai gan bieži asociēti ar brūni-tabby un baltu krāsu, Norvēģu meža kaķi faktiski ir sastopami gandrīz visos krāsu un rakstu variantos, izņemot pointed, šokolādes un ceriņu krāsas.",
     "datetime": "2025-05-10T17:17"
   },
   {
     "slug": "bomba",
-    "title": "Datu aizsardzība medicīnā",
-    "excerpt": "Privātums un drošība digitālajās veselības sistēmās.",
+    "title": "Bombaja kaķis",
+    "excerpt": "Gribat mājās mazu panteru? Bombaja kaķis ir īstā izvēle. Tā ir hibrīda šķirne, kuras izveidei izmantotas Amerikas īsspalvainās un Birmas šķirnes. Keigere saka, ka Bombaja kaķis atgādina Birmas šķirni, bet ir nedaudz lielāks, ar garāku galvu un masīvāku ķermeni.",
     "image": "/data/images/202504202404beautiful-cats-bombay.avif",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
+    "content": "Dēvēts par “lakotas ādas bērnu ar vara krāsas acīm”, Bombaja kaķis sastopams tikai vienā krāsā — melnā. Tā ir dziļa, piesātināta melna ar spīdīgu mirdzumu. Apmatojums ir īss un piegulošs. Skaistās acis variē no tumši zeltainas līdz vara tonim — gluži kā jauna monēta.\n\nPapildus ārējam skaistumam, Bombaja kaķiem ir maigs sejas izteiksmes vaibsts un šarmanta gaita, līdzīga indiešu melnajam leopardam.",
     "datetime": "2025-05-06T17:17"
+  },
+  {
+    "slug": "oriental",
+    "datetime": "2025-05-10T15:40",
+    "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
+    "content": "Orientālais ir Siāmas grupas pārstāvis ar tādu pašu ķermeņa tipu kā Siāmas kaķim: elegants, garš, slaids un lokans. Orientālā atšķirība ir krāsu un rakstu dažādība, ko papildina īss, gluds apmatojums. Keigers to sauc par Siāmas kaķi ar citu rakstu — vairāk nekā 300 variācijām.\n\nOrientālie kaķi ir gan ar īsu, gan ar garu spalvu, kas paver vēl vairāk iespēju iespaidīgiem krāsu un rakstu variantiem.",
+    "excerpt": "Orientālais ir Siāmas grupas pārstāvis ar tādu pašu ķermeņa tipu kā Siāmas kaķim: elegants, garš, slaids un lokans. Orientālā atšķirība ir krāsu un rakstu dažādība, ko papildina īss, gluds apmatojums. Keigers to sauc par Siāmas kaķi ar citu rakstu — vairāk nekā 300 variācijām.",
+    "title": "Orientālā kaķu šķirne"
   }
 ]
