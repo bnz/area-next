@@ -1,18 +1,18 @@
 [
   {
-    "slug": "post-1",
+    "slug": "norwegian-forest-cat",
     "title": "Digitālā veselības aprūpes nākotne",
     "excerpt": "Kā tehnoloģijas uzlabo pacientu aprūpi Latvijā.",
-    "image": "/data/images/Screenshot 2024-08-21 at 14.24.02.png",
+    "image": "/data/images/202504202404beautiful-cat-breed-norwegian-cat-breed.avif",
     "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
-    "datetime": "2025-05-06T17:16"
+    "datetime": "2025-05-10T17:17"
   },
   {
-    "slug": "post-2",
+    "slug": "bomba",
     "title": "Datu aizsardzība medicīnā",
     "excerpt": "Privātums un drošība digitālajās veselības sistēmās.",
-    "image": "/data/images/logo flat.JPG",
+    "image": "/data/images/202504202404beautiful-cats-bombay.avif",
     "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
-    "datetime": "2025-05-06T17:16"
+    "datetime": "2025-05-06T17:17"
   }
 ]
