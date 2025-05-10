@@ -24,6 +24,7 @@
   "button.save": "Save",
   "label.url": "Url",
   "label.title": "Title",
+  "label.subTitle": "Sub title",
   "label.excerpt": "Excerpt",
   "label.content": "Content",
   "button.close": "Close",
