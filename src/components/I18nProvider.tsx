@@ -33,7 +33,7 @@ export function useI18n(key: "features"): Feature[]
 export function useI18n(key: "posts"): Post[]
 export function useI18n(key: "splits"): Split[]
 export function useI18n(key: string): string
-export function useI18n(key: string) {
+export function useI18n(key: string): Feature[] | Post[] | Split[] | string {
     const context = useContext(I18nContext)
 
     if (key === "features" || key === "posts") {
