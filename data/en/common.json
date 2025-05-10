@@ -35,5 +35,6 @@
   "input.name": "Name",
   "input.email": "Email",
   "input.message": "Message",
-  "button.sendMessage": "Send message"
+  "button.sendMessage": "Send message",
+  "error.message": "slug should be unique"
 }

@@ -35,5 +35,6 @@
   "input.name": "Vārds",
   "input.email": "E-pasts",
   "input.message": "Ziņojums",
-  "button.sendMessage": "Sūtīt ziņojumu"
+  "button.sendMessage": "Sūtīt ziņojumu",
+  "error.message": "slug vērtībai jābūt unikālai"
 }

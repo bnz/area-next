@@ -35,5 +35,6 @@
   "input.name": "Имя",
   "input.email": "Электронная почта",
   "input.message": "Сообщение",
-  "button.sendMessage": "Отправить сообщение"
+  "button.sendMessage": "Отправить сообщение",
+  "error.message": "slug должен быть уникальным"
 }
