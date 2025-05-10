@@ -1,17 +1,17 @@
 [
   {
-    "slug": "post-1",
-    "title": "The Future of Digital Healthcare",
-    "excerpt": "How modern tools are transforming the way we treat patients.",
-    "image": "/data/images/Screenshot 2024-08-21 at 14.24.02.png",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
-    "datetime": "2025-05-06T17:16"
+    "slug": "norwegian-forest-cat",
+    "title": "Norwegian Forest Cat",
+    "excerpt": "A relatively new and rare breed in the U.S., the Norwegian Forest Cat is a very old breed in their native Norway and has been featured in folk tales and mythology for centuries.",
+    "image": "/data/images/202504202404beautiful-cat-breed-norwegian-cat-breed.avif",
+    "content": "Known in Norway as the skogkatt (which literally means forest cat), the Norwegian Forest Cat sports a lavish coat that served as natural protection back when they lived in the forest. The lavish coat makes this already large breed look even larger. The insulated, waterproof double coat was designed to withstand Scandinavian winters and features a full frontal ruff (hair around the neck), bushy tail, rear britches and tufted paws. “They really do look as though they walked out of a fairy-tale forest,” Keiger says,\n\nOften known for their brown tabby-and-white coats, Norwegian Forest cats actually come in nearly every possible coat pattern and color combination, except pointed, chocolate and lilac.",
+    "datetime": "2025-05-10T17:16"
   },
   {
     "slug": "post-2",
     "title": "Why Patient Data Privacy Matters",
     "excerpt": "Exploring the importance of secure medical systems.",
-    "image": "/data/images/logo flat.JPG",
+    "image": "/data/images/202504202404beautiful-cats-bombay.avif",
     "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet assumenda consectetur cupiditate, dignissimos incidunt, ipsum laboriosam magnam numquam pariatur praesentium quae quam quisquam, recusandae repellat sit temporibus vel voluptatum.",
     "datetime": "2025-05-06T17:16"
   }
