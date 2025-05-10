@@ -22,7 +22,9 @@ export function Posts({ headerText, posts }: PostsProps) {
 								href={`/blog/${slug}`}
 								className="block group rounded-xl overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition"
 							>
-								<img src={image} alt="" className="w-full h-56 object-cover" />
+								{image && (
+									<img src={image} alt="" className="w-full h-56 object-cover" />
+								)}
 								<div className="p-6">
 									<h3 className="text-xl font-semibold mb-2 group-hover:underline">{title}</h3>
 									<p className="text-gray-600 dark:text-gray-400">{excerpt}</p>

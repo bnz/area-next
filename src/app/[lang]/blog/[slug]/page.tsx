@@ -48,7 +48,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 				{post.title}
 			</h1>
 			<div className="italic text-sm mb-3 text-right">{formatDate(post.datetime)}</div>
-			<img src={post.image} alt="" className="mb-6 mx-auto" />
+			{post.image && (
+				<img src={post.image} alt="" className="mb-6 mx-auto" />
+			)}
 			<h4 className="mb-6 font-bold">
 				{post.excerpt}
 			</h4>
