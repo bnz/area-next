@@ -47,7 +47,7 @@ export function ModalDialog({ open, onClose, children, maxWidth = "max-w-4xl" }:
 		<dialog
 			ref={dialogRef}
 			className={cx(
-				"dark:backdrop:bg-black/50 backdrop:bg-white/50 rounded-lg p-6 w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow",
+				"dark:backdrop:bg-black/50 backdrop:bg-white/50 rounded-lg p-6 w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow",
 				"bg-gray-100 dark:bg-gray-700",
 				maxWidth
 			)}

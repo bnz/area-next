@@ -8,7 +8,7 @@ export function Posts() {
 		<div className="relative">
 			<PostsList />
 			<AddPostForm />
-			<PublishButton filename={TransFiles.posts} />
+			<PublishButton filename={TransFiles.posts} allLangs />
 		</div>
 	)
 }

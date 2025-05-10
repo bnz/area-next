@@ -3,9 +3,10 @@ import { useI18n } from "@/components/I18nProvider"
 
 type PublishButtonProps = {
     filename: TransFiles
+    allLangs?: boolean
 }
 
-export function PublishButton({ filename }: PublishButtonProps) {
+export function PublishButton({ filename, allLangs }: PublishButtonProps) {
     const { saveData, publishLoading } = useAdmin()
     const loadingText = useI18n("loading")
 
@@ -13,7 +14,7 @@ export function PublishButton({ filename }: PublishButtonProps) {
         <>
             <div className="text-center">
                 <button className="button" type="button" onClick={async function () {
-                    await saveData(filename)
+                    await saveData(filename, allLangs)
                 }}>
                     {useI18n("button.publish")}
                 </button>

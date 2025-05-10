@@ -15,6 +15,7 @@ export function DateTimeInput({ name, onChange, defaultValue }: DateTimeInputPro
 
 	return (
 		<input
+			required={false}
 			type="datetime-local"
 			ref={inputRef}
 			onClick={handleClick}
