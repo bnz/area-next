@@ -16,7 +16,7 @@
   "tab.split.sections": "Разделить секции",
   "copyright": "© 2025 Arija. Все права защищены.",
   "button.cancel": "Отмена",
-  "areYouSure": "Вы уверены?",
+  "areYouSure": "Это удалит запись на всех языках. Вы уверены?",
   "button.delete": "УДАЛИТЬ",
   "button.replace": "Заменить",
   "label.or": "или",
@@ -36,5 +36,5 @@
   "input.email": "Электронная почта",
   "input.message": "Сообщение",
   "button.sendMessage": "Отправить сообщение",
-  "error.message": "slug должен быть уникальным"
+  "error.message.slug.uniquer": "slug должен быть уникальным"
 }
