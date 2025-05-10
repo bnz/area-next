@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 	})!
 
 	return (
-		<div className="max-w-3xl mx-auto">
+		<div className="max-w-3xl mx-auto mb-24">
 			<h1 className="text-4xl font-bold mb-6">
 				{post.title}
 			</h1>
@@ -54,9 +54,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 			<h4 className="mb-6 font-bold">
 				{post.excerpt}
 			</h4>
-			<p className="text-lg text-gray-600 dark:text-gray-300">
-				{post.content}
-			</p>
+			{post.content.split("\n\n").map(function (item, index) {
+				return (
+					<p key={index} className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+						{item}
+					</p>
+				)
+			})}
 		</div>
 	)
 }

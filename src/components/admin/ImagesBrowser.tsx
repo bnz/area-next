@@ -23,10 +23,11 @@ export function ImagesBrowser({ index, filename, onClose }: { index: number, fil
 	}, [getImagesList, setImages])
 
 	return (
-		<div className="flex gap-3">
+		<div className="flex gap-3 flex-wrap">
 			{images.map(function ({ name, path }, i) {
 				return (
-					<img key={i} src={path} alt="" className="w-40 h-40 object-cover rounded cursor-pointer"
+					<img key={i} src={path} alt=""
+						className="w-40 h-40 object-cover rounded cursor-pointer hover:shadow-xl"
 						onClick={function () {
 							setLoadedData(function (prevState) {
 								const clone = structuredClone(prevState)
