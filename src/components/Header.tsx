@@ -19,12 +19,18 @@ export function Header({ lang, logoLabel, contactsLabel, blogLabel }: HeaderProp
             >
                 {logoLabel}
             </Link>
-            <div className="flex items-center gap-4">
-                <nav className="flex gap-6 text-sm">
-                    <LangLink href="/contacts" className="hover:underline text-gray-700 dark:text-gray-300">
+            <div className="flex">
+                <nav className="flex text-sm mr-2">
+                    <LangLink
+                        href="/contacts"
+                        className="hover:underline text-gray-700 dark:text-gray-300 px-2 flex items-center"
+                    >
                         {contactsLabel}
                     </LangLink>
-                    <LangLink href="/blog" className="hover:underline text-gray-700 dark:text-gray-300">
+                    <LangLink
+                        href="/blog"
+                        className="hover:underline text-gray-700 dark:text-gray-300 px-2 flex items-center"
+                    >
                         {blogLabel}
                     </LangLink>
                 </nav>

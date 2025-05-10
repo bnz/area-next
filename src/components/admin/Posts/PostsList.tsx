@@ -33,6 +33,16 @@ export function PostsList() {
 
 				if (keyName === "slug" || keyName === "datetime") {
 					supportedLanguages.map(function (restLang) {
+						if (!clonedState[restLang][TransFiles.posts][index]) {
+							clonedState[restLang][TransFiles.posts][index] = {
+								slug: "",
+								datetime: "",
+								title: "",
+								excerpt: "",
+								content: "",
+								image: "",
+							}
+						}
 						clonedState[restLang][TransFiles.posts][index][keyName] = event.target.value
 					})
 				}
