@@ -68,28 +68,41 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
 					</Button>
 					<DeletePostButton index={index} />
 				</div>
-				<input required type="text" placeholder={urlText} defaultValue={slug} name="slug" onChange={updateFormItem} />
+				<input
+					required
+					type="text"
+					placeholder={urlText}
+					defaultValue={slug}
+					name="slug"
+					onChange={updateFormItem}
+				/>
 				<div className="rounded row-span-4 flex">
-					<div className="flex-1 pr-5">
-						<ImageSection
-							image={image}
-							index={index}
-							filename={TransFiles.posts}
-						/>
-					</div>
-					<div>
-
-					</div>
+					<ImageSection
+						image={image}
+						index={index}
+						filename={TransFiles.posts}
+					/>
 				</div>
-				<input required type="text" placeholder={titleText} defaultValue={title} name="title"
-					onChange={updateFormItem} />
+				<input
+					required
+					type="text"
+					placeholder={titleText}
+					defaultValue={title}
+					name="title"
+					onChange={updateFormItem}
+				/>
 				<DateTimeInput name="datetime" onChange={updateFormItem} defaultValue={datetime} />
 				<input required type="text" placeholder={excerptText} defaultValue={excerpt} name="excerpt"
 					onChange={updateFormItem} />
 				<textarea
 					className="col-span-2"
-					rows={10} required placeholder={contentText} defaultValue={content} name="content"
-					onChange={updateFormItem}></textarea>
+					rows={10}
+					required
+					placeholder={contentText}
+					defaultValue={content}
+					name="content"
+					onChange={updateFormItem}
+				/>
 			</div>
 		)
 	}

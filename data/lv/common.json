@@ -36,5 +36,7 @@
   "input.email": "E-pasts",
   "input.message": "Ziņojums",
   "button.sendMessage": "Sūtīt ziņojumu",
-  "error.message.slug.uniquer": "slug vērtībai jābūt unikālai"
+  "error.message.slug.uniquer": "slug vērtībai jābūt unikālai",
+  "button.post.prev": "Iepriekšējais ieraksts",
+  "button.post.next": "Nākamais ieraksts"
 }

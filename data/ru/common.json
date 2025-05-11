@@ -36,5 +36,7 @@
   "input.email": "Электронная почта",
   "input.message": "Сообщение",
   "button.sendMessage": "Отправить сообщение",
-  "error.message.slug.uniquer": "slug должен быть уникальным"
+  "error.message.slug.uniquer": "slug должен быть уникальным",
+  "button.post.prev": "Предыдущий пост",
+  "button.post.next": "Следующий пост"
 }

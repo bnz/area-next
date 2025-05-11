@@ -36,5 +36,7 @@
   "input.email": "Email",
   "input.message": "Message",
   "button.sendMessage": "Send message",
-  "error.message.slug.uniquer": "slug should be unique"
+  "error.message.slug.uniquer": "slug should be unique",
+  "button.post.prev": "Previous post",
+  "button.post.next": "Next post"
 }
