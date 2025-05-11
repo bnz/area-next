@@ -30,7 +30,7 @@ export function DeletePostButton({ index }: DeletePostButtonProps) {
 
 	return (
 		<>
-			<button type="button" className="button" onClick={handleOpen}>
+			<button type="button" className="button !bg-red-500" onClick={handleOpen}>
 				X
 			</button>
 			{dialogOpen > -1 && (
@@ -42,7 +42,7 @@ export function DeletePostButton({ index }: DeletePostButtonProps) {
 						<button type="button" className="button" onClick={handleClose}>
 							{cancelText}
 						</button>
-						<button type="button" className="button" onClick={handleDelete}>
+						<button type="button" className="button !bg-red-500" onClick={handleDelete}>
 							{deleteText}
 						</button>
 					</div>

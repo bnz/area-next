@@ -12,7 +12,7 @@ type LoginProps = {
 export function Login({ lang }: LoginProps) {
     return (
         <AdminProvider lang={lang}>
-            <Suspense fallback={<></>}>
+            <Suspense fallback={null}>
                 <AdminClient />
             </Suspense>
         </AdminProvider>

@@ -13,7 +13,7 @@ export function PublishButton({ filename, allLangs }: PublishButtonProps) {
     return (
         <>
             <div className="text-center">
-                <button className="button" type="button" onClick={async function () {
+                <button className="button !bg-green-500" type="button" onClick={async function () {
                     await saveData(filename, allLangs)
                 }}>
                     {useI18n("button.publish")}

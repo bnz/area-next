@@ -18,7 +18,7 @@ export function Trans() {
 	}
 
 	return (
-		<div className="flex flex-col gap-3 relative">
+		<div className="flex flex-col gap-3 relative px-3">
 			{Object.keys(data).map(function (key) {
 				return (
 					<label key={key}>

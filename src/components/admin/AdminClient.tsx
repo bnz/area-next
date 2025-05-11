@@ -22,28 +22,24 @@ export function AdminClient() {
     }, [selectedIndex, router])
 
     return (
-        <div className="max-w-5xl bg-gray-100 dark:bg-gray-700 rounded px-1 py-3 lg:px-3 mx-2 lg:mx-auto shadow">
+        <div className="max-w-5xl bg-gray-100 dark:bg-gray-700 rounded py-3 mx-2 lg:mx-auto shadow-xl">
             <LogOut />
-            <TabGroup
-                selectedIndex={selectedIndex}
-                onChange={setSelectedIndex}
-                className="px-2"
-            >
-                <TabList className="flex gap-4 bg-gray-100 dark:bg-gray-800 px-px py-1 rounded overflow-auto scrollbar-hide">
-                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
+            <TabGroup selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+                <TabList className="flex gap-4 bg-gray-100 dark:bg-gray-800 px-3 py-1 overflow-auto scrollbar-hide">
+                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded whitespace-nowrap">
                         {useI18n("tab.translations")}
                     </Tab>
-                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
+                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded whitespace-nowrap">
                         {useI18n("tab.features")}
                     </Tab>
-                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
+                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded whitespace-nowrap">
                         {useI18n("tab.posts")}
                     </Tab>
-                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded">
+                    <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded whitespace-nowrap">
                         {useI18n("tab.split.sections")}
                     </Tab>
                 </TabList>
-                <TabPanels className="mt-3 py-3">
+                <TabPanels className="mt-3">
                     <TabPanel>
                         <Trans />
                     </TabPanel>
