@@ -1,17 +1,21 @@
 [
   {
+    "id": "e0450eba-c730-4184-8145-476ffde66e61",
     "title": "Simplicity",
     "description": "An interface intuitive for doctors and administrators"
   },
   {
+    "id": "f7be2693-4ab8-433d-86e1-09cf84201a70",
     "title": "Security",
     "description": "Patient data confidentiality is guaranteed"
   },
   {
+    "id": "d914277b-7083-477b-96ef-3b5a49df10fb",
     "title": "Speed",
     "description": "Updates appear instantly across all devices"
   },
   {
+    "id": "202875eb-e60f-4299-b7d4-fe132a1dcdc9",
     "title": "Convenience",
     "description": "Working with patients has become even more comfortable"
   }

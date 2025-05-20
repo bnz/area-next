@@ -1,17 +1,21 @@
 [
   {
+    "id": "c93d572c-888b-4e0c-93c7-efbf88ae6c0b",
     "title": "Vienkāršība",
     "description": "Saskarne, kas ir intuitīva ārstiem un administratoriem"
   },
   {
+    "id": "b819b360-13c0-4258-905b-1d7dfdae6764",
     "title": "Drošība",
     "description": "Pacientu datu konfidencialitāte ir garantēta"
   },
   {
+    "id": "9a371cd8-8ceb-4ebf-8167-0417529ab78c",
     "title": "Ātrums",
     "description": "Atjauninājumi tiek rādīti nekavējoties visās ierīcēs"
   },
   {
+    "id": "5e821c7b-84f5-4aa7-b6f9-e3517a8d3dec",
     "title": "Ērtības",
     "description": "Darbs ar pacientiem ir kļuvis vēl ērtāks"
   }

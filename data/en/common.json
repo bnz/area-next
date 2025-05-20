@@ -5,6 +5,8 @@
   "button.publish": "\uD83D\uDCBE Publish changes",
   "button.add": "Add",
   "button.cancel": "Cancel",
+  "button.edit": "Edit",
+  "button.done.edit": "Done edit",
   "loading": "Loading...",
   "password": "Password",
   "main-logo": "Arija",
@@ -38,5 +40,7 @@
   "button.sendMessage": "Send message",
   "error.message.slug.uniquer": "slug should be unique",
   "button.post.prev": "Previous post",
-  "button.post.next": "Next post"
+  "button.post.next": "Next post",
+  "label.edited": "* edited",
+  "button.revertChanges": "Revert changes"
 }
