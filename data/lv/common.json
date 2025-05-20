@@ -4,6 +4,8 @@
   "button.logout": "Izrakstīties",
   "button.publish": "💾 Publicēt izmaiņas",
   "button.add": "Pievienot",
+  "button.edit": "Rediģēt",
+  "button.done.edit": "Pabeigt rediģēšanu",
   "loading": "Ielādējas...",
   "password": "Parole",
   "main-logo": "Arija",
@@ -38,5 +40,7 @@
   "button.sendMessage": "Sūtīt ziņojumu",
   "error.message.slug.uniquer": "slug vērtībai jābūt unikālai",
   "button.post.prev": "Iepriekšējais ieraksts",
-  "button.post.next": "Nākamais ieraksts"
+  "button.post.next": "Nākamais ieraksts",
+  "label.edited": "* rediģēts",
+  "button.revertChanges": "Atcelt izmaiņas"
 }
