@@ -2,6 +2,7 @@ import { ModalDialog } from "@/components/ModalDialog"
 import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { useCallback, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
+import { Button } from "@/components/admin/Button"
 
 type DeletePostButtonProps = {
 	index: number
@@ -12,7 +13,7 @@ export function DeletePostButton({ index }: DeletePostButtonProps) {
 	const cancelText = useI18n("button.cancel")
 	const deleteText = useI18n("button.delete")
 
-	const { removeFromArrayData } = useAdmin()
+	const { removeFromArrayData } = useAdmin(TransFiles.posts)
 	const [dialogOpen, setDialogOpen] = useState<number>(-1)
 
 	const handleClose = useCallback(function () {
@@ -20,7 +21,7 @@ export function DeletePostButton({ index }: DeletePostButtonProps) {
 	}, [setDialogOpen])
 
 	const handleDelete = useCallback(function () {
-		removeFromArrayData(TransFiles.posts, index)
+		removeFromArrayData(index)
 		setDialogOpen(-1)
 	}, [index, removeFromArrayData, setDialogOpen])
 
@@ -30,21 +31,21 @@ export function DeletePostButton({ index }: DeletePostButtonProps) {
 
 	return (
 		<>
-			<button type="button" className="button !bg-red-500" onClick={handleOpen}>
+			<Button className="!bg-red-500" onClick={handleOpen}>
 				X
-			</button>
+			</Button>
 			{dialogOpen > -1 && (
 				<ModalDialog maxWidth="max-w-xl" open onClose={handleClose}>
 					<h5 className="text-gray-800 dark:text-gray-100 text-center p-5">
 						{areYouSure}
 					</h5>
 					<div className="flex justify-center items-center gap-3">
-						<button type="button" className="button" onClick={handleClose}>
+						<Button onClick={handleClose}>
 							{cancelText}
-						</button>
-						<button type="button" className="button !bg-red-500" onClick={handleDelete}>
+						</Button>
+						<Button className="!bg-red-500" onClick={handleDelete}>
 							{deleteText}
-						</button>
+						</Button>
 					</div>
 				</ModalDialog>
 			)}

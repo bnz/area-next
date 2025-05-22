@@ -4,6 +4,7 @@ import { useState } from "react"
 import Script from "next/script"
 import { useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
+import { ButtonSubmit } from "@/components/admin/Button"
 
 type ContactsFormProps = {
     token: string
@@ -58,9 +59,9 @@ export function ContactsForm({ token }: ContactsFormProps) {
                 <textarea rows={6} name="message" required placeholder={messageText} />
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
                 <div className="h-captcha self-center" data-captcha="true" />
-                <button type="submit" className="button self-center">
+                <ButtonSubmit className="self-center">
                     {sendMessageText}
-                </button>
+                </ButtonSubmit>
                 {message !== "" && (
                     <div>{message}</div>
                 )}

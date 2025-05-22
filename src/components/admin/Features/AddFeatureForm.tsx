@@ -1,6 +1,14 @@
-import { LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { Feature, LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { ChangeEvent, useCallback, useState } from "react"
+import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
+import { makeId } from "@/lib/makeId"
+
+const formDefaultValue: Feature = {
+	id: "",
+	title: "",
+	description: "",
+}
 
 export function AddFeatureForm() {
 	const addText = useI18n("button.add")
@@ -12,9 +20,9 @@ export function AddFeatureForm() {
 	const [formOpen, setFormOpen] = useState(false)
 	const { setLoadedData, lang } = useAdmin()
 
-	const [formData, setFormData] = useState({
-		title: "",
-		description: "",
+	const [formData, setFormData] = useState<Feature>({
+		...formDefaultValue,
+		id: makeId(),
 	})
 
 	const onFormChange = useCallback(function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -53,26 +61,43 @@ export function AddFeatureForm() {
 					localStorage.setItem(LOADED_DATA, JSON.stringify(newState))
 					return newState
 				})
-
 				handleClose()
 			}}
 		>
-			<input type="text" name="title" placeholder={titleText} autoFocus defaultValue={formData.title}
-				onChange={onFormChange} />
-			<textarea rows={1} placeholder={descriptionText} defaultValue={formData.description} name="description"
-				onChange={onFormChange}></textarea>
-			<div className="flex gap-3">
-				<button className="button" type="submit">
+			<input
+				type="text"
+				name="title"
+				placeholder={titleText}
+				autoFocus
+				defaultValue={formData.title}
+				onChange={onFormChange}
+				required
+			/>
+			<textarea
+				rows={1}
+				placeholder={descriptionText}
+				defaultValue={formData.description}
+				name="description"
+				onChange={onFormChange}
+				required
+			/>
+			<div className="flex justify-end gap-3">
+				<ButtonSubmit>
 					{saveText}
-				</button>
-				<button type="button" className="cursor-pointer" onClick={handleClose}>
+				</ButtonSubmit>
+				<ButtonSimple className="cursor-pointer" onClick={function () {
+					handleClose()
+					setFormData(formDefaultValue)
+				}}>
 					{cancelText}
-				</button>
+				</ButtonSimple>
 			</div>
 		</form>
 	) : (
-		<button className="button" type="button" onClick={handleOpen}>
-			{addText}
-		</button>
+		<div className="px-2">
+			<Button onClick={handleOpen}>
+				{addText}
+			</Button>
+		</div>
 	)
 }

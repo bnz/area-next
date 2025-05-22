@@ -43,7 +43,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 		return slug === _slug
 	})
 	const post = translations.posts[postIndex]
-
 	const prev = translations.posts[postIndex - 1]
 	const next = translations.posts[postIndex + 1]
 
@@ -68,12 +67,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 					)
 				})}
 			</div>
-			<div className="max-w-3xl mx-auto">
-				{prev && (
-					<LangLink href={`/blog/${prev.slug}`}>prev</LangLink>
-				)}
+			<div className="max-w-3xl mx-auto flex justify-between mb-6 px-4">
+				{prev ? (
+					<LangLink href={`/blog/${prev.slug}`}>
+						{translations.keys["button.post.prev"]}
+					</LangLink>
+				) : <div />}
 				{next && (
-					<LangLink href={`/blog/${next.slug}`}>next</LangLink>
+					<LangLink href={`/blog/${next.slug}`}>
+						{translations.keys["button.post.next"]}
+					</LangLink>
 				)}
 			</div>
 		</>

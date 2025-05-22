@@ -1,8 +1,11 @@
 import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
+import { useI18n } from "@/components/I18nProvider"
 
 export function ImageUploader({ index }: { index: number }) {
-	const { uploadImage, updateArrayData } = useAdmin()
+	const loadingText = useI18n("loading")
+
+	const { uploadImage, updateArrayData } = useAdmin(TransFiles.posts)
 
 	const [preview, setPreview] = useState<string | null>(null)
 	const [file, setFile] = useState<File | null>(null)
@@ -20,11 +23,11 @@ export function ImageUploader({ index }: { index: number }) {
 
 	async function handleUpload() {
 		if (!file) return
-		setStatus('Loading...')
+		setStatus(loadingText)
 		try {
 			const filename = await uploadImage(file)
 
-			updateArrayData(TransFiles.posts, index)({
+			updateArrayData(index)({
 				target: {
 					name: "image",
 					value: filename,
@@ -49,7 +52,7 @@ export function ImageUploader({ index }: { index: number }) {
 				disabled={!file}
 				className="bg-emerald-600 text-white px-4 py-2 rounded disabled:opacity-50"
 			>
-				Загрузить
+				~ Загрузить ~
 			</button>
 			{status && (
 				<p className="text-sm text-gray-500">{status}</p>

@@ -14,10 +14,10 @@ import {
 import { BRANCH, getImagesUrl, getImageUrl, getUrl } from "@/lib/getUrl"
 import { Buffer } from "buffer"
 import { LoginForm } from "@/components/admin/LoginForm"
-import { useI18n } from "@/components/I18nProvider"
 import { type AvailableLangs, supportedLanguages } from "@/lib/i18n"
 import debounce from "lodash.debounce"
-import { sleep } from "@/helpers/sleep"
+import isEqual from "lodash.isequal"
+import { Loading } from "@/components/admin/Loading"
 
 export enum TransFiles {
 	common = "common",
@@ -50,11 +50,13 @@ const defaultShaData: ShaData = {
 }
 
 export type Feature = {
+	id: string
 	title: string
 	description: string
 }
 
 export type Post = {
+	id: string
 	title: string
 	excerpt: string
 	image: string
@@ -64,12 +66,13 @@ export type Post = {
 }
 
 export type Split = {
+	id: string
 	title: string
 	subTitle: string
 	image: string
 }
 
-type LoadedDataItem = {
+export type LoadedDataItem = {
 	[TransFiles.common]: Record<string, string>
 	[TransFiles.translations]: Record<string, string>
 	[TransFiles.features]: Feature[]
@@ -95,12 +98,9 @@ const defaultLoadedData: LoadedData = {
 	ru: defaultLoadedDataItem,
 }
 
-const AdminContext = createContext<{
+type AdminContextProps = {
 	loadFile(filename: TransFiles, newToken?: string): Promise<{
 		content: string
-		sha: string
-	} | undefined>
-	publishData(filename: TransFiles, stringToSave: string, sha: string, lang: AvailableLangs): Promise<{
 		sha: string
 	} | undefined>
 	logOut: VoidFunction
@@ -109,7 +109,7 @@ const AdminContext = createContext<{
 	loadData(filename: TransFiles): Promise<void>
 	saveData(filename: TransFiles, allLangs?: boolean): Promise<void>
 	updateRecordData(key: string): (event: ChangeEvent<HTMLTextAreaElement>) => void
-	updateArrayData(filename: TransFiles, index: number): (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+	updateArrayData(filename: TransFiles, id: string): (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 	lang: AvailableLangs
 	publishLoading: boolean
 	setPublishLoading: Dispatch<SetStateAction<boolean>>
@@ -117,11 +117,11 @@ const AdminContext = createContext<{
 	getImagesList(): Promise<any>
 	removeFromArrayData(filename: TransFiles.posts | TransFiles.features, index: number): void
 	saveToLocalStorage(obj: LoadedData): void
-}>({
+	areEqual(filename: TransFiles, index?: number): boolean
+}
+
+const AdminContext = createContext<AdminContextProps>({
 	async loadFile() {
-		return undefined
-	},
-	async publishData() {
 		return undefined
 	},
 	logOut() {
@@ -153,10 +153,61 @@ const AdminContext = createContext<{
 	},
 	saveToLocalStorage() {
 	},
+	areEqual() {
+		return false
+	},
 })
 
-export function useAdmin() {
-	return useContext(AdminContext)
+type ArgsWithoutFirst<T> = Parameters<T> extends [infer First, ...infer Rest] ? Rest : never
+
+type Return<T extends keyof AdminContextProps> = ReturnType<AdminContextProps[T]>
+
+type Args<T extends keyof AdminContextProps> = ArgsWithoutFirst<AdminContextProps[T]>
+
+type GetDataType<T extends TransFiles> = T extends keyof LoadedDataItem ? LoadedDataItem[T] : never
+
+type AdminContextWithFilenameProps<T extends TransFiles> =
+	Omit<AdminContextProps, "loadFile" | "loadData" | "loadedData" | "saveData" | "updateArrayData" | "areEqual"> & {
+	loadFile(...args: Args<"loadFile">): Return<"loadFile">
+	loadData(): Return<"loadData">
+	saveData(...args: Args<"saveData">): Return<"saveData">
+	loadedData: GetDataType<T>
+	updateArrayData(...args: Args<"updateArrayData">): Return<"updateArrayData">
+	removeFromArrayData(...args: Args<"removeFromArrayData">): Return<"removeFromArrayData">
+	areEqual(...args: Args<"areEqual">): Return<"areEqual">
+}
+
+export function useAdmin(): AdminContextProps
+export function useAdmin<T extends TransFiles>(filename?: T): AdminContextWithFilenameProps<T>
+export function useAdmin<T extends TransFiles>(filename?: T): AdminContextProps | AdminContextWithFilenameProps<T> {
+	const context = useContext(AdminContext)
+
+	return {
+		...context,
+		...(filename ? {
+			loadFile(newToken) {
+				return context.loadFile(filename!, newToken)
+			},
+			loadData() {
+				return context.loadData(filename!)
+			},
+			saveData(allLangs) {
+				return context.saveData(filename!, allLangs)
+			},
+			loadedData: context.loadedData[filename!],
+			updateArrayData(id) {
+				return context.updateArrayData(filename!, id)
+			},
+			areEqual(index?: number) {
+				return context.areEqual(filename!, index)
+			},
+			...(filename === TransFiles.posts || filename === TransFiles.features ? {
+				removeFromArrayData(index) {
+					return context.removeFromArrayData(filename!, index)
+				},
+			} : {}),
+		} : {}),
+	}
 }
 
 export const LOADED_DATA = "loaded-data"
@@ -164,12 +215,11 @@ const SHA_DATA = "sha-data"
 const TOKEN = "token"
 
 export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: AvailableLangs }>) {
-	const loadingText = useI18n("loading")
-
 	const [token, setToken] = useState("")
 	const [loading, setLoading] = useState<boolean>(false)
 	const [sha, setSha] = useState<ShaData>(defaultShaData)
 	const [loadedData, setLoadedData] = useState<LoadedData>(defaultLoadedData)
+	const [initialLoadedData, setInitialLoadedData] = useState<LoadedData>(defaultLoadedData)
 	const [publishLoading, setPublishLoading] = useState(false)
 
 	useEffect(function () {
@@ -210,7 +260,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			localStorage.setItem(SHA_DATA, JSON.stringify(newState))
 			return newState
 		})
-	}, [lang])
+	}, [lang, setSha])
 
 	const loadFile = useCallback(async function (filename: TransFiles, newToken?: string) {
 		try {
@@ -237,7 +287,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		} catch (err) {
 			console.error(err)
 		}
-	}, [lang, setLoading, token])
+	}, [lang, token])
 
 	const publishData = useCallback(async function (filename: TransFiles, stringToSave: string, sha: string, lang: AvailableLangs) {
 		try {
@@ -271,33 +321,51 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 	}, [token, lang])
 
 	const loadData = useCallback(async function (filename: TransFiles) {
-		if (Object.keys(loadedData[lang][filename]).length > 0) {
-			return
-		}
+		const dataExists = Object.keys(loadedData[lang][filename]).length > 0
+		const initialDataExists = Object.keys(initialLoadedData[lang][filename]).length > 0
 
-		const data = await loadFile(filename)
+		if (!dataExists || !initialDataExists) {
+			setLoading(true)
+			const data = await loadFile(filename)
 
-		if (data) {
 			try {
-				setLoadedData(function (prevState) {
-					const newState = {
-						...prevState,
-						[lang]: {
-							...prevState[lang],
-							[filename]: JSON.parse(data.content),
-						},
-					}
+				setLoading(false)
+				if (!data) {
+					return
+				}
 
-					localStorage.setItem(LOADED_DATA, JSON.stringify(newState))
+				if (!dataExists) {
+					setLoadedData(function (prevState) {
+						const newState = {
+							...prevState,
+							[lang]: {
+								...prevState[lang],
+								[filename]: JSON.parse(data.content),
+							},
+						}
+						saveToLocalStorage(newState)
+						return newState
+					})
+					changeSha(filename, data.sha)
+				}
 
-					return newState
-				})
-				changeSha(filename, data.sha)
+				if (!initialDataExists) {
+					setInitialLoadedData(function (prevState) {
+						return {
+							...prevState,
+							[lang]: {
+								...prevState[lang],
+								[filename]: JSON.parse(data.content),
+							},
+						}
+					})
+				}
+
 			} catch (e) {
 				console.log(e)
 			}
 		}
-	}, [loadFile, loadedData, setLoadedData, lang])
+	}, [loadFile, loadedData, initialLoadedData, setLoadedData, lang, setInitialLoadedData, setLoading])
 
 	const saveData = useCallback(async function (filename: TransFiles, allLangs?: boolean) {
 		try {
@@ -356,10 +424,13 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		}
 	}, [lang, saveToLocalStorage, setLoadedData])
 
-	const updateArrayData = useCallback(function (filename: TransFiles, index: number) {
+	const updateArrayData = useCallback(function (filename: TransFiles.features | TransFiles.posts | TransFiles.splits, id: string) {
 		return function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 			setLoadedData(function (prevState) {
 				const arrayClone = structuredClone(prevState[lang][filename])
+
+				// const item = arrayClone
+
 				// @ts-ignore
 				arrayClone[index][event.target.name] = event.target.value
 				const newState = {
@@ -429,10 +500,24 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		})
 	}, [setLoadedData])
 
+	const areEqual = useCallback(function (filename: TransFiles, index?: number): boolean {
+
+		if (index !== undefined && (filename === TransFiles.features || filename === TransFiles.posts || filename === TransFiles.splits)) {
+			return isEqual(
+				initialLoadedData[lang][filename][index],
+				loadedData[lang][filename][index],
+			)
+		}
+
+		return isEqual(
+			initialLoadedData[lang][filename],
+			loadedData[lang][filename],
+		)
+	}, [initialLoadedData, loadedData, lang])
+
 	return (
 		<AdminContext.Provider value={{
 			loadFile,
-			publishData,
 			logOut,
 			loadedData: loadedData[lang],
 			setLoadedData,
@@ -447,17 +532,9 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			getImagesList,
 			removeFromArrayData,
 			saveToLocalStorage,
+			areEqual,
 		}}>
-			{loading
-				? (
-					<div className="max-w-lg mx-auto flex items-center justify-center min-h-48">
-						{loadingText}
-					</div>
-				)
-				: token
-					? children
-					: <LoginForm />
-			}
+			<>{loading ? <Loading /> : token ? children : <LoginForm />}</>
 		</AdminContext.Provider>
 	)
 }

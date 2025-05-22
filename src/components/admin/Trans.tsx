@@ -4,28 +4,27 @@ import { useI18n } from "@/components/I18nProvider"
 import { PublishButton } from "@/components/admin/PublishButton"
 
 export function Trans() {
-	const { loadedData, loadData, saveData, updateRecordData, publishLoading } = useAdmin()
 	const loadingText = useI18n("loading")
 
+	const { loadedData, loadData, updateRecordData } = useAdmin(TransFiles.translations)
+
 	useEffect(function () {
-		void loadData(TransFiles.translations)
+		void loadData()
 	}, [])
 
-	const data = loadedData[TransFiles.translations]
-
-	if (Object.keys(data).length === 0) {
-		return <>{loadingText}</>
+	if (Object.keys(loadedData).length === 0) {
+		return <div className="px-3">{loadingText}</div>
 	}
 
 	return (
 		<div className="flex flex-col gap-3 relative px-3">
-			{Object.keys(data).map(function (key) {
+			{Object.keys(loadedData).map(function (key) {
 				return (
 					<label key={key}>
 						<div className="text-xs font-sans">{key}</div>
 						<textarea
 							rows={1}
-							defaultValue={data[key]}
+							defaultValue={loadedData[key]}
 							onChange={updateRecordData(key)}
 						/>
 					</label>

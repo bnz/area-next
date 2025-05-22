@@ -1,6 +1,7 @@
 import { useI18n } from "@/components/I18nProvider"
 import { ChangeEvent, FormEvent, useCallback, useState } from "react"
 import { LOADED_DATA, Split, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
 
 const formDefaultValue: Split = {
     title: "",
@@ -66,18 +67,18 @@ export function AddSplitForm() {
                     <textarea placeholder={titleText} name="title" onChange={onFormChange}></textarea>
                     <textarea placeholder={subTitleText} name="subTitle" onChange={onFormChange}></textarea>
                     <div className="flex gap-3">
-                        <button className="button" type="submit">
+                        <ButtonSubmit>
                             {saveText}
-                        </button>
-                        <button type="button" className="cursor-pointer" onClick={handleCancel}>
+                        </ButtonSubmit>
+                        <ButtonSimple onClick={handleCancel}>
                             {cancelText}
-                        </button>
+                        </ButtonSimple>
                     </div>
                 </form>
             ) : (
-                <button type="button" className="button" onClick={handleOpen}>
+                <Button onClick={handleOpen}>
                     {addText}
-                </button>
+                </Button>
             )}
         </>
     )

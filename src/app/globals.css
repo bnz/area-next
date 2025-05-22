@@ -70,7 +70,7 @@ body {
     }
 
     .button[disabled] {
-        @apply cursor-not-allowed !bg-indigo-600/10;
+        @apply cursor-not-allowed !bg-indigo-600/10 text-gray-400;
     }
 
 }

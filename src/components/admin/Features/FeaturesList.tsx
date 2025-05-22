@@ -1,36 +1,57 @@
 import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { useEffect } from "react"
+import { Button } from "@/components/admin/Button"
 
 export function FeaturesList() {
 	const titleText = useI18n("label.title")
 	const descriptionText = useI18n("label.description")
+	const deleteText = useI18n("button.delete")
+	const revertChangesText = useI18n("button.revertChanges")
 
-	const { loadedData, updateArrayData, removeFromArrayData, loadData } = useAdmin()
+	const { loadedData, updateArrayData, removeFromArrayData, loadData, areEqual } = useAdmin(TransFiles.features)
 
 	useEffect(function () {
-		void loadData(TransFiles.features)
+		void loadData()
 	}, [loadData])
 
-	const data = loadedData[TransFiles.features]
-
-	return data.map(function ({ title, description }, index) {
-		const update = updateArrayData(TransFiles.features, index)
+	return loadedData.map(function ({ id, title, description }, index) {
+		const update = updateArrayData(index)
+		const equal = false //areEqual(index)
 
 		return (
-			<div key={index}
-				className="grid grid-cols-[1fr_35px] gap-3 outline-1 outline-gray-300 dark:outline-gray-700 mb-5 p-2 rounded">
-				<input type="text" defaultValue={title} placeholder={titleText} name="title"
-					onChange={update} />
-				<div className="row-span-2 flex items-center justify-center">
-					<button className="button" type="button" onClick={function () {
-						removeFromArrayData(TransFiles.features, index)
+			<div
+				key={id}
+				className="grid grid-cols-[1fr_100px] gap-3 py-4 px-4 rounded border-b border-gray-200 dark:border-gray-800"
+			>
+				<input
+					type="text"
+					defaultValue={title}
+					placeholder={titleText}
+					name="title"
+					// onChange={update}
+				/>
+				<div className="row-span-2 flex flex-col gap-2 items-center justify-center">
+					<Button className="!bg-red-500" onClick={function () {
+						// removeFromArrayData(index)
 					}}>
-						X
-					</button>
+						{deleteText}
+					</Button>
+					{!equal && (
+						<Button className="bg-green-500" onClick={function () {
+
+						}}>
+							{revertChangesText}
+						</Button>
+					)}
 				</div>
-				<textarea rows={1} placeholder={descriptionText} defaultValue={description} name="description"
-					onChange={update}></textarea>
+				<textarea
+					rows={1}
+					placeholder={descriptionText}
+					defaultValue={description}
+					name="description"
+					// onChange={update}
+				/>
 			</div>
 		)
 	})

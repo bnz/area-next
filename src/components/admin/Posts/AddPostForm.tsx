@@ -4,6 +4,7 @@ import { DateTimeInput } from "@/components/admin/DateTimeInput"
 import { useI18n } from "@/components/I18nProvider"
 import { supportedLanguages } from "@/lib/i18n"
 import { useFormData } from "@/lib/useFormData"
+import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
 
 const formDefaultValue: Post = {
 	slug: "",
@@ -24,7 +25,7 @@ export function AddPostForm() {
 	const contentText = useI18n("label.content")
 	const slugUniquerText = useI18n("error.message.slug.uniquer")
 
-	const { loadedData, setLoadedData, lang, saveToLocalStorage } = useAdmin()
+	const { loadedData, setLoadedData, lang, saveToLocalStorage } = useAdmin(TransFiles.posts)
 	const [addNew, setAddNew] = useState<boolean>(false)
 	const [formData, onFormChange, resetFormData] = useFormData<Post>(formDefaultValue)
 
@@ -42,7 +43,7 @@ export function AddPostForm() {
 	const onSubmit = useCallback(function (event: FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 
-		const existingSlugs = loadedData[TransFiles.posts].map(function ({ slug }) {
+		const existingSlugs = loadedData.map(function ({ slug }) {
 			return slug
 		})
 
@@ -99,26 +100,28 @@ export function AddPostForm() {
 			className="flex flex-col gap-3 p-2.5 m-2.5 bg-gray-100 dark:bg-gray-700 rounded shadow-inner"
 			onSubmit={onSubmit}
 		>
-			<input required={false} autoFocus type="text" placeholder={urlText} name="slug" onChange={onFormChange} />
+			<input required={true} autoFocus type="text" placeholder={urlText} name="slug" onChange={onFormChange} />
 			{formErrors.slug && (
 				<div className="text-red-500 italic">{formErrors.slug}</div>
 			)}
-			<input required={false} type="text" placeholder={titleText} name="title" onChange={onFormChange} />
+			<input required={true} type="text" placeholder={titleText} name="title" onChange={onFormChange} />
 			<DateTimeInput name="datetime" onChange={onFormChange} />
-			<input required={false} type="text" placeholder={excerptText} name="excerpt" onChange={onFormChange} />
-			<textarea required={false} placeholder={contentText} name="content" onChange={onFormChange}></textarea>
+			<input required={true} type="text" placeholder={excerptText} name="excerpt" onChange={onFormChange} />
+			<textarea required={true} placeholder={contentText} name="content" onChange={onFormChange}></textarea>
 			<div className="flex gap-3">
-				<button className="button" type="submit">
+				<ButtonSubmit>
 					{saveText}
-				</button>
-				<button type="button" className="cursor-pointer" onClick={handleCancel}>
+				</ButtonSubmit>
+				<ButtonSimple className="cursor-pointer" onClick={handleCancel}>
 					{cancelText}
-				</button>
+				</ButtonSimple>
 			</div>
 		</form>
 	) : (
-		<button type="button" className="button" onClick={handleOpen}>
-			{addText}
-		</button>
+		<div className="max-md:p-2 md:p-5 border-y border-y-gray-200 dark:border-y-gray-800">
+			<Button onClick={handleOpen}>
+				{addText}
+			</Button>
+		</div>
 	)
 }

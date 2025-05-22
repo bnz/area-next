@@ -1,29 +1,32 @@
 import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
+import { Button } from "@/components/admin/Button"
 
 type PublishButtonProps = {
-    filename: TransFiles
-    allLangs?: boolean
+	filename: TransFiles
+	allLangs?: boolean
 }
 
 export function PublishButton({ filename, allLangs }: PublishButtonProps) {
-    const { saveData, publishLoading } = useAdmin()
-    const loadingText = useI18n("loading")
+	const loadingText = useI18n("loading")
+	const publishText = useI18n("button.publish")
 
-    return (
-        <>
-            <div className="text-center">
-                <button className="button !bg-green-500" type="button" onClick={async function () {
-                    await saveData(filename, allLangs)
-                }}>
-                    {useI18n("button.publish")}
-                </button>
-            </div>
-            {publishLoading && (
-                <div className="absolute -inset-1 bg-gray-100/90 dark:bg-gray-700/90 rounded flex items-center justify-center">
-                    {loadingText}
-                </div>
-            )}
-        </>
-    )
+	const { saveData, publishLoading, areEqual } = useAdmin(filename)
+
+	return (
+		<>
+			<div className="text-center py-10">
+				<Button disabled={areEqual()} className="!bg-green-500" onClick={function () {
+					void saveData(allLangs)
+				}}>
+					{publishText}
+				</Button>
+			</div>
+			{publishLoading && (
+				<div className="absolute -inset-1 bg-gray-100/90 dark:bg-gray-700/90 rounded flex items-center justify-center">
+					{loadingText}
+				</div>
+			)}
+		</>
+	)
 }
