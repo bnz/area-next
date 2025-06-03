@@ -1,6 +1,7 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { ChangeEvent, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function ImageUploader({ index }: { index: number }) {
 	const loadingText = useI18n("loading")

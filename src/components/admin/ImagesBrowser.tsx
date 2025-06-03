@@ -1,5 +1,6 @@
-import { LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, useAdmin } from "@/components/admin/AdminProvider"
 import { useEffect, useState } from "react"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function ImagesBrowser({ index, filename, onClose }: { index: number, filename: TransFiles, onClose: VoidFunction }) {
 	const { getImagesList, setLoadedData, lang } = useAdmin()

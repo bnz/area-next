@@ -1,9 +1,11 @@
 import { useI18n } from "@/components/I18nProvider"
 import { ChangeEvent, FormEvent, useCallback, useState } from "react"
-import { LOADED_DATA, Split, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, useAdmin } from "@/components/admin/AdminProvider"
 import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
+import { SplitItem, TransFiles } from "@/components/admin/schemas/schemas"
 
-const formDefaultValue: Split = {
+const formDefaultValue: SplitItem = {
+    id: "",
     title: "",
     subTitle: "",
     image: "",
@@ -23,7 +25,7 @@ export function AddSplitForm() {
         setAddNew(true)
     }, [setAddNew])
 
-    const [formData, setFormData] = useState<Split>(formDefaultValue)
+    const [formData, setFormData] = useState<SplitItem>(formDefaultValue)
     const onFormChange = useCallback(function (event: ChangeEvent<HTMLTextAreaElement>) {
         setFormData(function (prevState) {
             return {

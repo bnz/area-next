@@ -1,10 +1,11 @@
 import { ImageUploader } from "@/components/admin/ImageUploader"
 import { ModalDialog } from "@/components/ModalDialog"
 import { ImagesBrowser } from "@/components/admin/ImagesBrowser"
-import { LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, useAdmin } from "@/components/admin/AdminProvider"
 import { useCallback, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { Button } from "@/components/admin/Button"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 type PostImageSectionProps = {
 	image: string

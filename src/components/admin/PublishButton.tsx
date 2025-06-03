@@ -1,6 +1,7 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { Button } from "@/components/admin/Button"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 type PublishButtonProps = {
 	filename: TransFiles

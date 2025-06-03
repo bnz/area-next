@@ -1,7 +1,8 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useEffect } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { ImageSection } from "@/components/admin/ImageSection"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function SplitList() {
 	const titleText = useI18n("label.title")

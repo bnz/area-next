@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { ButtonSubmit } from "@/components/admin/Button"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function LoginForm() {
     const [token, setToken] = useState("")

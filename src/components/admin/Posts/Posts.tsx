@@ -1,7 +1,7 @@
-import { TransFiles } from "@/components/admin/AdminProvider"
 import { PublishButton } from "@/components/admin/PublishButton"
 import { AddPostForm } from "@/components/admin/Posts/AddPostForm"
 import { PostsList } from "@/components/admin/Posts/PostsList"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function Posts() {
 	return (

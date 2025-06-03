@@ -1,6 +1,7 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useEffect } from "react"
 import { Post } from "@/components/admin/Posts/Post"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function PostsList() {
 	const { loadedData, loadData } = useAdmin(TransFiles.posts)

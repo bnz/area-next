@@ -3,8 +3,8 @@ import fs from "fs"
 import path from "path"
 import { readDataJSON } from "@/lib/readDataJSON"
 import { formatDate } from "@/lib/formatDate"
-import { Post } from "@/components/admin/AdminProvider"
 import { LangLink } from "@/components/LangLink"
+import { PostItem } from "@/components/admin/schemas/schemas"
 
 export function generateStaticParams() {
 	const allParams: { lang: string, slug: string }[] = []
@@ -14,7 +14,7 @@ export function generateStaticParams() {
 
 		try {
 			const file = fs.readFileSync(filePath, "utf-8")
-			const posts = JSON.parse(file) as Post[]
+			const posts = JSON.parse(file) as PostItem[]
 
 			posts.forEach(function ({ slug }) {
 				if (!allParams.find(function ({ slug: _slug, lang: _lang }) {

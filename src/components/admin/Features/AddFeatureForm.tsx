@@ -1,10 +1,11 @@
-import { Feature, LOADED_DATA, TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { ChangeEvent, useCallback, useState } from "react"
 import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
 import { makeId } from "@/lib/makeId"
+import { FeatureItem, TransFiles } from "@/components/admin/schemas/schemas"
 
-const formDefaultValue: Feature = {
+const formDefaultValue: FeatureItem = {
 	id: "",
 	title: "",
 	description: "",
@@ -20,7 +21,7 @@ export function AddFeatureForm() {
 	const [formOpen, setFormOpen] = useState(false)
 	const { setLoadedData, lang } = useAdmin()
 
-	const [formData, setFormData] = useState<Feature>({
+	const [formData, setFormData] = useState<FeatureItem>({
 		...formDefaultValue,
 		id: makeId(),
 	})
@@ -81,7 +82,7 @@ export function AddFeatureForm() {
 				onChange={onFormChange}
 				required
 			/>
-			<div className="flex justify-end gap-3">
+			<div className="flex justify-start gap-3">
 				<ButtonSubmit>
 					{saveText}
 				</ButtonSubmit>
@@ -94,7 +95,7 @@ export function AddFeatureForm() {
 			</div>
 		</form>
 	) : (
-		<div className="px-2">
+		<div className="">
 			<Button onClick={handleOpen}>
 				{addText}
 			</Button>

@@ -1,7 +1,7 @@
-import { type Feature } from "@/components/admin/AdminProvider"
+import { FeatureItem } from "@/components/admin/schemas/schemas"
 
 type FeaturesType = {
-	features: Feature[]
+	features: FeatureItem[]
 }
 
 export function Features({ features = [] }: FeaturesType) {

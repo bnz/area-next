@@ -1,10 +1,9 @@
 import { LangLink } from "@/components/LangLink"
-
-import { Post } from "@/components/admin/AdminProvider"
+import { PostItem } from "@/components/admin/schemas/schemas"
 
 type PostsProps = {
 	headerText: string
-	posts: Post[]
+	posts: PostItem[]
 }
 
 export function Posts({ headerText, posts }: PostsProps) {

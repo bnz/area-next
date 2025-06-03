@@ -1,7 +1,8 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
 import { useEffect } from "react"
 import { Button } from "@/components/admin/Button"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function FeaturesList() {
 	const titleText = useI18n("label.title")
@@ -15,9 +16,11 @@ export function FeaturesList() {
 		void loadData()
 	}, [loadData])
 
+	console.log({ loadedData })
+
 	return loadedData.map(function ({ id, title, description }, index) {
 		const update = updateArrayData(index)
-		const equal = false //areEqual(index)
+		const equal = true //areEqual(index)
 
 		return (
 			<div
@@ -33,7 +36,7 @@ export function FeaturesList() {
 				/>
 				<div className="row-span-2 flex flex-col gap-2 items-center justify-center">
 					<Button className="!bg-red-500" onClick={function () {
-						// removeFromArrayData(index)
+						removeFromArrayData(index)
 					}}>
 						{deleteText}
 					</Button>

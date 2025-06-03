@@ -1,8 +1,8 @@
-import { Split } from "@/components/admin/AdminProvider"
 import cx from "classnames"
+import { SplitItem } from "@/components/admin/schemas/schemas"
 
 type SplitSectionsProps = {
-	splits: Split[]
+	splits: SplitItem[]
 }
 
 export function SplitSections({ splits }: SplitSectionsProps) {

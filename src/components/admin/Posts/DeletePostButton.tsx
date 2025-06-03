@@ -1,8 +1,9 @@
 import { ModalDialog } from "@/components/ModalDialog"
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useCallback, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { Button } from "@/components/admin/Button"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 type DeletePostButtonProps = {
 	index: number

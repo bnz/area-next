@@ -1,7 +1,8 @@
-import { TransFiles, useAdmin } from "@/components/admin/AdminProvider"
+import { useAdmin } from "@/components/admin/AdminProvider"
 import { useEffect } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { PublishButton } from "@/components/admin/PublishButton"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function Trans() {
 	const loadingText = useI18n("loading")
@@ -17,7 +18,7 @@ export function Trans() {
 	}
 
 	return (
-		<div className="flex flex-col gap-3 relative px-3">
+		<div className="flex flex-col gap-3 relative px-4">
 			{Object.keys(loadedData).map(function (key) {
 				return (
 					<label key={key}>
