@@ -5,7 +5,8 @@ import { useI18n } from "@/components/I18nProvider"
 import { supportedLanguages } from "@/lib/i18n"
 import { useFormData } from "@/lib/useFormData"
 import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
-import { PostItem, TransFiles } from "@/components/admin/schemas/schemas"
+import { loadedDataSchema, PostItem, postSchema, TransFiles } from "@/components/admin/schemas/schemas"
+import { makeId } from "@/lib/makeId"
 
 const formDefaultValue: PostItem = {
     id: "",
@@ -59,6 +60,8 @@ export function AddPostForm() {
                 return l !== lang
             })
 
+            formData.id = makeId()
+
             const newState = {
                 ...prevState,
                 [lang]: {
@@ -70,6 +73,8 @@ export function AddPostForm() {
                 },
             }
 
+            console.log({ formData })
+
             const newIndex = newState[lang][TransFiles.posts].length - 1
 
             let clonedState = structuredClone(newState)
@@ -80,6 +85,7 @@ export function AddPostForm() {
                     clonedState[restLang][TransFiles.posts][newIndex].datetime = formData.datetime
                 } else {
                     clonedState[restLang][TransFiles.posts][newIndex] = {
+                        id: makeId(),
                         slug: formData.slug,
                         datetime: formData.datetime,
                         image: "",

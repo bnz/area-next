@@ -20,7 +20,7 @@ const splitSchema = z.object({
 
 export type SplitItem = z.infer<typeof splitSchema>
 
-const postSchema = z.object({
+export const postSchema = z.object({
     id: z.string(),
     title: z.string(),
     excerpt: z.string(),

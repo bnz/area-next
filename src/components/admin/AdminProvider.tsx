@@ -209,7 +209,11 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 
             if (dataStorage) {
                 const parsed = JSON.parse(dataStorage || "{}")
-                setLoadedData(loadedDataSchema.parse(parsed))
+
+                // console.log("init set", { parsed })
+
+                // setLoadedData(loadedDataSchema.parse(parsed))
+                setLoadedData(parsed)
             }
             const shaStorage = localStorage.getItem(SHA_DATA)
             if (shaStorage) {

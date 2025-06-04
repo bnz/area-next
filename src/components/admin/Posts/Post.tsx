@@ -8,7 +8,7 @@ import { supportedLanguages } from "@/lib/i18n"
 import { useI18n } from "@/components/I18nProvider"
 import { Button } from "@/components/admin/Button"
 import { formatDate } from "@/lib/formatDate"
-import { PostItem, TransFiles } from "@/components/admin/schemas/schemas"
+import { loadedDataSchema, PostItem, TransFiles } from "@/components/admin/schemas/schemas"
 
 export function Post({ index, image, title, excerpt, slug, content, datetime }: PostItem & { index: number }) {
     const urlText = useI18n("label.url")
@@ -24,6 +24,7 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
     const { saveToLocalStorage, setLoadedData, lang, areEqual } = useAdmin(TransFiles.posts)
 
     const updateFormItem = useCallback(function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        console.log("updateFormItem")
         setLoadedData(function (prevState) {
             const clonedState = structuredClone(prevState)
             const keyName = event.target.name as keyof PostItem
@@ -50,9 +51,11 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
                 })
             }
 
-            saveToLocalStorage(clonedState)
+            const validated = loadedDataSchema.parse(clonedState)
 
-            return clonedState
+            saveToLocalStorage(validated)
+
+            return validated
         })
     }, [setLoadedData, lang, index])
 
@@ -173,12 +176,14 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
             <h3 className="col-span-2 order-4 italic text-sm">{formatDate(datetime)}</h3>
             <div className="col-span-2 order-5">{excerpt}</div>
             <div className="row-span-3 order-1">
-                <img src={image} alt="" className="rounded-md w-full h-auto" />
+                {image && (
+                    <img src={image} alt="" className="rounded-md w-full h-auto" />
+                )}
             </div>
             <div className="max-md:order-5 md:order-3 row-span-3 flex items-center justify-center relative">
                 {!equal && (
                     <div
-                        className="absolute right-0 top-0 text-red-500 italic whitespace-nowrap bg-gray-300 dark:bg-gray-900 rounded p-1">
+                        className="absolute right-24 top-0 text-red-500 italic whitespace-nowrap bg-gray-300 dark:bg-gray-900 rounded p-1">
                         {editedText}
                     </div>
                 )}
