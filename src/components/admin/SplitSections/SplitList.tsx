@@ -14,12 +14,14 @@ export function SplitList() {
 		void loadData()
 	}, [loadData])
 
-	return loadedData.map(function ({ title, subTitle, image }, index) {
-		const update = updateArrayData(index)
+	return loadedData.map(function ({ id, title, subTitle, image }, index) {
+		const update = updateArrayData(id)
 
 		return (
-			<div key={index}
-				className="grid grid-cols-[2fr_1fr] gap-3 py-3 mb-3 border-b border-gray-200 dark:border-gray-800">
+			<div
+				key={index}
+				className="grid grid-cols-[2fr_1fr] gap-3 py-3 mb-3 border-b border-gray-200 dark:border-gray-800 px-4"
+			>
                 <textarea
 					rows={1}
 					placeholder={titleText}
@@ -27,7 +29,7 @@ export function SplitList() {
 					name="title"
 					onChange={update}
 				/>
-				<div className="row-span-2">
+				<div className="row-span-3">
 					<ImageSection
 						image={image}
 						index={index}
@@ -35,7 +37,7 @@ export function SplitList() {
 					/>
 				</div>
 				<textarea
-					rows={1}
+					rows={2}
 					placeholder={subTitleText}
 					defaultValue={subTitle}
 					name="subTitle"

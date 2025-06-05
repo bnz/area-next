@@ -24,7 +24,6 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
     const { saveToLocalStorage, setLoadedData, lang, areEqual } = useAdmin(TransFiles.posts)
 
     const updateFormItem = useCallback(function (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        console.log("updateFormItem")
         setLoadedData(function (prevState) {
             const clonedState = structuredClone(prevState)
             const keyName = event.target.name as keyof PostItem
@@ -180,18 +179,18 @@ export function Post({ index, image, title, excerpt, slug, content, datetime }: 
                     <img src={image} alt="" className="rounded-md w-full h-auto" />
                 )}
             </div>
-            <div className="max-md:order-5 md:order-3 row-span-3 flex items-center justify-center relative">
-                {!equal && (
-                    <div
-                        className="absolute right-24 top-0 text-red-500 italic whitespace-nowrap bg-gray-300 dark:bg-gray-900 rounded p-1">
-                        {editedText}
-                    </div>
-                )}
+            <div className="max-md:order-5 md:order-3 row-span-3 flex flex-col items-center justify-center relative gap-2">
                 <Button onClick={function () {
                     setEditMode(true)
                 }}>
                     {editText}
                 </Button>
+                {!equal && (
+                    <div
+                        className="text-red-500 italic whitespace-nowrap bg-gray-300 dark:bg-gray-900 rounded p-1">
+                        {editedText}
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -16,11 +16,11 @@ export function FeaturesList() {
 		void loadData()
 	}, [loadData])
 
-	console.log({ loadedData })
+	// console.log({ loadedData })
 
 	return loadedData.map(function ({ id, title, description }, index) {
-		const update = updateArrayData(index)
-		const equal = true //areEqual(index)
+		const update = updateArrayData(id)
+		const equal = areEqual(id)
 
 		return (
 			<div
@@ -32,7 +32,7 @@ export function FeaturesList() {
 					defaultValue={title}
 					placeholder={titleText}
 					name="title"
-					// onChange={update}
+					onChange={update}
 				/>
 				<div className="row-span-2 flex flex-col gap-2 items-center justify-center">
 					<Button className="!bg-red-500" onClick={function () {
@@ -53,7 +53,7 @@ export function FeaturesList() {
 					placeholder={descriptionText}
 					defaultValue={description}
 					name="description"
-					// onChange={update}
+					onChange={update}
 				/>
 			</div>
 		)

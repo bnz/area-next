@@ -46,7 +46,7 @@ export function ImageSection({ image, index, filename }: PostImageSectionProps) 
 			{image !== "" ? (
 				<>
 					<img src={image} alt="" className="rounded max-w-[200px] mb-3" />
-					<div className="flex gap-3 justify-center">
+					<div className="flex gap-3">
 						<Button onClick={handleDeleteImage(index)} className="hover:!bg-red-500">
 							{deleteText}
 						</Button>
