@@ -62,3 +62,10 @@ export const loadedDataSchema = z.record(
         [TransFiles.splits]: z.array(splitSchema),
     }),
 )
+
+const imageSchema = z.object({
+    path: z.string(),
+    name: z.string(),
+})
+
+export type ImageItem = z.infer<typeof imageSchema>

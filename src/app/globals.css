@@ -73,4 +73,84 @@ body {
         @apply cursor-not-allowed !bg-indigo-600/10 text-gray-400;
     }
 
+    /* components */
+    .admin-post {
+        @apply max-md:flex max-md:flex-col;
+        @apply md:grid md:grid-cols-[200px_1fr_1fr_100px];
+        @apply md:grid-rows-[30px_30px_1fr];
+        @apply max-md:p-3 md:p-5 max-md:gap-x-3 md:gap-x-5;
+
+        &.even {
+            @apply bg-gray-200 dark:bg-gray-800;
+        }
+
+        & > h3 {
+            @apply font-bold text-lg col-span-2 order-2 truncate;
+        }
+
+        & > h4 {
+            @apply col-span-2 order-4 italic text-sm;
+        }
+
+        & > div:nth-of-type(1) {
+            @apply col-span-2 order-5;
+        }
+
+        & > div:nth-of-type(2) {
+            @apply row-span-3 order-1;
+
+            & > img {
+                @apply rounded-md w-full h-auto;
+            }
+        }
+
+        & > div:nth-of-type(3) {
+            @apply max-md:order-5 md:order-3 row-span-3 flex flex-col items-center justify-center relative gap-2;
+
+            & > div {
+                @apply text-red-500 italic whitespace-nowrap bg-gray-300 dark:bg-gray-900 rounded p-1;
+            }
+        }
+    }
+
+    .admin-post-edit {
+        @apply grid;
+        @apply md:grid-cols-[200px_1fr_100px];
+        @apply md:grid-rows-[60px_40px_40px_minmax(40px,100px)_1fr];
+
+        @apply [&>[name='title']]:col-span-2;
+
+        /* desktop */
+        @apply md:[&>div:nth-of-type(1)]:row-span-2; /* actions */
+        @apply md:[&>div:nth-of-type(2)]:row-span-3;
+        /* datetime goes here */
+        @apply md:[&>[name='slug']]:col-span-2;
+        @apply md:[&>[name='excerpt']]:col-span-2;
+        @apply md:[&>[name='content']]:col-span-3;
+
+        /* mobile */
+        @apply max-md:grid-cols-2;
+        @apply max-md:[&>[name='title']]:order-1;
+        @apply max-md:[&>div:nth-of-type(1)]:order-3; /* actions */
+        @apply max-md:[&>div:nth-of-type(2)]:order-2;
+        @apply max-md:[&>[name='datetime']]:order-4;
+        @apply max-md:[&>[name='datetime']]:col-span-2;
+        @apply max-md:[&>[name='slug']]:order-5;
+        @apply max-md:[&>[name='slug']]:col-span-2;
+        @apply max-md:[&>[name='excerpt']]:order-6;
+        @apply max-md:[&>[name='excerpt']]:col-span-2;
+        @apply max-md:[&>[name='content']]:order-7;
+        @apply max-md:[&>[name='content']]:col-span-2;
+
+        @apply gap-3;
+        @apply px-3 py-10 shadow-inner;
+
+        &.even {
+            @apply bg-gray-200 dark:bg-gray-800;
+        }
+
+        & > div:nth-of-type(1) {
+            @apply flex flex-col gap-3 items-end justify-between;
+        }
+    }
 }

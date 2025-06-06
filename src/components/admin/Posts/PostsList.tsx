@@ -4,13 +4,19 @@ import { Post } from "@/components/admin/Posts/Post"
 import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function PostsList() {
-	const { loadedData, loadData } = useAdmin(TransFiles.posts)
+    const { loadedData, loadData } = useAdmin(TransFiles.posts)
 
-	useEffect(function () {
-		void loadData()
-	}, [])
+    useEffect(function () {
+        void loadData()
+    }, [])
 
-	return loadedData.map(function (post, index) {
-		return <Post key={index} {...post} index={index} />
-	})
+    return loadedData.map(function (post, index) {
+        return (
+            <Post
+                key={index}
+                {...post}
+                even={index === 0 || index % 2 === 0}
+            />
+        )
+    })
 }

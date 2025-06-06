@@ -1,47 +1,36 @@
-import { LOADED_DATA, useAdmin } from "@/components/admin/AdminProvider"
-import { useEffect, useState } from "react"
+import { useAdmin } from "@/components/admin/AdminProvider"
+import { useEffect } from "react"
 import { TransFiles } from "@/components/admin/schemas/schemas"
 
-export function ImagesBrowser({ index, filename, onClose }: { index: number, filename: TransFiles, onClose: VoidFunction }) {
-	const { getImagesList, setLoadedData, lang } = useAdmin()
+type ImagesBrowserProps = {
+    id: string
+    filename: TransFiles.posts | TransFiles.splits
+    onClose: VoidFunction
+}
 
-	const [images, setImages] = useState<{
-		path: string
-		name: string
-	}[]>([])
+export function ImagesBrowser({ id, filename, onClose }: ImagesBrowserProps) {
+    const { loadImagesList, imagesList, updateImage } = useAdmin(filename)
 
-	useEffect(function () {
-		(async function () {
-			const a = await getImagesList()
+    useEffect(function () {
+        void loadImagesList()
+    }, [loadImagesList])
 
-			setImages((a as {
-				path: string
-				name: string
-			}[]).map(function ({ name, path }) {
-				return { name, path: path.replace("public/", "/") }
-			}))
-		})()
-	}, [getImagesList, setImages])
-
-	return (
-		<div className="flex gap-3 flex-wrap">
-			{images.map(function ({ name, path }, i) {
-				return (
-					<img key={i} src={path} alt=""
-						className="w-40 h-40 object-cover rounded cursor-pointer hover:shadow-xl"
-						onClick={function () {
-							setLoadedData(function (prevState) {
-								const clone = structuredClone(prevState)
-								// @ts-ignore
-								clone[lang][filename][index].image = path
-								localStorage.setItem(LOADED_DATA, JSON.stringify(clone))
-								return clone
-							})
-							onClose()
-						}}
-					/>
-				)
-			})}
-		</div>
-	)
+    return (
+        <div className="flex gap-3 flex-wrap">
+            {imagesList.map(function ({ path }, i) {
+                return (
+                    <img
+                        key={i}
+                        src={path}
+                        alt=""
+                        className="w-40 h-40 object-cover rounded cursor-pointer hover:shadow-xl"
+                        onClick={function () {
+                            updateImage(id, path)
+                            onClose()
+                        }}
+                    />
+                )
+            })}
+        </div>
+    )
 }

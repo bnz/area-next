@@ -16,9 +16,7 @@ export function FeaturesList() {
 		void loadData()
 	}, [loadData])
 
-	// console.log({ loadedData })
-
-	return loadedData.map(function ({ id, title, description }, index) {
+	return loadedData.map(function ({ id, title, description }) {
 		const update = updateArrayData(id)
 		const equal = areEqual(id)
 
@@ -36,7 +34,7 @@ export function FeaturesList() {
 				/>
 				<div className="row-span-2 flex flex-col gap-2 items-center justify-center">
 					<Button className="!bg-red-500" onClick={function () {
-						removeFromArrayData(index)
+						removeFromArrayData(id)
 					}}>
 						{deleteText}
 					</Button>
