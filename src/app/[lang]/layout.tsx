@@ -5,6 +5,7 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { readDataJSON } from "@/lib/readDataJSON"
 import { PageProps } from "@/app/page"
+import { AdminWrapperRenderer } from "@/components/admin/AdminWrapperRenderer"
 
 export const metadata: Metadata = {
 	title: "aria site",
@@ -31,6 +32,7 @@ export default async function LangLayout({ children, params }: PropsWithChildren
 				<div className="h-[50px]" />
 			</div>
 			<Footer copyright={translations.keys.copyright} />
+			<AdminWrapperRenderer lang={lang} />
 		</I18nProvider>
 	)
 }

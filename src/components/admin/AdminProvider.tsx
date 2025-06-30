@@ -558,7 +558,10 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
             areEqual,
             updateImage,
         }}>
-            <>{loading ? <Loading /> : token ? children : <LoginForm />}</>
+            <>{
+                loading ? <Loading /> : token ? children :
+                <LoginForm />
+            }</>
         </AdminContext.Provider>
     )
 }

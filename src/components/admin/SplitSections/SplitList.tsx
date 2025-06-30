@@ -31,6 +31,7 @@ export function SplitList() {
 				/>
 				<div className="row-span-3">
 					<ImageSection
+						id={id}
 						image={image}
 						index={index}
 						filename={TransFiles.splits}
