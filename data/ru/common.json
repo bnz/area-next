@@ -44,5 +44,9 @@
   "label.edited": "* отредактировано",
   "button.revertChanges": "Отменить изменения",
   "button.minimize": "Свернуть",
-  "button.maximize": "Развернуть"
+  "button.maximize": "Развернуть",
+  "button.moveCenter": "Переместить в центр",
+  "button.moveLeft": "Переместить влево",
+  "button.moveRight": "Переместить вправо",
+  "admin.panel": "Админка"
 }

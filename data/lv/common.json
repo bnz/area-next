@@ -44,5 +44,9 @@
   "label.edited": "* rediģēts",
   "button.revertChanges": "Atcelt izmaiņas",
   "button.minimize": "Samazināt",
-  "button.maximize": "Palielināt"
+  "button.maximize": "Palielināt",
+  "button.moveCenter": "Pārvietot uz centru",
+  "button.moveLeft": "Pārvietot pa kreisi",
+  "button.moveRight": "Pārvietot pa labi",
+  "admin.panel": "Administrēšana"
 }
