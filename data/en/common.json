@@ -44,5 +44,9 @@
   "label.edited": "* edited",
   "button.revertChanges": "Revert changes",
   "button.minimize": "Minimize",
-  "button.maximize": "Maximize"
+  "button.maximize": "Maximize",
+  "button.moveCenter": "Move center",
+  "button.moveLeft": "Move left",
+  "button.moveRight":  "Move right",
+  "admin.panel": "Admin panel"
 }
