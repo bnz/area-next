@@ -1,5 +1,6 @@
 [
   {
+    "id": "b045f4b8-e1b7-4bbd-8ef4-53857a551191",
     "slug": "norwegian-forest-cat",
     "title": "Норвежская лесная кошка",
     "excerpt": "Относительно новая и редкая порода в США, норвежская лесная кошка...",
@@ -8,6 +9,7 @@
     "datetime": "2025-05-10T17:17"
   },
   {
+    "id": "d6617b4f-f6c2-4020-9fbf-ee19fb4bfc9d",
     "slug": "bombay",
     "title": "Бомбейская кошка",
     "excerpt": "Хотите маленькую пантеру у себя дома? Обратите внимание на бомбейскую кошку...",
@@ -16,6 +18,7 @@
     "datetime": "2025-05-06T17:17"
   },
   {
+    "id": "919b3dcf-1f52-4f99-bf50-14b8d7110a67",
     "slug": "oriental",
     "datetime": "2025-05-10T15:40",
     "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
@@ -24,6 +27,7 @@
     "title": "Ориентал"
   },
   {
+    "id": "b388c8d8-2f6d-45a4-808b-5633bbffecd0",
     "slug": "cornish-rex",
     "datetime": "2025-05-10T16:15",
     "image": "/data/images/202504202404beautiful-cats-cornish-rex.avif",

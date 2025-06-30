@@ -42,5 +42,7 @@
   "button.post.prev": "Предыдущий пост",
   "button.post.next": "Следующий пост",
   "label.edited": "* отредактировано",
-  "button.revertChanges": "Отменить изменения"
+  "button.revertChanges": "Отменить изменения",
+  "button.minimize": "Свернуть",
+  "button.maximize": "Развернуть"
 }

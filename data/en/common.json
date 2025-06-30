@@ -42,5 +42,7 @@
   "button.post.prev": "Previous post",
   "button.post.next": "Next post",
   "label.edited": "* edited",
-  "button.revertChanges": "Revert changes"
+  "button.revertChanges": "Revert changes",
+  "button.minimize": "Minimize",
+  "button.maximize": "Maximize"
 }

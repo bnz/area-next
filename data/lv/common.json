@@ -42,5 +42,7 @@
   "button.post.prev": "Iepriekšējais ieraksts",
   "button.post.next": "Nākamais ieraksts",
   "label.edited": "* rediģēts",
-  "button.revertChanges": "Atcelt izmaiņas"
+  "button.revertChanges": "Atcelt izmaiņas",
+  "button.minimize": "Samazināt",
+  "button.maximize": "Palielināt"
 }
