@@ -25,9 +25,7 @@ export function AdminClient() {
             <LogOut />
             <TabGroup selectedIndex={selectedIndex} onChange={function (selected) {
                 setSelectedIndex(selected)
-                const parsed = getAdminStorage()
-                parsed.tab = selected
-                saveAdminStore(parsed)
+                saveAdminStore({ tab: selected })
             }}>
                 <TabList className="flex gap-4 bg-gray-100 dark:bg-gray-800 px-3 py-1 overflow-auto scrollbar-hide">
                     <Tab className="px-3 py-2 data-selected:outline-1 cursor-pointer rounded whitespace-nowrap">
