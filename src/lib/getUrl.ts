@@ -19,3 +19,8 @@ export function getImageUrl(filename: string) {
 export function getFrontUrl(src: string, lang: AvailableLangs) {
 	return `/data/${lang}/images/${src}`
 }
+
+export function getActionRuns() {
+	return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/runs?per_page=1`
+// 	actions/workflows/deploy.yml/runs?per_page=1
+}
