@@ -92,6 +92,8 @@ type AdminContextProps = {
 	areEqual(filename: TransFiles, id?: string): boolean
 	updateImage(filename: TransFiles.posts | TransFiles.splits, id: string, path: string): void
 	checkStatus(): Promise<boolean>
+	availableStatus: boolean
+	setAvailableStatus: Dispatch<SetStateAction<boolean>>
 }
 
 const AdminContext = createContext<AdminContextProps>({
@@ -231,6 +233,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 	const [initialLoadedData, setInitialLoadedData] = useState<LoadedData>(defaultLoadedData)
 	const [publishLoading, setPublishLoading] = useState(false)
 	const [imagesList, setImagesList] = useState<ImageItem[]>([])
+	const [availableStatus, setAvailableStatus] = useState(false)
 
 	useEffect(function () {
 		try {
@@ -384,6 +387,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 
 	const saveData = useCallback(async function (filename: TransFiles, allLangs?: boolean) {
 		try {
+			setAvailableStatus(false)
 			setPublishLoading(true)
 
 			const langsToGo = allLangs ? supportedLanguages : [lang]
@@ -403,7 +407,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		} catch (e) {
 			console.log(e)
 		}
-	}, [publishData, sha, loadedData, lang, setPublishLoading])
+	}, [publishData, sha, loadedData, lang, setPublishLoading, setAvailableStatus])
 
 	const logOut = useCallback(function () {
 		localStorage.removeItem(TOKEN)
@@ -546,23 +550,13 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 
 	const checkStatus = useCallback(async function () {
 
-		await sleep(1000)
-
-		count++
-
-		console.log({ count })
-
-		if (count === 10) {
-			return true
-		}
-
-		return false
-
 		const res = await fetch(getActionRuns(), {
+			// const res = await fetch("/api/status", {
 			headers: {
 				Authorization: `token ${token}`,
 			},
 		})
+
 		const data = await res.json()
 
 		if (data.workflow_runs.length > 0) {
@@ -574,13 +568,8 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 
 			return name === "pages build and deployment" && status === "completed"
 		}
-		// queued
-		// in_progress
-		// completed
-		// "conclusion": "success",
 
 		return false
-
 	}, [token])
 
 	return (
@@ -604,11 +593,15 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			areEqual,
 			updateImage,
 			checkStatus,
+			availableStatus,
+			setAvailableStatus,
 		}}>
-			<>{
-                loading ? <Loading /> : token ? children :
-                <LoginForm />
-            }</>
+			<>{loading
+				? <Loading />
+				: token
+					? children
+					: <LoginForm />
+			}</>
 		</AdminContext.Provider>
 	)
 }

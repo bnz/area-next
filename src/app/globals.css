@@ -68,10 +68,25 @@ body {
         @apply rounded-md bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
         @apply cursor-pointer;
         @apply transition-transform active:scale-95 hover:scale-105;
+
+        &.icon {
+            @apply flex items-center gap-2;
+        }
     }
 
     .button[disabled] {
         @apply cursor-not-allowed !bg-indigo-600/10 text-gray-400;
+    }
+
+    .button-status {
+        @apply mx-auto;
+        @apply rounded-md px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+        @apply cursor-pointer;
+        @apply transition-transform active:scale-95 hover:scale-105;
+    }
+
+    .button-status[disabled] {
+        @apply cursor-not-allowed hover:!bg-transparent;
     }
 
     /* components */
@@ -122,7 +137,8 @@ body {
         @apply [&>[name='title']]:col-span-2;
 
         /* desktop */
-        @apply md:[&>div:nth-of-type(1)]:row-span-2; /* actions */
+        @apply md:[&>div:nth-of-type(1)]:row-span-2;
+        /* actions */
         @apply md:[&>div:nth-of-type(2)]:row-span-3;
         /* datetime goes here */
         @apply md:[&>[name='slug']]:col-span-2;
@@ -132,7 +148,8 @@ body {
         /* mobile */
         @apply max-md:grid-cols-2;
         @apply max-md:[&>[name='title']]:order-1;
-        @apply max-md:[&>div:nth-of-type(1)]:order-3; /* actions */
+        @apply max-md:[&>div:nth-of-type(1)]:order-3;
+        /* actions */
         @apply max-md:[&>div:nth-of-type(2)]:order-2;
         @apply max-md:[&>[name='datetime']]:order-4;
         @apply max-md:[&>[name='datetime']]:col-span-2;
@@ -154,4 +171,21 @@ body {
             @apply flex flex-col gap-3 items-end justify-between;
         }
     }
+
+    /* OTHER STUFF */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        /*@apply bg-gray-100 dark:bg-gray-800;*/
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-gray-400 dark:bg-gray-600;
+        @apply hover:bg-gray-500 dark:hover:bg-gray-800;
+    }
+
 }

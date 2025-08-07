@@ -12,12 +12,12 @@ export function PublishButton({ filename, allLangs }: PublishButtonProps) {
 	const loadingText = useI18n("loading")
 	const publishText = useI18n("button.publish")
 
-	const { saveData, publishLoading, areEqual } = useAdmin(filename)
+	const { saveData, publishLoading, areEqual, availableStatus } = useAdmin(filename)
 
 	return (
 		<>
 			<div className="text-center py-10">
-				<Button disabled={areEqual()} className="!bg-green-500" onClick={function () {
+				<Button disabled={!availableStatus || areEqual()} className="!bg-green-500" onClick={function () {
 					void saveData(allLangs)
 				}}>
 					{publishText}

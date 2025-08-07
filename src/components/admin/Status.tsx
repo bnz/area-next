@@ -1,15 +1,18 @@
 import { useAdmin } from "@/components/admin/AdminProvider"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useI18n } from "@/components/I18nProvider"
+import { CloudCheck, Loader, RefreshCw } from "lucide-react"
+import cx from "classnames"
 
-function useGetStatus() {
-	const { checkStatus } = useAdmin()
-	const [status, setStatus] = useState(false)
+export function Status() {
+	const buttonCheck = useI18n("button.check")
+
+	const { checkStatus, availableStatus, setAvailableStatus } = useAdmin()
 
 	useEffect(function () {
 		let isMounted = true
 
 		async function pollStatus() {
-			console.log("pollStatus")
 			const s = await checkStatus()
 
 			if (!isMounted) {
@@ -17,7 +20,7 @@ function useGetStatus() {
 			}
 
 			if (s) {
-				setStatus(true)
+				setAvailableStatus(true)
 			} else {
 				setTimeout(pollStatus, 2000)
 			}
@@ -30,20 +33,32 @@ function useGetStatus() {
 		}
 	}, [checkStatus])
 
-	return status
-}
+	async function pollStatus() {
+		const s = await checkStatus()
 
-export function Status() {
-	const valid = useGetStatus()
+		if (s) {
+			setAvailableStatus(true)
+		} else {
+			setTimeout(pollStatus, 2000)
+		}
+	}
 
 	return (
-		<div>
-			<span>{valid ? "available" : "in progress"}</span>
-			<button className="ml-5" onClick={function () {
-
-			}}>
-				check
-			</button>
-		</div>
+		<button
+			title={buttonCheck}
+			className="button-status group/button"
+			disabled={!availableStatus}
+			onClick={function () {
+				setAvailableStatus(false)
+				void pollStatus()
+			}}
+		>
+			{availableStatus ? (
+				<CloudCheck size={30} className="text-green-500 block group-hover/button:hidden" />
+			) : (
+				<Loader size={30} className="animate-spin origin-center [animation-duration:3s]" />
+			)}
+			<RefreshCw size={30} className={cx("hidden", availableStatus && "group-hover/button:block")} />
+		</button>
 	)
 }
