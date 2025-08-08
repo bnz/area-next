@@ -27,7 +27,6 @@ import {
 	SplitItem,
 	TransFiles,
 } from "@/components/admin/schemas/schemas"
-import { sleep } from "@/helpers/sleep"
 
 const defaultShaItem = {
 	[TransFiles.common]: "",
@@ -137,6 +136,9 @@ const AdminContext = createContext<AdminContextProps>({
 	},
 	async checkStatus() {
 		return false
+	},
+	availableStatus: false,
+	setAvailableStatus() {
 	},
 })
 
@@ -562,7 +564,11 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		if (data.workflow_runs.length > 0) {
 			const { status, name, conclusion } = data.workflow_runs[0]
 
-			if (name === "pages build and deployment" && status === "completed" && conclusion !== "success") {
+			console.log({ status, name, conclusion })
+
+			if (["pages build and deployment", "Deploy to GitHub Pages"].includes(name)
+				&& status === "completed"
+				&& conclusion !== "success") {
 				// report to me
 			}
 
