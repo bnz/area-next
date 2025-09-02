@@ -5,7 +5,7 @@ import {
 	createContext,
 	type Dispatch,
 	type PropsWithChildren,
-	type SetStateAction,
+	type SetStateAction, Suspense,
 	useCallback,
 	useContext,
 	useEffect,
@@ -222,8 +222,8 @@ const saveToLocalStorage = debounce(function (obj: LoadedData) {
 }, 400)
 
 export const LOADED_DATA = "loaded-data"
-const SHA_DATA = "sha-data"
-const TOKEN = "token"
+export const SHA_DATA = "sha-data"
+export const TOKEN = "token"
 
 let count = 0
 
@@ -564,7 +564,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		if (data.workflow_runs.length > 0) {
 			const { status, name, conclusion } = data.workflow_runs[0]
 
-			console.log({ status, name, conclusion })
+			// console.log({ status, name, conclusion })
 
 			if (["pages build and deployment", "Deploy to GitHub Pages"].includes(name)
 				&& status === "completed"

@@ -56,7 +56,7 @@ export function Status() {
 			{availableStatus ? (
 				<CloudCheck size={30} className="text-green-500 block group-hover/button:hidden" />
 			) : (
-				<Loader size={30} className="animate-spin origin-center [animation-duration:3s]" />
+				<Loader size={30} className="text-indigo-800 animate-spin origin-center [animation-duration:3s]" />
 			)}
 			<RefreshCw size={30} className={cx("hidden", availableStatus && "group-hover/button:block")} />
 		</button>

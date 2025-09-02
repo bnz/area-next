@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useAdmin } from "@/components/admin/AdminProvider"
+import { LOADED_DATA, SHA_DATA, TOKEN, useAdmin } from "@/components/admin/AdminProvider"
 import { useI18n } from "@/components/I18nProvider"
-import { ButtonSubmit } from "@/components/admin/Button"
+import { Button, ButtonSubmit } from "@/components/admin/Button"
 import { TransFiles } from "@/components/admin/schemas/schemas"
-import cx from "classnames"
-import { LogIn } from "lucide-react"
+import { LogIn, X } from "lucide-react"
+import { saveAdminStore } from "@/components/admin/getAdminStorage"
 
 export function LoginForm() {
 	const [token, setToken] = useState("")
@@ -16,9 +16,7 @@ export function LoginForm() {
 	const loadingText = useI18n("loading")
 
 	return (
-		<div className={cx(
-			"min-h-[300px] flex flex-col items-center justify-center",
-		)}>
+		<div className="min-h-[300px] flex flex-col items-center justify-center">
 			<form
 				className="flex max-md:flex-col gap-4 md:max-w-1/2 mx-auto"
 				onSubmit={async function (event) {
@@ -55,10 +53,20 @@ export function LoginForm() {
 					{clicked ? loadingText : loginText}
 					<LogIn />
 				</ButtonSubmit>
+				<Button className="icon" onClick={function () {
+					localStorage.removeItem(TOKEN)
+					localStorage.removeItem(LOADED_DATA)
+					localStorage.removeItem(SHA_DATA)
+					saveAdminStore({ active: false })
+					window.location.reload()
+				}}>
+					<X />
+					<span>{useI18n("button.close")}</span>
+				</Button>
 			</form>
-				<div className="py-3 text-red-500 h-10	">
-					{error ? "Error!" : " "}
-				</div>
+			<div className="py-3 text-red-500 h-10	">
+				{error ? "Error!" : " "}
+			</div>
 		</div>
 	)
 }

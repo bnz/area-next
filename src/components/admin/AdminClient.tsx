@@ -7,7 +7,6 @@ import { Features } from "@/components/admin/Features/Features"
 import { useEffect, useState } from "react"
 import { Posts } from "@/components/admin/Posts/Posts"
 import { SplitSections } from "@/components/admin/SplitSections/SplitSections"
-import { LogOut } from "@/components/admin/LogOut"
 import { getAdminStorage, saveAdminStore } from "@/components/admin/getAdminStorage"
 
 export function AdminClient() {
@@ -22,7 +21,6 @@ export function AdminClient() {
 
     return (
         <>
-            <LogOut />
             <TabGroup selectedIndex={selectedIndex} onChange={function (selected) {
                 setSelectedIndex(selected)
                 saveAdminStore({ tab: selected })

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 3112",
+    "dev": "next dev --hostname 0.0.0.0 --turbopack -p 3112",
     "build": "next build && npm run copy-data",
     "copy-data": "cpx \"data/**/*.*\" out/data && echo > out/.nojekyll && cpx CNAME out",
     "start": "next start",

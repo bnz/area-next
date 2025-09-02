@@ -5,83 +5,85 @@ import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
 import { SplitItem, TransFiles } from "@/components/admin/schemas/schemas"
 
 const formDefaultValue: SplitItem = {
-    id: "",
-    title: "",
-    subTitle: "",
-    image: "",
+	id: "",
+	title: "",
+	subTitle: "",
+	image: "",
 }
 
 export function AddSplitForm() {
-    const addText = useI18n("button.add")
-    const cancelText = useI18n("button.cancel")
-    const saveText = useI18n("button.save")
-    const titleText = useI18n("label.title")
-    const subTitleText = useI18n("label.subTitle")
+	const addText = useI18n("button.add")
+	const cancelText = useI18n("button.cancel")
+	const saveText = useI18n("button.save")
+	const titleText = useI18n("label.title")
+	const subTitleText = useI18n("label.subTitle")
 
-    const { setLoadedData, lang } = useAdmin()
+	const { setLoadedData, lang } = useAdmin()
 
-    const [addNew, setAddNew] = useState<boolean>(false)
-    const handleOpen = useCallback(function () {
-        setAddNew(true)
-    }, [setAddNew])
+	const [addNew, setAddNew] = useState<boolean>(false)
+	const handleOpen = useCallback(function () {
+		setAddNew(true)
+	}, [setAddNew])
 
-    const [formData, setFormData] = useState<SplitItem>(formDefaultValue)
-    const onFormChange = useCallback(function (event: ChangeEvent<HTMLTextAreaElement>) {
-        setFormData(function (prevState) {
-            return {
-                ...prevState,
-                [event.target.name]: event.target.value,
-            }
-        })
-    }, [setFormData])
+	const [formData, setFormData] = useState<SplitItem>(formDefaultValue)
+	const onFormChange = useCallback(function (event: ChangeEvent<HTMLTextAreaElement>) {
+		setFormData(function (prevState) {
+			return {
+				...prevState,
+				[event.target.name]: event.target.value,
+			}
+		})
+	}, [setFormData])
 
-    const handleCancel = useCallback(function () {
-        setAddNew(false)
-        setFormData(formDefaultValue)
-    }, [setAddNew, setFormData])
+	const handleCancel = useCallback(function () {
+		setAddNew(false)
+		setFormData(formDefaultValue)
+	}, [setAddNew, setFormData])
 
-    const onSubmit = useCallback(function (event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        setLoadedData(function (prevState) {
-            const newState = {
-                ...prevState,
-                [lang]: {
-                    ...prevState[lang],
-                    [TransFiles.splits]: [
-                        ...prevState[lang][TransFiles.splits],
-                        formData,
-                    ],
-                },
-            }
-            localStorage.setItem(LOADED_DATA, JSON.stringify(newState))
-            return newState
-        })
-        handleCancel()
-    }, [handleCancel, setLoadedData, lang, formData])
+	const onSubmit = useCallback(function (event: FormEvent<HTMLFormElement>) {
+		event.preventDefault()
+		setLoadedData(function (prevState) {
+			const newState = {
+				...prevState,
+				[lang]: {
+					...prevState[lang],
+					[TransFiles.splits]: [
+						...prevState[lang][TransFiles.splits],
+						formData,
+					],
+				},
+			}
+			localStorage.setItem(LOADED_DATA, JSON.stringify(newState))
+			return newState
+		})
+		handleCancel()
+	}, [handleCancel, setLoadedData, lang, formData])
 
-    return (
-        <>
-            {addNew ? (
-                <form
-                    className="flex flex-col gap-3 p-2.5 m-2.5 bg-gray-100 dark:bg-gray-700 rounded shadow-inner"
-                    onSubmit={onSubmit}
-                >
-                    <textarea placeholder={titleText} name="title" onChange={onFormChange}></textarea>
-                    <textarea placeholder={subTitleText} name="subTitle" onChange={onFormChange}></textarea>
-                    <div className="flex gap-3">
-                        <ButtonSubmit>
-                            {saveText}
-                        </ButtonSubmit>
-                        <ButtonSimple onClick={handleCancel}>
-                            {cancelText}
-                        </ButtonSimple>
-                    </div>
-                </form>
-            ) : (
-                <Button onClick={handleOpen}>
-                    {addText}
-                </Button>
-            )}
-        </>
-    )
+	return (
+		<>
+			{addNew ? (
+				<form
+					className="flex flex-col gap-3 p-2.5 m-2.5 bg-gray-100 dark:bg-gray-700 rounded shadow-inner"
+					onSubmit={onSubmit}
+				>
+					<textarea placeholder={titleText} name="title" onChange={onFormChange}></textarea>
+					<textarea placeholder={subTitleText} name="subTitle" onChange={onFormChange}></textarea>
+					<div className="flex gap-3">
+						<ButtonSubmit>
+							{saveText}
+						</ButtonSubmit>
+						<ButtonSimple onClick={handleCancel}>
+							{cancelText}
+						</ButtonSimple>
+					</div>
+				</form>
+			) : (
+				<div className="max-md:p-2 md:p-5">
+					<Button onClick={handleOpen}>
+						{addText}
+					</Button>
+				</div>
+			)}
+		</>
+	)
 }

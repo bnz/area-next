@@ -18,7 +18,7 @@ export function LangsSwitcher() {
     }, [setSearch, searchParams])
 
     return (
-        <ul className="flex flex-row outline-1 outline-gray-100 dark:outline-gray-600 rounded-lg">
+        <ul className="flex flex-row shadow rounded-lg">
             {supportedLanguages.map(function (lang) {
                 return (
                     <li key={lang} className="flex">

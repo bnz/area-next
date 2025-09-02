@@ -73,8 +73,6 @@ export function AddPostForm() {
                 },
             }
 
-            console.log({ formData })
-
             const newIndex = newState[lang][TransFiles.posts].length - 1
 
             let clonedState = structuredClone(newState)
