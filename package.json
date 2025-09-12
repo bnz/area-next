@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --turbopack -p 3112",
-    "build": "next lint && next build && npm run copy-data",
+    "build": "next build && npm run copy-data",
     "copy-data": "cpx \"data/**/*.*\" out/data && echo > out/.nojekyll && cpx CNAME out",
     "start": "next start",
     "lint": "next lint"
