@@ -1,5 +1,6 @@
 import cx from "classnames"
 import { SplitItem } from "@/components/admin/schemas/schemas"
+import Image from "next/image"
 
 type SplitSectionsProps = {
 	splits: SplitItem[]
@@ -9,8 +10,8 @@ export function SplitSections({ splits }: SplitSectionsProps) {
 	return splits.map(function ({ title, subTitle, image }, index) {
 		const even = index === 0 || index % 2 === 0
 
-		const Img = function () {
-			return <img src={image} alt="" className="w-full aspect-video rounded-xl object-cover" />
+		function Img() {
+			return <Image width={100} height={100} src={image} alt="" className="w-full aspect-video rounded-xl object-cover" />
 		}
 
 		return (

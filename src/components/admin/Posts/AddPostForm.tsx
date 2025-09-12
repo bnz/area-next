@@ -5,7 +5,7 @@ import { useI18n } from "@/components/I18nProvider"
 import { supportedLanguages } from "@/lib/i18n"
 import { useFormData } from "@/lib/useFormData"
 import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
-import { loadedDataSchema, PostItem, postSchema, TransFiles } from "@/components/admin/schemas/schemas"
+import { PostItem, TransFiles } from "@/components/admin/schemas/schemas"
 import { makeId } from "@/lib/makeId"
 
 const formDefaultValue: PostItem = {
@@ -75,7 +75,7 @@ export function AddPostForm() {
 
             const newIndex = newState[lang][TransFiles.posts].length - 1
 
-            let clonedState = structuredClone(newState)
+            const clonedState = structuredClone(newState)
 
             restLangs.map(function (restLang) {
                 if (clonedState[restLang][TransFiles.posts][newIndex]) {

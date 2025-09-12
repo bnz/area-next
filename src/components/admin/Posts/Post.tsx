@@ -10,6 +10,7 @@ import { Button } from "@/components/admin/Button"
 import { formatDate } from "@/lib/formatDate"
 import { loadedDataSchema, type PostItem, TransFiles } from "@/components/admin/schemas/schemas"
 import { useToggle } from "@/lib/useToggle"
+import Image from "next/image"
 
 export function Post({ id, image, title, excerpt, slug, content, datetime, even }: PostItem & { even: boolean }) {
 	const urlText = useI18n("label.url")
@@ -52,7 +53,7 @@ export function Post({ id, image, title, excerpt, slug, content, datetime, even 
 
 			return validated
 		})
-	}, [setLoadedData, lang, id, slug])
+	}, [setLoadedData, lang, id, slug, saveToLocalStorage])
 
 	if (editMode) {
 		return (
@@ -116,7 +117,7 @@ export function Post({ id, image, title, excerpt, slug, content, datetime, even 
 			<h3>{title}</h3>
 			<h4>{formatDate(datetime)}</h4>
 			<div>{excerpt}</div>
-			<div>{image && <img src={image} alt="" />}</div>
+			<div>{image && <Image width={100} height={100} src={image} alt="" />}</div>
 			<div>
 				<Button onClick={toggle}>
 					{editText}

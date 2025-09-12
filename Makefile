@@ -14,6 +14,10 @@ dev: node_modules
 	@yarn dev
 .PHONY:dev
 
+lint: node_modules
+	@yarn lint
+.PHONY:dev
+
 clean:
 	@rm -rf node_modules build
 .PHONY:clean

@@ -3,7 +3,7 @@ import { useAdmin } from "@/components/admin/AdminProvider"
 import { useCallback, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { Button } from "@/components/admin/Button"
-import { PostItem, TransFiles } from "@/components/admin/schemas/schemas"
+import { TransFiles } from "@/components/admin/schemas/schemas"
 import { supportedLanguages } from "@/lib/i18n"
 
 type DeletePostButtonProps = {
@@ -26,6 +26,7 @@ export function DeletePostButton({ id, callback }: DeletePostButtonProps) {
 	const handleDelete = useCallback(function () {
 		setLoadedData(function (prevState) {
 			const cloned = structuredClone(prevState)
+			// @ts-expect-error wrong types
 			const { slug } = cloned[lang][TransFiles.posts].find(function ({ id: _id }) {
 				return _id === id
 			})

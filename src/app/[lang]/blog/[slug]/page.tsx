@@ -5,6 +5,7 @@ import { readDataJSON } from "@/lib/readDataJSON"
 import { formatDate } from "@/lib/formatDate"
 import { LangLink } from "@/components/LangLink"
 import { PostItem } from "@/components/admin/schemas/schemas"
+import Image from "next/image"
 
 export function generateStaticParams() {
 	const allParams: { lang: string, slug: string }[] = []
@@ -25,7 +26,7 @@ export function generateStaticParams() {
 			})
 
 		} catch (e) {
-			console.warn(`⚠️ Не удалось прочитать файл: ${filePath}`)
+			console.warn(`⚠️ Не удалось прочитать файл: ${filePath}`, e)
 		}
 	})
 
@@ -54,7 +55,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 				</h1>
 				<div className="italic text-sm mb-3 text-right">{formatDate(post.datetime)}</div>
 				{post.image && (
-					<img src={post.image} alt="" className="mb-6 mx-auto rounded-xl" />
+					<Image width={100} height={100} src={post.image} alt="" className="w-full mb-6 mx-auto rounded-xl" />
 				)}
 				<h4 className="mb-6 font-bold">
 					{post.excerpt}

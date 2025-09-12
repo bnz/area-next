@@ -11,7 +11,7 @@ export function Trans() {
 
 	useEffect(function () {
 		void loadData()
-	}, [])
+	}, [loadData])
 
 	if (Object.keys(loadedData).length === 0) {
 		return <div className="px-3">{loadingText}</div>

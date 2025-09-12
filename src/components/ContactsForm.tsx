@@ -32,7 +32,7 @@ export function ContactsForm({ token }: ContactsFormProps) {
                 onSubmit={async function (event) {
                     event.preventDefault()
                     setMessage(sendingText)
-                    // @ts-ignore
+                    // @ts-expect-error wrong types
                     const formData = new FormData(event.target)
 
                     formData.append("access_key", token)
@@ -46,7 +46,7 @@ export function ContactsForm({ token }: ContactsFormProps) {
 
                     if (data.success) {
                         setMessage(messageSentText)
-                        // @ts-ignore
+                        // @ts-expect-error wrong types
                         event.target.reset()
                     } else {
                         console.log("Error", data)

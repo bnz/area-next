@@ -5,7 +5,7 @@ import {
 	createContext,
 	type Dispatch,
 	type PropsWithChildren,
-	type SetStateAction, Suspense,
+	type SetStateAction,
 	useCallback,
 	useContext,
 	useEffect,
@@ -83,6 +83,7 @@ type AdminContextProps = {
 	lang: AvailableLangs
 	publishLoading: boolean
 	setPublishLoading: Dispatch<SetStateAction<boolean>>
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	uploadImage(file: File): Promise<any>
 	loadImagesList(): Promise<void>
 	imagesList: ImageItem[]
@@ -225,8 +226,6 @@ export const LOADED_DATA = "loaded-data"
 export const SHA_DATA = "sha-data"
 export const TOKEN = "token"
 
-let count = 0
-
 export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: AvailableLangs }>) {
 	const [token, setToken] = useState("")
 	const [loading, setLoading] = useState<boolean>(false)
@@ -339,7 +338,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		} catch (err) {
 			console.error(err)
 		}
-	}, [token, lang])
+	}, [token])
 
 	const loadData = useCallback(async function (filename: TransFiles) {
 		const dataExists = Object.keys(loadedData[lang][filename]).length > 0
@@ -385,7 +384,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 				console.log(e)
 			}
 		}
-	}, [loadFile, loadedData, initialLoadedData, setLoadedData, lang, setInitialLoadedData, setLoading])
+	}, [loadFile, loadedData, initialLoadedData, setLoadedData, lang, setInitialLoadedData, setLoading, changeSha])
 
 	const saveData = useCallback(async function (filename: TransFiles, allLangs?: boolean) {
 		try {
@@ -409,7 +408,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 		} catch (e) {
 			console.log(e)
 		}
-	}, [publishData, sha, loadedData, lang, setPublishLoading, setAvailableStatus])
+	}, [publishData, sha, loadedData, lang, setPublishLoading, setAvailableStatus, changeSha])
 
 	const logOut = useCallback(function () {
 		localStorage.removeItem(TOKEN)
@@ -443,7 +442,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 				const arrayClone = structuredClone(prevState[lang][filename])
 				const itemIndex = getById(arrayClone, id)
 				if (itemIndex > -1) {
-					// @ts-ignore
+					// @ts-expect-error wrong types
 					arrayClone[itemIndex][event.target.name] = event.target.value
 					const newState = loadedDataSchema.parse({
 						...prevState,
@@ -455,7 +454,8 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 					saveToLocalStorage(newState)
 					return newState
 				}
-				return prevState
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				return prevState as any
 			})
 		}
 	}, [lang, setLoadedData])
@@ -520,7 +520,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			saveToLocalStorage(validated)
 			return validated
 		})
-	}, [setLoadedData, lang])
+	}, [setLoadedData])
 
 	const areEqual = useCallback(function (filename: TransFiles, id?: string): boolean {
 		if (id !== undefined && (filename === TransFiles.features || filename === TransFiles.posts || filename === TransFiles.splits)) {
@@ -569,6 +569,11 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 			if (["pages build and deployment", "Deploy to GitHub Pages"].includes(name)
 				&& status === "completed"
 				&& conclusion !== "success") {
+				// {
+				// 	"status": "completed",
+				// 	"name": "Deploy to GitHub Pages",
+				// 	"conclusion": "failure"
+				// }
 				// report to me
 			}
 
@@ -612,6 +617,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
 	)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getById(collection: any[], id: string) {
 	return collection.findIndex(function ({ id: itemId }) {
 		return itemId === id

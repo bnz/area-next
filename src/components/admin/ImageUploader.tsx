@@ -2,6 +2,7 @@ import { useAdmin } from "@/components/admin/AdminProvider"
 import { ChangeEvent, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { TransFiles } from "@/components/admin/schemas/schemas"
+import Image from "next/image"
 
 export function ImageUploader({ id }: { id: string }) {
     const loadingText = useI18n("loading")
@@ -48,7 +49,7 @@ export function ImageUploader({ id }: { id: string }) {
         <div className="flex flex-col gap-4">
             <input type="file" accept="image/*" onChange={handleFileChange} />
             {preview && (
-                <img src={preview} alt="preview" className="w-full max-w-sm rounded border" />
+                <Image src={preview} alt="preview" className="w-full max-w-sm rounded border" />
             )}
             <button
                 onClick={handleUpload}

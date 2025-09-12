@@ -63,6 +63,7 @@ export const loadedDataSchema = z.record(
     }),
 )
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const imageSchema = z.object({
     path: z.string(),
     name: z.string(),

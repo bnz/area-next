@@ -38,7 +38,7 @@ export function AdminWrapper({ lang }: AdminWrapperProps) {
 		}
 	}, [setMinimized, setPosition])
 
-	const nodeRef = useRef<HTMLDivElement>(undefined)
+	const nodeRef = useRef<HTMLDivElement | null>(null)
 
 	return (
 		<div ref={nodeRef} className={cx(

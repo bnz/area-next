@@ -1,5 +1,6 @@
 import { LangLink } from "@/components/LangLink"
 import { PostItem } from "@/components/admin/schemas/schemas"
+import Image from "next/image"
 
 type PostsProps = {
 	headerText: string
@@ -22,7 +23,7 @@ export function Posts({ headerText, posts }: PostsProps) {
 								className="block group rounded-xl overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition"
 							>
 								{image && (
-									<img src={image} alt="" className="w-full h-56 object-cover" />
+									<Image width={100} height={100} src={image} alt="" className="w-full h-56 object-cover" />
 								)}
 								<div className="p-6">
 									<h3 className="text-xl font-semibold mb-2 group-hover:underline">{title}</h3>

@@ -22,7 +22,7 @@ export function Status() {
 			if (s) {
 				setAvailableStatus(true)
 			} else {
-				setTimeout(pollStatus, 2000)
+				// setTimeout(pollStatus, 2000)
 			}
 		}
 
@@ -31,7 +31,7 @@ export function Status() {
 		return function () {
 			isMounted = false
 		}
-	}, [checkStatus])
+	}, [checkStatus, setAvailableStatus])
 
 	async function pollStatus() {
 		const s = await checkStatus()

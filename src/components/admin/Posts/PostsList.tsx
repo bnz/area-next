@@ -8,7 +8,7 @@ export function PostsList() {
 
     useEffect(function () {
         void loadData()
-    }, [])
+    }, [loadData])
 
     return loadedData.map(function (post, index) {
         return (
