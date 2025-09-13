@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": "991228fb-fa25-433a-8501-31f0ea1877f3",
+    "title": "Norvēģu meža kaķis",
+    "excerpt": "Salīdzinoši jauna un reta šķirne ASV, bet ļoti sena šķirne Norvēģijā...",
+    "image": "/data/images/202504202404beautiful-cat-breed-norwegian-cat-breed.avif",
+    "slug": "norwegian-forest-cat",
+    "content": "Norvēģijā pazīstams kā skogkatt (burtiski — «meža kaķis»), šai šķirnei ir grezns apmatojums, kas kalpoja kā dabiska aizsardzība dzīvojot mežā. Biezais kažoks padara šo jau tā lielo šķirni vēl iespaidīgāku. Izolējošs, ūdensnecaurlaidīgs dubultapmatojums piemērots skarbajiem Skandināvijas ziemas apstākļiem: tam ir izteikta apkakle, kupls aste, biksītes un spalvainas ķepas. “Viņi tiešām izskatās, it kā būtu iznākuši no pasaku meža,” saka Keigere.\n\nLai gan bieži asociēti ar brūni-tabby un baltu krāsu, Norvēģu meža kaķi faktiski ir sastopami gandrīz visos krāsu un rakstu variantos, izņemot pointed, šokolādes un ceriņu krāsas.",
+    "datetime": "2025-05-10T17:17"
+  },
+  {
+    "id": "0e6bd4b0-4a02-4cee-a801-0ace4f8359a0",
+    "title": "Bombaja kaķis",
+    "excerpt": "Gribat mājās mazu panteru? Bombaja kaķis ir īstā izvēle...",
+    "image": "/data/images/202504202404beautiful-cats-bombay.avif",
+    "slug": "bombay",
+    "content": "Dēvēts par “lakotas ādas bērnu ar vara krāsas acīm”, Bombaja kaķis sastopams tikai vienā krāsā — melnā. Tā ir dziļa, piesātināta melna ar spīdīgu mirdzumu. Apmatojums ir īss un piegulošs. Skaistās acis variē no tumši zeltainas līdz vara tonim — gluži kā jauna monēta.\n\nPapildus ārējam skaistumam, Bombaja kaķiem ir maigs sejas izteiksmes vaibsts un šarmanta gaita, līdzīga indiešu melnajam leopardam.",
+    "datetime": "2025-05-06T17:17"
+  },
+  {
+    "id": "0d931316-20ba-4fbd-9ed2-34374bef4f6e",
+    "title": "Orientālā kaķu šķirne",
+    "excerpt": "Orientālais ir Siāmas grupas pārstāvis ar tādu pašu ķermeņa tipu...",
+    "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
+    "slug": "oriental",
+    "content": "Orientālais ir Siāmas grupas pārstāvis ar tādu pašu ķermeņa tipu kā Siāmas kaķim: elegants, garš, slaids un lokans. Orientālā atšķirība ir krāsu un rakstu dažādība, ko papildina īss, gluds apmatojums. Keigers to sauc par Siāmas kaķi ar citu rakstu — vairāk nekā 300 variācijām.\n\nOrientālie kaķi ir gan ar īsu, gan ar garu spalvu, kas paver vēl vairāk iespēju iespaidīgiem krāsu un rakstu variantiem.",
+    "datetime": "2025-05-10T15:40"
+  },
+  {
+    "id": "2381ae4a-c691-457e-b5eb-3d2f986fc14a",
+    "title": "Kornišrekss",
+    "excerpt": "Keigere Kornishreksu sauc par īstu loku un izliekumu paraugu...",
+    "image": "/data/images/202504202404beautiful-cats-cornish-rex.avif",
+    "slug": "cornish-rex",
+    "content": "Kornišreksam ir olas formas galva un cirtains apmatojums viļņu veidā.",
+    "datetime": "2025-05-10T16:15"
+  }
+]
