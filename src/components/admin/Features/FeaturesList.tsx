@@ -8,12 +8,8 @@ export function FeaturesList() {
     const titleText = useI18n("label.title")
     const descriptionText = useI18n("label.description")
     const deleteText = useI18n("button.delete")
-    // const revertChangesText = useI18n("button.revertChanges")
 
-    const {
-        loadedData, updateArrayData, removeFromArrayData, loadData,
-        // areEqual
-    } = useAdmin(TransFiles.features)
+    const { loadedData, updateArrayData, removeFromArrayData, loadData } = useAdmin(TransFiles.features)
 
     useEffect(function () {
         void loadData()
@@ -21,7 +17,6 @@ export function FeaturesList() {
 
     return loadedData.map(function ({ id, title, description }) {
         const update = updateArrayData(id)
-        // const equal = areEqual(id)
 
         return (
             <div
@@ -41,15 +36,6 @@ export function FeaturesList() {
                     }}>
                         {deleteText}
                     </Button>
-                    {/*
-					{!equal && (
-						<Button className="bg-green-500" onClick={function () {
-
-						}}>
-							{revertChangesText}
-						</Button>
-					)}
-					*/}
                 </div>
                 <textarea
                     rows={1}

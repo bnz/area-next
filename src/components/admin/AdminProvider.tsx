@@ -91,7 +91,7 @@ type AdminContextProps = {
     uploadImage(file: File): Promise<any>
     loadImagesList(): Promise<void>
     imagesList: ImageItem[]
-    removeFromArrayData(filename: TransFiles.posts | TransFiles.features, id: string): void
+    removeFromArrayData(filename: TransFiles.posts | TransFiles.features | TransFiles.splits, id: string): void
     saveToLocalStorage(obj: LoadedData): void
     areEqual(filename: TransFiles, id?: string): boolean
     updateImage(filename: TransFiles.posts | TransFiles.splits, id: string, path: string, allLangs?: boolean): void
@@ -209,7 +209,7 @@ export function useAdmin<T extends TransFiles>(filename?: T): AdminContextProps 
                     return context.updateImage(filename!, id, path, allLangs)
                 },
             } : {}),
-            ...(filename === TransFiles.posts || filename === TransFiles.features ? {
+            ...(filename === TransFiles.posts || filename === TransFiles.features || filename === TransFiles.splits ? {
                 removeFromArrayData(id: string) {
                     return context.removeFromArrayData(filename!, id)
                 },
@@ -534,14 +534,12 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
         }))
     }, [token, setImagesList])
 
-    const removeFromArrayData = useCallback(function (filename: TransFiles.posts | TransFiles.features, id: string) {
+    const removeFromArrayData = useCallback(function (filename: TransFiles.posts | TransFiles.features | TransFiles.splits, id: string) {
         setLoadedData(function (prevState) {
-            const newState = structuredClone(prevState)
-            supportedLanguages.forEach(function (lang) {
-                const itemIndex = getById(newState[lang][filename], id)
-                newState[lang][filename].splice(itemIndex, 1)
-            })
-            const validated = loadedDataSchema.parse(newState)
+            const cloned = structuredClone(prevState)
+            const itemIndex = getById(cloned[lang][filename], id)
+            cloned[lang][filename].splice(itemIndex, 1)
+            const validated = loadedDataSchema.parse(cloned)
             saveToLocalStorage(validated)
             return validated
         })
@@ -603,7 +601,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
         if (data.workflow_runs.length > 0) {
             const { status, name, conclusion } = data.workflow_runs[0]
 
-            console.log({ status, name, conclusion })
+            // console.log({ status, name, conclusion })
 
             if (["pages build and deployment", "Deploy to GitHub Pages"].includes(name)
                 && status === "completed"
