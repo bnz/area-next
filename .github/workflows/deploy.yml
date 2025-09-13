@@ -6,9 +6,9 @@ on:
       - main
 
 permissions:
-  contents: read       # для checkout
-  pages: write         # для деплоя Pages
-  id-token: write      # для deploy-pages
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: "pages"
@@ -30,10 +30,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build static site
-        run: npm run build          # билд создает ./out
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
