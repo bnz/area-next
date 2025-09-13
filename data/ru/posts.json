@@ -1,11 +1,20 @@
 [
   {
-    "id": "1934b6b9-1e63-42aa-a2a2-1d9eef7476f4",
-    "title": "Oriental",
-    "excerpt": "A member of the Siamese group, the Oriental has the same body type...",
+    "id": "919b3dcf-1f52-4f99-bf50-14b8d7110a67",
+    "title": "Ориентал",
+    "excerpt": "Представитель сиамской группы, ориентальная кошка имеет такое же телосложение...",
     "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
     "slug": "oriental",
-    "content": "A member of the Siamese group, the Oriental has the same body type as their Siamese parent: elegant, long, lithe and slender. What makes the Oriental distinct is their wide array of colors and patterns combined with a short, sleek coat. Keiger calls the Oriental a Siamese with a different pattern—300 plus of them, in fact.\n\nThe Oriental comes in both longhair and shorthair varieties, adding the opportunity for even more breathtaking colors and patterns.",
+    "content": "Представитель сиамской группы, ориентальная кошка имеет такое же телосложение, как и сиамская: изящное, длинное, гибкое и стройное. Отличительной чертой ориентала является огромное разнообразие окрасов и узоров в сочетании с короткой, гладкой шерстью. Кайгер называет ориентала сиамцем с другим узором — их более 300.\n\nОриентальная кошка бывает как длинношерстной, так и короткошерстной, что добавляет еще больше возможностей для потрясающих окрасов и узоров.",
     "datetime": "2025-05-10T15:40"
+  },
+  {
+    "id": "ca9180a5-3ba3-478a-8393-a2b78ff945a5",
+    "title": "Аня",
+    "excerpt": "asd",
+    "image": "/data/images/295637776_1710980105927183_7629663316046563743_n.jpg",
+    "slug": "asd",
+    "content": "asd",
+    "datetime": "2025-09-13T13:20"
   }
 ]
