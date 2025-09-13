@@ -48,5 +48,7 @@
   "button.moveCenter": "Переместить в центр",
   "button.moveLeft": "Переместить влево",
   "button.moveRight": "Переместить вправо",
+  "button.upload": "Загрузить",
+  "button.uploadImage": "Загрузить изображение",
   "admin.panel": "Админка"
 }

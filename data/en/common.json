@@ -23,6 +23,7 @@
   "button.replace": "Replace",
   "label.or": "or",
   "button.choose": "Choose",
+  "button.uploadImage": "Upload image",
   "button.save": "Save",
   "label.url": "Url",
   "label.title": "Title",
@@ -48,5 +49,6 @@
   "button.moveCenter": "Move center",
   "button.moveLeft": "Move left",
   "button.moveRight":  "Move right",
+  "button.upload": "Upload",
   "admin.panel": "Admin panel"
 }

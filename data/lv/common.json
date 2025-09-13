@@ -23,6 +23,7 @@
   "button.replace": "Aizstāt",
   "label.or": "vai",
   "button.choose": "Izvēlēties",
+  "button.uploadImage": "Augšupielādēt attēlu",
   "button.save": "Saglabāt",
   "label.url": "Saite",
   "label.title": "Virsraksts",
@@ -48,5 +49,6 @@
   "button.moveCenter": "Pārvietot uz centru",
   "button.moveLeft": "Pārvietot pa kreisi",
   "button.moveRight": "Pārvietot pa labi",
+  "button.upload": "Augšupielādēt",
   "admin.panel": "Administrēšana"
 }
