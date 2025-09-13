@@ -543,7 +543,7 @@ export function AdminProvider({ children, lang }: PropsWithChildren<{ lang: Avai
             saveToLocalStorage(validated)
             return validated
         })
-    }, [setLoadedData])
+    }, [setLoadedData, lang])
 
     const areEqual = useCallback(function (filename: TransFiles, id?: string): boolean {
         if (id !== undefined && (filename === TransFiles.features || filename === TransFiles.posts || filename === TransFiles.splits)) {
