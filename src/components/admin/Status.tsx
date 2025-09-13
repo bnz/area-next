@@ -22,7 +22,7 @@ export function Status() {
 			if (s) {
 				setAvailableStatus(true)
 			} else {
-				// setTimeout(pollStatus, 2000)
+				setTimeout(pollStatus, 5000)
 			}
 		}
 

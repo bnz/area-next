@@ -3,6 +3,7 @@ type StoreType = {
     minimized: boolean
     tab: number
     position: "left" | "center" | "right"
+    editPost: string | null
 }
 
 export function getAdminStorage(): StoreType {

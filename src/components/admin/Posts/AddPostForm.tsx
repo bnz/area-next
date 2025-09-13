@@ -7,6 +7,8 @@ import { useFormData } from "@/lib/useFormData"
 import { Button, ButtonSimple, ButtonSubmit } from "@/components/admin/Button"
 import { PostItem, TransFiles } from "@/components/admin/schemas/schemas"
 import { makeId } from "@/lib/makeId"
+import { createPortal } from "react-dom"
+import { saveAdminStore } from "@/components/admin/getAdminStorage"
 
 const formDefaultValue: PostItem = {
     id: "",
@@ -86,13 +88,15 @@ export function AddPostForm() {
                         id: makeId(),
                         slug: formData.slug,
                         datetime: formData.datetime,
-                        image: "",
-                        content: "",
-                        excerpt: "",
-                        title: "",
+                        image: formData.image,
+                        content: formData.content,
+                        excerpt: formData.excerpt,
+                        title: formData.title,
                     }
                 }
             })
+
+            saveAdminStore({ editPost: formData.slug })
 
             saveToLocalStorage(clonedState)
 
@@ -101,28 +105,30 @@ export function AddPostForm() {
         handleCancel()
     }, [loadedData, handleCancel, setLoadedData, lang, formData, saveToLocalStorage, setFormErrors, slugUniquerText])
 
-    return addNew ? (
-        <form
-            className="flex flex-col gap-3 p-2.5 m-2.5 bg-gray-100 dark:bg-gray-700 rounded shadow-inner"
-            onSubmit={onSubmit}
-        >
-            <input required={true} autoFocus type="text" placeholder={urlText} name="slug" onChange={onFormChange} />
-            {formErrors.slug && (
-                <div className="text-red-500 italic">{formErrors.slug}</div>
-            )}
-            <input required={true} type="text" placeholder={titleText} name="title" onChange={onFormChange} />
-            <DateTimeInput name="datetime" onChange={onFormChange} />
-            <input required={true} type="text" placeholder={excerptText} name="excerpt" onChange={onFormChange} />
-            <textarea required={true} placeholder={contentText} name="content" onChange={onFormChange}></textarea>
-            <div className="flex gap-3">
-                <ButtonSubmit>
-                    {saveText}
-                </ButtonSubmit>
-                <ButtonSimple className="cursor-pointer" onClick={handleCancel}>
-                    {cancelText}
-                </ButtonSimple>
-            </div>
-        </form>
+    return addNew ? createPortal(
+        <>
+            <div className="admin-post-edit-backdrop" />
+            <form className="admin-post-add" onSubmit={onSubmit}>
+                <input required={true} autoFocus type="text" placeholder={urlText} name="slug"
+                    onChange={onFormChange} />
+                {formErrors.slug && (
+                    <div className="text-red-500 italic">{formErrors.slug}</div>
+                )}
+                <input required={true} type="text" placeholder={titleText} name="title" onChange={onFormChange} />
+                <DateTimeInput name="datetime" onChange={onFormChange} />
+                <input required={true} type="text" placeholder={excerptText} name="excerpt" onChange={onFormChange} />
+                <textarea required={true} placeholder={contentText} name="content" onChange={onFormChange}></textarea>
+                <div className="flex gap-3">
+                    <ButtonSubmit>
+                        {saveText}
+                    </ButtonSubmit>
+                    <ButtonSimple className="cursor-pointer" onClick={handleCancel}>
+                        {cancelText}
+                    </ButtonSimple>
+                </div>
+            </form>
+        </>,
+        document.getElementById("posts-section") || document.body,
     ) : (
         <div className="max-md:p-2 md:p-5 border-y border-y-gray-200 dark:border-y-gray-800">
             <Button onClick={handleOpen}>

@@ -11,11 +11,11 @@ import Image from "next/image"
 type PostImageSectionProps = {
     id: string
     image: string
-    index: number
     filename: TransFiles.posts | TransFiles.splits
+    allLangs?: boolean
 }
 
-export function ImageSection({ id, image, filename }: PostImageSectionProps) {
+export function ImageSection({ id, image, filename, allLangs }: PostImageSectionProps) {
     const deleteText = useI18n("button.delete")
     const replaceText = useI18n("button.replace")
     const orText = useI18n("label.or")
@@ -40,7 +40,13 @@ export function ImageSection({ id, image, filename }: PostImageSectionProps) {
         <>
             {image !== "" ? (
                 <>
-                    <Image width={100} height={100} src={image} alt="" className=" w-full rounded max-w-[200px] mb-3" />
+                    <Image
+                        width={100}
+                        height={100}
+                        src={image}
+                        alt=""
+                        className="w-auto max-w-full rounded max-w-[200px] h-auto max-h-[75%] mb-3 mx-auto"
+                    />
                     <div className="flex gap-3">
                         <Button onClick={handleDeleteImage} className="hover:!bg-red-500">
                             {deleteText}
@@ -52,13 +58,14 @@ export function ImageSection({ id, image, filename }: PostImageSectionProps) {
                 </>
             ) : (
                 <>
-                    <ImageUploader id={id} />
-                    <div>{orText}</div>
-                    <div>
-                        <Button onClick={open}>
-                            {chooseText}
-                        </Button>
-                    </div>
+                    <ImageUploader id={id}>
+                        <div>{orText}</div>
+                        <div>
+                            <Button onClick={open}>
+                                {chooseText}
+                            </Button>
+                        </div>
+                    </ImageUploader>
                 </>
             )}
             {dialogOpen !== undefined && (
@@ -67,6 +74,7 @@ export function ImageSection({ id, image, filename }: PostImageSectionProps) {
                         id={dialogOpen}
                         filename={filename}
                         onClose={close}
+                        allLangs={allLangs}
                     />
                 </ModalDialog>
             )}

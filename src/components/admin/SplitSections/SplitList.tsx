@@ -33,7 +33,6 @@ export function SplitList() {
 					<ImageSection
 						id={id}
 						image={image}
-						index={index}
 						filename={TransFiles.splits}
 					/>
 				</div>

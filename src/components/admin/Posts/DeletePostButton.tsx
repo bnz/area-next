@@ -16,7 +16,7 @@ export function DeletePostButton({ id, callback }: DeletePostButtonProps) {
 	const cancelText = useI18n("button.cancel")
 	const deleteText = useI18n("button.delete")
 
-	const { setLoadedData, lang, saveToLocalStorage } = useAdmin(TransFiles.posts)
+	const { setLoadedData, lang, saveToLocalStorage, loadedData } = useAdmin(TransFiles.posts)
 	const [dialogOpen, setDialogOpen] = useState<string | undefined>(undefined)
 
 	const handleClose = useCallback(function () {
@@ -52,7 +52,7 @@ export function DeletePostButton({ id, callback }: DeletePostButtonProps) {
 
 	return (
 		<>
-			<Button className="!bg-red-500" onClick={handleOpen}>
+			<Button className="!bg-red-500" onClick={handleOpen} disabled={loadedData.length <= 1}>
 				X
 			</Button>
 			{dialogOpen !== undefined && (

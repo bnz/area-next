@@ -5,7 +5,7 @@ import { TransFiles } from "@/components/admin/schemas/schemas"
 
 export function Posts() {
 	return (
-		<div className="relative">
+		<div id="posts-section" className="relative">
 			<PostsList />
 			<AddPostForm />
 			<PublishButton filename={TransFiles.posts} allLangs />

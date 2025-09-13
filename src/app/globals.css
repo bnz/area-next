@@ -93,7 +93,7 @@ body {
     .admin-post {
         @apply max-md:flex max-md:flex-col;
         @apply md:grid md:grid-cols-[200px_1fr_1fr_100px];
-        @apply md:grid-rows-[30px_30px_1fr];
+        @apply md:grid-rows-[30px_30px_30px_1fr];
         @apply max-md:p-3 md:p-5 max-md:gap-x-3 md:gap-x-5;
 
         &.even {
@@ -108,12 +108,16 @@ body {
             @apply col-span-2 order-4 italic text-sm;
         }
 
+        & > h5 {
+            @apply col-span-2 order-5 font-[Courier_New];
+        }
+
         & > div:nth-of-type(1) {
-            @apply col-span-2 order-5;
+            @apply col-span-2 order-6;
         }
 
         & > div:nth-of-type(2) {
-            @apply row-span-3 order-1;
+            @apply row-span-4 order-1;
 
             & > img {
                 @apply rounded-md w-full h-auto;
@@ -129,7 +133,19 @@ body {
         }
     }
 
+    .admin-post-add {
+        @apply flex flex-col gap-3 p-2.5 m-2.5 bg-gray-100 dark:bg-gray-700 rounded shadow-inner;
+        @apply fixed left-0 right-0 top-32 h-[80vh] z-10 p-5 ;
+    }
+
+    .admin-post-edit-backdrop {
+        @apply bg-white/90 dark:bg-gray-700/90 backdrop-blur-lg;
+        @apply fixed left-0 right-0 top-32 h-[100vh];
+    }
+
     .admin-post-edit {
+        @apply fixed left-0 right-0 top-32 h-[80vh] z-10 p-5;
+
         @apply grid;
         @apply md:grid-cols-[200px_1fr_100px];
         @apply md:grid-rows-[60px_40px_40px_minmax(40px,100px)_1fr];
@@ -161,7 +177,7 @@ body {
         @apply max-md:[&>[name='content']]:col-span-2;
 
         @apply gap-3;
-        @apply px-3 py-10 shadow-inner;
+        @apply shadow-inner;
 
         &.even {
             @apply bg-gray-200 dark:bg-gray-800;

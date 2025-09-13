@@ -1,11 +1,13 @@
 import { useAdmin } from "@/components/admin/AdminProvider"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, PropsWithChildren, useState } from "react"
 import { useI18n } from "@/components/I18nProvider"
 import { TransFiles } from "@/components/admin/schemas/schemas"
-import Image from "next/image"
 
-export function ImageUploader({ id }: { id: string }) {
+export function ImageUploader({ id, children }: PropsWithChildren<{ id: string }>) {
     const loadingText = useI18n("loading")
+    const uploadText = useI18n("button.upload")
+    const cancelText = useI18n("button.cancel")
+    const chooseImageText = useI18n("button.uploadImage")
 
     const { uploadImage, updateArrayData } = useAdmin(TransFiles.posts)
 
@@ -46,18 +48,43 @@ export function ImageUploader({ id }: { id: string }) {
     }
 
     return (
-        <div className="flex flex-col gap-4">
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            {preview && (
-                <Image src={preview} alt="preview" className="w-full max-w-sm rounded border" />
+        <div className="flex flex-col gap-4 items-center py-1">
+            {preview ? (
+                <>
+                    <img src={preview} alt="preview" className="w-full max-h-[50%] max-w-sm rounded" />
+                    <div className="flex gap-3">
+                        <button
+                            type="button"
+                            onClick={handleUpload}
+                            disabled={!file}
+                            className="bg-emerald-600 text-white px-4 py-2 rounded disabled:opacity-50"
+                        >
+                            {uploadText}
+                        </button>
+                        <button type="button" className="cursor-pointer" onClick={function () {
+                            setPreview(null)
+                        }}>
+                            {cancelText}
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div>
+                        <label htmlFor="file" className="button">
+                            {chooseImageText}
+                        </label>
+                        <input
+                            id="file"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                    {children}
+                </>
             )}
-            <button
-                onClick={handleUpload}
-                disabled={!file}
-                className="bg-emerald-600 text-white px-4 py-2 rounded disabled:opacity-50"
-            >
-                ~ Загрузить ~
-            </button>
             {status && (
                 <p className="text-sm text-gray-500">{status}</p>
             )}

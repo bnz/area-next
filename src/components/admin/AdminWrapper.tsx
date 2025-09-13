@@ -52,7 +52,7 @@ export function AdminWrapper({ lang }: AdminWrapperProps) {
 		)}>
 			<AdminProvider lang={lang}>
 				<div className={cx(
-					"p-3 flex items-center gap-3 sticky top-0 z-10",
+					"p-3 flex items-center gap-3 sticky top-0 z-50",
 					"dark:bg-gray-700/75 backdrop-blur-lg rounded-md",
 					!minimized && "mb-3",
 				)}>

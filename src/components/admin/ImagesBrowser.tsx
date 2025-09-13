@@ -7,9 +7,10 @@ type ImagesBrowserProps = {
     id: string
     filename: TransFiles.posts | TransFiles.splits
     onClose: VoidFunction
+    allLangs?: boolean
 }
 
-export function ImagesBrowser({ id, filename, onClose }: ImagesBrowserProps) {
+export function ImagesBrowser({ id, filename, onClose, allLangs }: ImagesBrowserProps) {
     const { loadImagesList, imagesList, updateImage } = useAdmin(filename)
 
     useEffect(function () {
@@ -28,7 +29,7 @@ export function ImagesBrowser({ id, filename, onClose }: ImagesBrowserProps) {
                         alt=""
                         className="w-40 h-40 object-cover rounded cursor-pointer hover:shadow-xl"
                         onClick={function () {
-                            updateImage(id, path)
+                            updateImage(id, path, allLangs)
                             onClose()
                         }}
                     />
