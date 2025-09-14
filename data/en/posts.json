@@ -1,20 +1,29 @@
 [
   {
     "id": "1934b6b9-1e63-42aa-a2a2-1d9eef7476f4",
-    "title": "Oriental",
-    "excerpt": "A member of the Siamese group, the Oriental has the same body type...",
+    "title": "Ориентал",
+    "excerpt": "Представитель сиамской группы, ориентальная кошка имеет то же телосложение, что и сиамская",
     "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
     "slug": "oriental",
-    "content": "A member of the Siamese group, the Oriental has the same body type as their Siamese parent: elegant, long, lithe and slender. What makes the Oriental distinct is their wide array of colors and patterns combined with a short, sleek coat. Keiger calls the Oriental a Siamese with a different pattern—300 plus of them, in fact.\n\nThe Oriental comes in both longhair and shorthair varieties, adding the opportunity for even more breathtaking colors and patterns.",
+    "content": "Представитель сиамской группы, ориентальная кошка имеет то же телосложение, что и сиамская: изящное, длинное, гибкое и стройное. Отличительной чертой ориентала является широкий спектр окрасов и узоров в сочетании с короткой, гладкой шерстью. Кайгер называет ориентала «сиамцем с другим рисунком» — их насчитывается более 300.\n\nОриенталы бывают как длинношёрстные, так и короткошёрстные, что даёт ещё больше возможностей для впечатляющих сочетаний цветов и рисунков.",
     "datetime": "2025-05-10T15:40"
   },
   {
-    "id": "62acfe90-9e0d-4741-953f-866ce41f7a77",
-    "title": "Abyssinian",
-    "excerpt": "The Abyssinian’s defining feature is a richly colored, ticked tabby coat in which each hair is ticked with four to six bands of color—dark at the tip, lighter at the roots and alternating dark and light.",
+    "id": "aee0c0c1-91ae-488f-9bae-4916adfd4e5f",
+    "title": "Абиссинская кошка",
+    "excerpt": "Отличительная особенность абиссинской кошки — богато окрашенная тикированная шерсть табби: каждый волос имеет четыре–шесть зон окраса — тёмный на кончике, светлее у корня, с чередованием тёмных и светлых полос.",
     "image": "/data/images/202504202403Beautiful-cat-Abyssinian.jpg",
     "slug": "abyssinian",
-    "content": "The Abyssinian’s defining feature is a richly colored, ticked tabby coat in which each hair is ticked with four to six bands of color—dark at the tip, lighter at the roots and alternating dark and light. The original coat color is known as ruddy, but the Abyssinian also comes in different shades, including red, blue and fawn. The face features dramatic markings that don’t appear anywhere else on the body.\n\nAbyssinians are extremely graceful and elegant. They remind Keiger of male ballet dancers—”muscular, lithe and seeming to be barely standing on the Earth.”",
+    "content": "Исходный окрас известен как «дикий» (ruddy), но у абиссинской также встречаются другие оттенки: красный (red), голубой (blue) и фавн (fawn). На морде — выразительные отметины, которых нет на остальном теле.\n\nАбиссинки чрезвычайно грациозны и элегантны. Они напоминают Кайгеру танцовщиков балета — «мускулистые, гибкие и будто едва касаются земли».",
     "datetime": "2025-09-13T18:23"
+  },
+  {
+    "id": "48ea10dd-5955-4efe-8cf8-f48fd4bd316a",
+    "title": "Dobroe utro",
+    "excerpt": "Dobroe utro",
+    "image": "/data/images/10-8.jpg",
+    "slug": "dobroe-utro",
+    "content": "Dobroe utro",
+    "datetime": "2025-09-14T10:31"
   }
 ]
