@@ -1,20 +1,29 @@
 [
   {
     "id": "1934b6b9-1e63-42aa-a2a2-1d9eef7476f4",
-    "title": "Orientālais kaķis",
-    "excerpt": "Siāmiešu grupas pārstāvis, orientālais kaķis ir ar tādu pašu ķermeņa tipu kā siāmietis",
+    "title": "Ориентал",
+    "excerpt": "Представитель сиамской группы, ориентальная кошка имеет то же телосложение, что и сиамская",
     "image": "/data/images/202504202404beautiful-cats-oriental-cat-breeds.avif",
     "slug": "oriental",
-    "content": "Siāmiešu grupas pārstāvis, orientālais kaķis ir ar tādu pašu ķermeņa tipu kā siāmietis: elegants, garš, lokans un slaids. Orientālo izceļ plašs krāsu un rakstu klāsts apvienojumā ar īsu, gludu kažoku. Keigers to dēvē par “siāmieti ar citu rakstu” — pat ar vairāk nekā 300 variācijām.\n\nOrientālais sastopams gan garspalvainā, gan īsspalvainā variantā, kas paver iespējas vēl iespaidīgākiem krāsu un rakstu salikumiem.",
+    "content": "Представитель сиамской группы, ориентальная кошка имеет то же телосложение, что и сиамская: изящное, длинное, гибкое и стройное. Отличительной чертой ориентала является широкий спектр окрасов и узоров в сочетании с короткой, гладкой шерстью. Кайгер называет ориентала «сиамцем с другим рисунком» — их насчитывается более 300.\n\nОриенталы бывают как длинношёрстные, так и короткошёрстные, что даёт ещё больше возможностей для впечатляющих сочетаний цветов и рисунков.",
     "datetime": "2025-05-10T15:40"
   },
   {
-    "id": "4e8be2a9-ef07-46e9-a53a-0b398dcccd46",
-    "title": "Abesīnijas kaķis",
-    "excerpt": "Abesīnijas kaķa raksturīgā iezīme ir bagātīgi krāsots, tiktēts tabby kažoks, kur katrs mats ir iekrāsots četrās līdz sešās joslās — tumšāks galā, gaišāks pie saknes, ar pārmaiņus tumšām un gaišām joslām.",
+    "id": "aee0c0c1-91ae-488f-9bae-4916adfd4e5f",
+    "title": "Абиссинская кошка",
+    "excerpt": "Отличительная особенность абиссинской кошки — богато окрашенная тикированная шерсть табби: каждый волос имеет четыре–шесть зон окраса — тёмный на кончике, светлее у корня, с чередованием тёмных и светлых полос.",
     "image": "/data/images/202504202403Beautiful-cat-Abyssinian.jpg",
     "slug": "abyssinian",
-    "content": "Sākotnējā krāsa pazīstama kā “ruddy” (savvaļas), taču abesīniešiem sastopamas arī citas nokrāsas: sarkanā (red), zilā (blue) un smilškrāsas (fawn). Uz sejas ir izteiksmīgas iezīmes, kas citur uz ķermeņa neparādās.\n\nAbesīnieši ir ļoti graciozi un eleganti. Keigers tos salīdzina ar baleta dejotājiem — “muskuļoti, vijīgi un it kā tik tikko pieskaras zemei”.",
+    "content": "Исходный окрас известен как «дикий» (ruddy), но у абиссинской также встречаются другие оттенки: красный (red), голубой (blue) и фавн (fawn). На морде — выразительные отметины, которых нет на остальном теле.\n\nАбиссинки чрезвычайно грациозны и элегантны. Они напоминают Кайгеру танцовщиков балета — «мускулистые, гибкие и будто едва касаются земли».",
     "datetime": "2025-09-13T18:23"
+  },
+  {
+    "id": "7bcebf76-c0de-45fd-9fa1-a4cc57ed0c21",
+    "title": "Dobroe utro",
+    "excerpt": "Dobroe utro",
+    "image": "/data/images/10-8.jpg",
+    "slug": "dobroe-utro",
+    "content": "Dobroe utro",
+    "datetime": "2025-09-14T10:31"
   }
 ]
